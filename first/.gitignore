@@ -1,0 +1,12 @@
+.DS_Store
+
+# 立创·逻辑派FPGA-G1 官方资料包（含 ~100MB 安装包/压缩包，本地保留不入库；规划文档见 docs/2026嵌赛选题一/）
+/逻辑派FPGA-G1/
+
+# Python
+__pycache__/
+*.pyc
+
+# Gowin 构建产物（gw_sh build.tcl 一键可重建，仅入库源文件与工程文件）
+/inverted-pendulum/fpga/test_env/test_env/impl/
+*.gprj.user
