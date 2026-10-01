@@ -47,8 +47,38 @@ module balance_ctrl_tb;
         if (loc_tick) begin d_loc = nclk - last_loc; last_loc = nclk; nloc = nloc + 1; end
     end
 
+    // 等 n 个摆角拍（利用 always 块里的计数器，脉冲不漏计）
+    integer s_ang;
+    task step_ang_ticks(input integer n);
+        begin
+            s_ang = nang;
+            while (nang < s_ang + n) @(posedge clk);
+            repeat (40) @(posedge clk);                   // 等 PID 算完（约 QB+4 拍）
+        end
+    endtask
+
+    // 等 n 个位置环拍
+    integer s_loc;
+    task step_loc_ticks(input integer n);
+        begin
+            s_loc = nloc;
+            while (nloc < s_loc + n) @(posedge clk);
+            repeat (40) @(posedge clk);
+        end
+    endtask
+
+    task do_reset;
+        begin
+            rst_n = 0;
+            repeat (4) @(posedge clk);
+            rst_n = 1;
+            repeat (4) @(posedge clk);
+            nclk = 0; last_ang = 0; last_loc = 0; nang = 0; nloc = 0;
+        end
+    endtask
+
     initial begin
-        #5_000_000 $display("FAIL: watchdog timeout at %0t (nclk=%0d nang=%0d)", $time, nclk, nang);
+        #200_000_000 $display("FAIL: watchdog timeout at %0t (nclk=%0d nang=%0d)", $time, nclk, nang);
         $finish;
     end
 
@@ -72,6 +102,54 @@ module balance_ctrl_tb;
         check(nloc >= 2, "slice1: loc_tick present twice in window");
         check(d_loc == 5000, "slice1: loc_tick spacing = 5000 clocks (20Hz)");
         if (d_loc != 5000) $display("  (loc spacing=%0d count=%0d)", d_loc, nloc);
+
+        // 切片 2：级联 PID 手算（1kHz 基准 100 时钟，摆角环每 5 拍 = 500 时钟）
+        //  目标 = CENTER(2010)，位置环起点 loc=0 故目标不变
+        //  连续 3 个摆角拍 act=2000,1990,2020：期望 7, 10, -14（同 pid_tb 切片 2 的手算）
+        do_reset;
+        stale = 0; loc = 0;
+        adc_code = 12'd2000;
+        step_ang_ticks(1);
+        check(u_dir === 8'sd7,  "slice2: tick1 adc=2009 (d=1 code) -> u=+7");
+        if (u_dir !== 8'sd7) $display("  (tick1 u=%0d)", u_dir);
+        adc_code = 12'd1990;
+        step_ang_ticks(1);
+        check(u_dir === 8'sd10, "slice2: tick2 adc=2008 (d=2 code) -> u=+10");
+        if (u_dir !== 8'sd10) $display("  (tick2 u=%0d)", u_dir);
+        adc_code = 12'd2020;
+        step_ang_ticks(1);
+        check(u_dir === -8'sd14, "slice2: tick3 adc=2011 (d=-1 code) -> u=-14 (truncate toward zero)");
+        if (u_dir !== -8'sd14) $display("  (tick3 u=%0d)", u_dir);
+
+        // 切片 3：出窗失效安全。CENTER+WIN(5000/10=500 码值) 之外 -> en=0、u=0
+        adc_code = 12'd2010 + 12'd600;
+        step_ang_ticks(1);
+        check(en === 1'b0 && u_dir === 8'sd0 && u_mag === 1'b0, "slice3: out of window -> safe state");
+        adc_code = 12'd2010 + 12'd400;                   // 回到窗内
+        step_ang_ticks(1);
+        check(en === 1'b1, "slice3: back inside window -> en=1");
+
+        // 切片 4：数据失效 safe 态
+        stale = 1;
+        step_ang_ticks(1);
+        check(en === 1'b0 && u_dir === 8'sd0 && u_mag === 1'b0, "slice4: stale -> safe state");
+        stale = 0;
+        step_ang_ticks(1);
+        check(en === 1'b1, "slice4: stale cleared -> en=1");
+
+        // 切片 5：位置环级联符号。loc=100 计数，位置环首拍（Kp=4, Ki=0, Kd=40）：
+        //   E0=0-100=-100，dE=-100-0=-100 -> sum = 4*(-100) + 40*(-100) = -4400，DIV=1 -> -4400
+        //   限幅 ±1000 -> -1000，即 -100.0 码值；tgt = 20100 - (-1000) = 21100
+        //   （若级联符号写成 +，tgt 会是 19100）
+        do_reset;
+        stale = 0; adc_code = 12'd2010; loc = 32'sd100;
+        step_loc_ticks(1);
+        check(tgt_x10 === 32'sd21100, "slice5: loc=100 -> position loop pulls target to 21100");
+        if (tgt_x10 !== 32'sd21100) $display("  (tgt=%0d)", tgt_x10);
+        // 位置环输出为 -1000（-100.0 码值）：目标偏离 100 码值，而角度误差窗是 500 码值 -> 仍在窗内
+        check(en === 1'b1, "slice5: 100-code offset still inside window (en=1)");
+        // 位置回零后的收敛依赖于位置环积分/微分历史（Ki=0 时只是 PD），不在此切片断言
+        loc = 32'sd0;
 
         if (errors == 0) $display("PASS: all slices");
         else             $display("RESULT: %0d failure(s)", errors);
