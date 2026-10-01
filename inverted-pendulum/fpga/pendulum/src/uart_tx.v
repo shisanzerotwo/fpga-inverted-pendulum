@@ -16,7 +16,7 @@ module uart_tx #(
     reg [9:0]  shifter;     // {停止位, D7..D0, 起始位}，LSB 先出
     reg        busy;
 
-    assign ready = ~busy;
+    assign ready = ~busy & rst_n;   // 复位期间不接收，避免上游误以为字节已被收下
     assign tx    = busy ? shifter[0] : 1'b1;
 
     always @(posedge clk or negedge rst_n) begin

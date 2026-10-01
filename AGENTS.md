@@ -92,7 +92,19 @@ gtkwave dump.vcd &               # 看波形（可选）
 **已完成并已核实**
 - 提交已推送 GitHub（`shisanzerotwo/fpga-inverted-pendulum`，master 到 `01b1f88`）。
 - M1 软件侧：13 个拟用扩展脚均在原理图 66 个 `EX_` 网络内、与板内占用无交集（脚本核对）；`pendulum.pin.html` 抽查 19 个信号落位正确；逻辑占用 <1%。官方 `.cst`/分配表只含板载功能，**扩展脚无官方第二来源**，第二来源 = 实物丝印。
-- **下载链路打通**：板上 GD32 在 Windows 里是 `DAPLink CMSIS-DAP` + `COM7`，但对 Gowin Programmer 表现为 **`Gowin USB Cable (FT2CH)`**，器件识别 `GW2A-18C (0x0000081B)`。**用 Gowin Programmer 图形界面下载**（`SRAM Program` + `pendulum.fs`）；`openFPGALoader` 与 `programmer_cli --scan-cables` 在本机都**扫不到/打不开**，别再走这条路。SRAM 下载断电即失效。
+- **下载链路打通**：板上 GD32 在 Windows 里是 `DAPLink CMSIS-DAP` + `COM7`，但对 Gowin Programmer 表现为 **`Gowin USB Cable (FT2CH)`**，器件识别 `GW2A-18C (0x0000081B)`。`openFPGALoader` 与 `programmer_cli --scan-cables` 在本机都**扫不到/打不开**，别再走这条路。SRAM 下载断电即失效。
+- **命令行下载可用**（2026-10-01 实测，**指定 cable 即可，不要 `--scan-cables`**）：
+  ```bash
+  P="/e/FBGA/Gowin/Gowin_V1.9.10.02_x64/Programmer/bin/programmer_cli.exe"
+  "$P" --device GW2A-18C --cable "Gowin USB Cable(FT2CH)" --run 0          # 读器件码，探针
+  "$P" --device GW2A-18C --cable "Gowin USB Cable(FT2CH)" --run 2 \
+       --fsFile "D:\\GitHub\\xiangmu\\fpga-inverted-pendulum\\inverted-pendulum\\fpga\\pendulum\\pendulum\\impl\\pnr\\pendulum.fs"   # SRAM 下载，约 5s
+  ```
+  成功标志：`Status Code is: 0x00006020` + `Finished.`。图形界面仍可用作兜底。
+- **FPGA 串口（`uart_tx`=F12）读 COM9，不是 COM7**（2026-10-01 实测，只插逻辑派一根 Type-C、无其它下载器）：
+  - COM9 = `FTDIBUS\VID_0403+PID_6010`（USB Serial Port）：收到 FPGA 每 0.671s 一个递增字节（与 2²⁵/50MHz 一致），重新下载后从 `01` 重新计数。
+  - COM7 = `USB\VID_0D28&PID_0204&MI_01`（DAPLink CDC）：收到的是 **GD32 固件自己**周期发的 GBK 文本（"欢迎使用立创·逻辑派FPGA-G1开发板…GD32 内部温度：xx°C"），不是 FPGA 输出。
+  - 两个 USB 身份同一时刻只有一个在线；`programmer_cli` 下载后切到 VID_0403/COM9。读串口用 `tools/read_com.ps1 COM9 115200 6`。
 - 下载前要排障的事实：Type-C 线直连电脑 USB 口最稳；曾因线/转接器/口导致 `Device Descriptor Request Failed`（代码 43），换口后正常。
 - 已烧过一版自检程序，板上 LED 有多色闪烁（程序确实在跑，时钟与配置正常）。
 
@@ -101,12 +113,14 @@ gtkwave dump.vcd &               # 看波形（可选）
 - 数码管引脚映射：官方 cst 有 `seg[0..7]`=G13/H16/H12/H13/H14/G12/G11/L14，但未对原理图核对，未点亮过。
 - 编码器 A/B、ADC、PWM 等 `.cst` 中 `[待丝印]` 的 13 个扩展脚：**未做实物丝印核对**，也未接外设。
 
-**未提交的本地改动**：`fpga/pendulum/src/top.v`（D1 自检版，已重新编译成功，`pendulum.fs` 16:11 版）。桌面有 `fpga-inverted-pendulum.zip`（含该版 `.fs`，但 zip 内 `top.v` 是 git 旧版，不一致）。未跟踪：`.mcp.json`（未审查，可能含密钥，**勿提交**）、`tools/gowin-mcp/`（用户新增，未读）、`docs/img/MCP3202_p*.png`。`D:\Gowin` 副本**仍在**（用户决定不删；注册表卸载项仍指向它）。
+- **`uart_tx` 已上板验证**（2026-10-01）：`src/uart_tx.v`（115200 8N1，valid/ready 握手，复位期间 `ready`=0）；`tb/uart_tx_tb.v` 6 个切片 + `tb/top_tb.v` 冒烟，iverilog 全 PASS，各切片均做过变异阴性对照；`top.v` 每次心跳上升沿发一个递增字节。综合：Logic 97/20736，Fmax 253MHz（约束 50MHz）。
+
+**未跟踪（未审查，勿提交）**：`.mcp.json`、`tools/gowin-mcp/`、`docs/img/MCP3202_p*.png`。`D:\Gowin` 副本**仍在**（用户决定不删；注册表卸载项仍指向它）。
 
 **下一步（按顺序）**
 1. 用户重烧最新 `pendulum.fs`：不按键描述各色灯状态；按住 D11、F10 分别描述变化 → 裁决 LED 极性与颜色↔球号映射，必要时改 `top.v`。
 2. 用户对照 `排针映射与IO分配.md` §六核对排针丝印（G15/J15/K16/T7 附近 GND）+ 万用表抽查 2~3 脚 → 通过后删 `.cst` 中 `[待丝印]`，M1 才算完成。
-3. W2：`quad_decoder` / `mcp3202_spi` / `uart_tx` + iverilog TB（`seg_display` 可选）。MCP3202 数据手册在 `docs/img/`。
+3. W2：~~`uart_tx`~~（已完成）→ `quad_decoder` / `mcp3202_spi` + iverilog TB（`seg_display` 可选）。MCP3202 数据手册在 `docs/img/`。
 4. 稳摆硬线 **10-20**，起摆硬线 **10-27**（见发展规划 §五）。
 5. 开发流程用 mattpocock skills（`/setup-matt-pocock-skills`、`/grill-with-docs`、`/tdd` 为 `disable-model-invocation`，**必须由用户在输入框触发**，agent 不能代调、也不得手工复刻其流程）。用户尚未触发过。若用户不用 skill，则按 TDD 节奏手写：先 TB 后 RTL。
 

@@ -63,9 +63,22 @@ module uart_tx_tb;
         $dumpfile("uart_tx_tb.vcd");
         $dumpvars(0, uart_tx_tb);
 
+        // 切片 6：复位期间 ready 为低（上游不会以为字节被收下），且复位期间的 valid 不产生帧
+        repeat (2) @(posedge clk);
+        #1;
+        check(ready === 1'b0, "slice6: ready low during reset");
+        data  = 8'h00;
+        valid = 1'b1;
+        repeat (2) @(posedge clk);
+        valid = 1'b0;
+        #1;
+        check(tx === 1'b1, "slice6: no frame started during reset");
+
         // 切片 1：复位后 tx 为高、ready 为高
-        repeat (4) @(posedge clk);
+        repeat (2) @(posedge clk);
         rst_n = 1;
+        repeat (BIT_CLKS) @(posedge clk);                     // 复位刚释放的一个位时间内 tx 仍保持空闲
+        check(tx === 1'b1, "slice6: tx idle after reset release (reset-time valid dropped)");
         repeat (2) @(posedge clk);
         #1;
         check(tx === 1'b1,    "slice1: tx idle high after reset");
