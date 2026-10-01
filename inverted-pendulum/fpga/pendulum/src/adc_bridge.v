@@ -2,7 +2,10 @@
 // 帧格式（4 字节）：0xA5 | {4'b0, code[11:8]} | code[7:0] | chk = A5 ^ hi ^ lo
 // GD32 只做"采样 + 原码转发"，本模块只收帧与校验，不做任何滤波/换算（合规分工）。
 // 输出：code = 最近一帧校验通过的原始码值；valid = 收到合法帧打一拍；
-//       stale = 超过 TIMEOUT_MS 无合法帧（含上电后从未收到）为 1，控制侧据此进安全态。
+//       stale = 超过 TIMEOUT_MS 无合法帧（含上电后从未收到）为 1，控制侧据此进安全态；
+//       framing_err = 收到停止位为 0 的字节（帧错误，该字节被丢弃），单拍脉冲，每拍刷新。
+//       停止位检查在协议层不可观测（坏字节的低电平尾巴会连着触发新的起始沿，级联出若干次
+//       帧错误），故用端口暴露出来，单测据此断言。
 //
 // 波特率容限（发送端相对偏差 e，接收端为本地时钟）：
 //   起始沿经两级同步后，在起始位约 0.49 位处复核，之后每 BIT_CLKS 采一位，
@@ -21,7 +24,8 @@ module adc_bridge #(
     input  wire        rx,
     output reg  [11:0] code,
     output reg         valid,
-    output reg         stale
+    output reg         stale,
+    output reg         framing_err
 );
     localparam BIT_CLKS  = CLK_HZ / BAUD;
     localparam HALF_CLKS = BIT_CLKS / 2;
@@ -51,8 +55,10 @@ module adc_bridge #(
             r_shift    <= 8'd0;
             byte_valid <= 1'b0;
             byte_data  <= 8'd0;
+            framing_err <= 1'b0;
         end else begin
-            byte_valid <= 1'b0;
+            byte_valid  <= 1'b0;
+            framing_err <= 1'b0;
             case (r_state)
                 R_IDLE: if (!rxs) begin
                     r_state <= R_START;
@@ -75,6 +81,8 @@ module adc_bridge #(
                     if (rxs) begin                            // 停止位为 1 才算有效字节
                         byte_valid <= 1'b1;
                         byte_data  <= r_shift;
+                    end else begin
+                        framing_err <= 1'b1;                  // 坏停止位：该字节丢弃并报帧错误
                     end
                 end else r_cnt <= r_cnt + 1'b1;
             endcase

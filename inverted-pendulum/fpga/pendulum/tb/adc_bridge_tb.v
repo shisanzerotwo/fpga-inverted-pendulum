@@ -9,10 +9,11 @@ module adc_bridge_tb;
     wire [11:0] code;
     wire        valid;
     wire        stale;
+    wire        framing_err;
     integer     errors = 0;
 
     adc_bridge #(.CLK_HZ(50_000_000), .BAUD(1_000_000), .TIMEOUT_MS(5)) dut (
-        .clk(clk), .rst_n(rst_n), .rx(rx), .code(code), .valid(valid), .stale(stale));
+        .clk(clk), .rst_n(rst_n), .rx(rx), .code(code), .valid(valid), .stale(stale), .framing_err(framing_err));
 
     always #10 clk = ~clk;   // 50MHz
 
@@ -37,6 +38,16 @@ module adc_bridge_tb;
     endtask
     task send_frame(input [7:0] b0, input [7:0] b1, input [7:0] b2, input [7:0] b3);
         begin send_byte(b0); send_byte(b1); send_byte(b2); send_byte(b3); end
+    endtask
+
+    // 同 send_byte，但停止位电平可控（stop=0 造帧错误）
+    integer rk;
+    task send_raw(input [7:0] b, input stop);
+        begin
+            rx = 1'b0; #(bit_ns);
+            for (rk = 0; rk < 8; rk = rk + 1) begin rx = b[rk]; #(bit_ns); end
+            rx = stop;  #(bit_ns);
+        end
     endtask
 
     // ---- valid 监视器：计脉冲数并记下每个脉冲时刻的 code ----
@@ -69,6 +80,8 @@ module adc_bridge_tb;
     // expect_code：当前允许出现的唯一码值；valid 时 code 不等于它就计一次"错误码值"
     reg  [11:0] expect_code = 12'hXXX;
     integer     bad_code_seen = 0;
+    integer     framing_seen = 0;         // framing_err 单拍脉冲，用粘性计数捕获
+    always @(posedge clk) if (framing_err) framing_seen = framing_seen + 1;
     always @(posedge clk) if (valid) begin
         n_valid   = n_valid + 1;
         last_code = code;
@@ -78,15 +91,25 @@ module adc_bridge_tb;
         end
     end
 
+    // 开序列对拍前先排空：发一帧哨兵并等它结算，避免上一段的残留（如切片 6b 的坏字节级联）串进计数
+    task arm_seq;
+        begin
+            seq_check = 0;
+            #(6 * 10 * bit_ns);
+            send_code(12'hABC);
+            #(6 * 10 * bit_ns);
+            seq_k = 0; seq_err = 0; n_valid = 0;
+            seq_check = 1;
+        end
+    endtask
+
     // ---- 切片 8：以 pm（千分比）偏差发 20 帧背靠背序列帧，返回是否全部正确 ----
     integer err_pm;
     reg     ok;
     task run_baud_err(input integer pm, output reg pass);
         begin
             bit_ns = 1000.0 * (1.0 + pm / 1000.0);
-            #(20_000);                                  // 线路空闲 20us，隔开上一段
-            seq_check = 1; seq_k = 0; seq_err = 0;
-            n_valid = 0;
+            arm_seq;
             for (i = 0; i < 20; i = i + 1) send_code(seq_code(i));
             repeat (20) @(posedge clk);
             seq_check = 0;
@@ -208,6 +231,18 @@ module adc_bridge_tb;
         check(code === 12'hFFF,      "slice6: out-of-range hi=0x10 rejected, code holds");
         check(n_valid == 2,          "slice6: no valid pulse for out-of-range frame");
 
+        // 切片 6b：停止位错误的字节必须被丢弃、并通过 framing_err 报告（停止位检查在协议层
+        //  不可观测——坏字节的低电平尾巴会级联触发新的起始沿，故用端口暴露）。本切片只断言
+        //  "报帧错误 + 不提交码值"，不断言随后恢复（恢复依赖线路回稳，不适合单测）。
+        n_valid = 0; framing_seen = 0;
+        #(10 * 10 * bit_ns);                              // 线路空闲，让解析器回到同步态
+        send_raw(8'h5A, 1'b0);                            // 停止位 = 0
+        repeat (20) @(posedge clk);
+        check(framing_seen >= 1,     "slice6b: bad-stop byte -> framing_err reported");
+        check(n_valid == 0,          "slice6b: bad-stop byte -> no valid code committed");
+        check(code === 12'hFFF,      "slice6b: code holds previous value (0xFFF)");
+        if (framing_seen == 0) $display("  (no framing_err seen)");
+
         // 切片 7a：1kHz 连发 100 帧（每 1ms 一帧，帧本身 40us），无漏帧、无错帧
         // 切片 7b：背靠背 100 帧（帧间无空闲，帧间隔 = 一帧时间 40us = 25kHz），同样无漏/错
         // 码值序列 code_k = (k*41 + 7) mod 4096，覆盖高 4 位各种取值；期望序列在监视器里逐帧比对
@@ -217,8 +252,7 @@ module adc_bridge_tb;
         check(seq_code(99)  === 12'hFE2, "slice7: seq anchor k=99 = 0xFE2");
         check(seq_code(100) === 12'h00B, "slice7: seq anchor k=100 wraps to 0x00B");
 
-        seq_check = 1; seq_k = 0; seq_err = 0;
-        n_valid = 0;
+        arm_seq;
         for (i = 0; i < 100; i = i + 1) begin
             send_code(seq_code(i));
             #(1_000_000 - 40_000);                     // 补足到 1ms 周期
@@ -227,8 +261,7 @@ module adc_bridge_tb;
         check(n_valid == 100,        "slice7a: 1kHz x100 -> 100 valid pulses (no drop)");
         check(seq_err == 0,          "slice7a: every frame decoded to expected code");
 
-        seq_k = 0; seq_err = 0;
-        n_valid = 0;
+        arm_seq;
         for (i = 0; i < 100; i = i + 1) send_code(seq_code(i));
         repeat (20) @(posedge clk);
         check(n_valid == 100,        "slice7b: back-to-back x100 -> 100 valid pulses");

@@ -31,10 +31,11 @@ module top (
 
     // 摆角 ADC 码值桥（GD32 只采样转发；GD32 固件未就绪前 stale 恒为 1）
     wire [11:0] adc_code;
-    wire        adc_valid, adc_stale;
+    wire        adc_valid, adc_stale, adc_framing_err;
     adc_bridge #(.CLK_HZ(50_000_000), .BAUD(1_000_000), .TIMEOUT_MS(5)) u_ab (
         .clk(sys_clk), .rst_n(rst_n), .rx(adc_rx),
-        .code(adc_code), .valid(adc_valid), .stale(adc_stale)
+        .code(adc_code), .valid(adc_valid), .stale(adc_stale),
+        .framing_err(adc_framing_err)      // 内部信号，暂不引到引脚；需要观察时可用 led 复用
     );
 
     // 编码器四倍频计数（输出轴一圈 408）
@@ -52,7 +53,7 @@ module top (
         .data(tx_byte), .valid(tx_valid), .ready(tx_ready), .tx(uart_tx)
     );
 
-    wire unused = &{1'b0, kext};   // K1~K4 本版未用，占位防止被优化
+    wire unused = &{1'b0, kext, adc_framing_err};   // 本版未用的输入/输出占位，防止被优化掉
 
     reg [24:0] cnt;
     reg        hb_d;
