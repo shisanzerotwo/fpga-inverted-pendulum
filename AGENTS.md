@@ -23,7 +23,7 @@ inverted-pendulum/
   sim/                     ← 阶段 0：Python 非线性建模 + 双环 PID/能量起摆/LQR 仿真
     model.py  controller.py  run_sim.py  sim_out/*.png
   fpga/test_env/           ← 阶段 1：Gowin 环境验收工程（build.tcl 一键构建）
-  fpga/pendulum/           ← 阶段 2+ 正式工程（待建，见 §五）
+  fpga/pendulum/           ← 正式工程：src/top.v + constraint/pendulum.{cst,sdc} + build.tcl（M1 骨架已建）
 ```
 仓库外资料（**不入库**）：`D:\GitHub\xiangmu\FPGA\逻辑派FPGA-G1\`、`D:\GitHub\xiangmu\FPGA\江协PID倒立摆套件资料\`。
 
@@ -78,7 +78,8 @@ gtkwave dump.vcd &               # 看波形（可选）
 |---|---|---|
 | 0 建模仿真 | Python 建模 + 双环 PID/能量起摆/LQR | ✅ |
 | 1 环境与骨架 | Gowin 全流程通过；工具链统一到 `E:\FBGA` | ✅（本机验收已重跑） |
-| 2 采集链 bring-up | 编码器/ADC/UART + 标定三个方向常数 | ⬜ 板卡/套件**已到货** |
+| 1.5 M1 工程骨架 | `fpga/pendulum/`（cst+sdc+安全态顶层），`gw_sh build.tcl` 通过 | ✅ 软件侧；⏳ 实物丝印核对（见下） |
+| 2 采集链 bring-up | 编码器/ADC/UART + 标定三个方向常数 | ⬜ 板卡/套件/MCP3202 **已到货**；板子已能下载运行 |
 | 3 稳摆 | 复刻双环 PID（基础②③） | ⬜ |
 | 4 自动起摆 | 能量起摆 + 捕获（基础①） | ⬜ |
 | 5 拓展+超越 | 位置/轨迹 + LQR（拓展①②③ + 抖动 ≤±3°） | ⬜ |
@@ -86,7 +87,30 @@ gtkwave dump.vcd &               # 看波形（可选）
 
 **截止日 2026-11-10**（2026-10-01 起剩 40 天）；倒排表已压缩，见发展规划 §五：稳摆硬线 10-20、起摆硬线 10-27，LQR 等 stretch 已砍。
 
-**下一步（阶段 2 开工）**：实物排针丝印核对（`docs/…/排针映射与IO分配.md` §六）→ 定稿 `pendulum.cst`（M1）→ 采集链 RTL + 单元 TB（M2）。
+### 5.1 进度快照（2026-10-01 会话结束时）
+
+**已完成并已核实**
+- 提交已推送 GitHub（`shisanzerotwo/fpga-inverted-pendulum`，master 到 `01b1f88`）。
+- M1 软件侧：13 个拟用扩展脚均在原理图 66 个 `EX_` 网络内、与板内占用无交集（脚本核对）；`pendulum.pin.html` 抽查 19 个信号落位正确；逻辑占用 <1%。官方 `.cst`/分配表只含板载功能，**扩展脚无官方第二来源**，第二来源 = 实物丝印。
+- **下载链路打通**：板上 GD32 在 Windows 里是 `DAPLink CMSIS-DAP` + `COM7`，但对 Gowin Programmer 表现为 **`Gowin USB Cable (FT2CH)`**，器件识别 `GW2A-18C (0x0000081B)`。**用 Gowin Programmer 图形界面下载**（`SRAM Program` + `pendulum.fs`）；`openFPGALoader` 与 `programmer_cli --scan-cables` 在本机都**扫不到/打不开**，别再走这条路。SRAM 下载断电即失效。
+- 下载前要排障的事实：Type-C 线直连电脑 USB 口最稳；曾因线/转接器/口导致 `Device Descriptor Request Failed`（代码 43），换口后正常。
+- 已烧过一版自检程序，板上 LED 有多色闪烁（程序确实在跑，时钟与配置正常）。
+
+**未验证（不要当事实用）**
+- LED 极性（共阳/低电平点亮）与 6 通道 ↔ 球号（R9/C10/R7/N6/T10/P7）对应关系：**未核实**。`top.v` 当前自检版按"低电平点亮"写，是假设。
+- 数码管引脚映射：官方 cst 有 `seg[0..7]`=G13/H16/H12/H13/H14/G12/G11/L14，但未对原理图核对，未点亮过。
+- 编码器 A/B、ADC、PWM 等 `.cst` 中 `[待丝印]` 的 13 个扩展脚：**未做实物丝印核对**，也未接外设。
+
+**未提交的本地改动**：`fpga/pendulum/src/top.v`（D1 自检版，已重新编译成功，`pendulum.fs` 16:11 版）。桌面有 `fpga-inverted-pendulum.zip`（含该版 `.fs`，但 zip 内 `top.v` 是 git 旧版，不一致）。未跟踪：`.mcp.json`（未审查，可能含密钥，**勿提交**）、`tools/gowin-mcp/`（用户新增，未读）、`docs/img/MCP3202_p*.png`。`D:\Gowin` 副本**仍在**（用户决定不删；注册表卸载项仍指向它）。
+
+**下一步（按顺序）**
+1. 用户重烧最新 `pendulum.fs`：不按键描述各色灯状态；按住 D11、F10 分别描述变化 → 裁决 LED 极性与颜色↔球号映射，必要时改 `top.v`。
+2. 用户对照 `排针映射与IO分配.md` §六核对排针丝印（G15/J15/K16/T7 附近 GND）+ 万用表抽查 2~3 脚 → 通过后删 `.cst` 中 `[待丝印]`，M1 才算完成。
+3. W2：`quad_decoder` / `mcp3202_spi` / `uart_tx` + iverilog TB（`seg_display` 可选）。MCP3202 数据手册在 `docs/img/`。
+4. 稳摆硬线 **10-20**，起摆硬线 **10-27**（见发展规划 §五）。
+5. 开发流程用 mattpocock skills（`/setup-matt-pocock-skills`、`/grill-with-docs`、`/tdd` 为 `disable-model-invocation`，**必须由用户在输入框触发**，agent 不能代调、也不得手工复刻其流程）。用户尚未触发过。若用户不用 skill，则按 TDD 节奏手写：先 TB 后 RTL。
+
+**环境/权限提示**：自动模式分类器多次拦截 `sed -i`、批量 `rm -rf`、`cmd.exe /c`、`git push`，被拦后应让用户用 `! 命令` 自己执行，不要绕。
 
 ## 六、工作纪律（本项目硬约束）
 
