@@ -188,7 +188,7 @@ def main():
             lg = simulate_energy(p, t_end=15.0, alpha0=np.deg2rad(179.0), ke_gain=kg)
             i4 = np.argwhere(lg["state"] == 4).ravel()
             ok = i4.size and (lg["state"][-2000:] == 4).all()
-            print(f"  ke_gain={kg:6.1f} → {'✓ t=%.2fs 入稳' % lg['t'][i4[0]] if ok else '×'}")
+            print(f"  ke_gain={kg:6.1f} → {'OK t=%.2fs 入稳' % lg['t'][i4[0]] if ok else '失败'}")
             if ok and best_log is None:
                 best_kg, best_log, best_t = kg, lg, lg["t"][i4[0]]
         if best_log is not None:

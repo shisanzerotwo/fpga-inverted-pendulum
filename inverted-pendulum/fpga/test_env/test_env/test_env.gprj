@@ -5,7 +5,7 @@
     <Version>5</Version>
     <Device name="GW2A-18C" pn="GW2A-LV18PG256C8/I7">gw2a18c-011</Device>
     <FileList>
-        <File path="D:/GitHub/xiangmu/FPGA/inverted-pendulum/fpga/test_env/src/counter.v" type="file.verilog" enable="1"/>
-        <File path="D:/GitHub/xiangmu/FPGA/inverted-pendulum/fpga/test_env/constraint/test_env.cst" type="file.cst" enable="1"/>
+        <File path="../src/counter.v" type="file.verilog" enable="1"/>
+        <File path="../constraint/test_env.cst" type="file.cst" enable="1"/>
     </FileList>
 </Project>

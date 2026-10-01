@@ -76,7 +76,6 @@ class JXPendulumController:
     def step(self, alpha: float, dtheta_counts: float) -> float:
         """每个 1kHz 控制拍调用一次；dtheta_counts = 本拍编码器增量（计数）"""
         self.location += MOTOR_SIGN * dtheta_counts   # 编码器计数方向与电机方向一致
-        self.location += dtheta_counts
         Angle = self.adc_of(alpha)
 
         c = self.angle_pid
