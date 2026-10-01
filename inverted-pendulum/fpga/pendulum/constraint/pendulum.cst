@@ -1,5 +1,5 @@
 // 倒立摆工程约束。板载部分取自官方 立创逻辑派FPGA_G1_IO.cst；扩展 IO 取自原理图 EX_ 网络。
-// 状态：原理图源已核对（13 脚均在 EX_ 网络内、与板内占用无交集）；实物丝印核对待 D1 完成后去掉 [待丝印]。
+// 状态：原理图源已核对（13 脚均在 EX_ 网络内、与板内占用无交集）；实物丝印核对：2026-10-01 通过（M1 闭环）。
 //------------------------------系统时钟-----------------------------------
 IO_LOC "sys_clk" T7;
 IO_PORT "sys_clk" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
@@ -30,7 +30,7 @@ IO_PORT "uart_tx" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
 IO_LOC "uart_rx" F13;
 IO_PORT "uart_rx" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 
-//------------------------------电机驱动（TB6612 类）[待丝印]-------------------
+//------------------------------电机驱动（TB6612 类）-------------------
 IO_LOC "pwma" G15;
 IO_PORT "pwma" IO_TYPE=LVCMOS33 PULL_MODE=DOWN DRIVE=8 BANK_VCCIO=3.3;
 IO_LOC "ain1" G14;
@@ -38,7 +38,7 @@ IO_PORT "ain1" IO_TYPE=LVCMOS33 PULL_MODE=DOWN DRIVE=8 BANK_VCCIO=3.3;
 IO_LOC "ain2" G16;
 IO_PORT "ain2" IO_TYPE=LVCMOS33 PULL_MODE=DOWN DRIVE=8 BANK_VCCIO=3.3;
 
-//------------------------------编码器 [待丝印][待核电平]----------------------
+//------------------------------编码器（实物已核；输入电平待上板实测）----------------------
 IO_LOC "enc_a" J15;
 IO_PORT "enc_a" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 IO_LOC "enc_b" K16;
@@ -54,7 +54,7 @@ IO_PORT "enc_b" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 IO_LOC "adc_rx" K11;
 IO_PORT "adc_rx" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 
-//------------------------------套件按键 K1~K4（可选）[待丝印]-----------------
+//------------------------------套件按键 K1~K4（可选）-----------------
 IO_LOC "kext[0]" N10;
 IO_PORT "kext[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 IO_LOC "kext[1]" M11;

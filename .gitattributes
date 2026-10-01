@@ -1,0 +1,39 @@
+# 统一行尾与文件类型，避免 Windows/Linux 换行差异造成"整文件改动"的假 diff。
+# 背景（2026-10-01）：sim/controller.py、src/adc_bridge.v、tb/adc_bridge_tb.v 都出现过
+# 纯 CRLF/LF 差异导致 git diff 显示 399 增 399 删、而 --ignore-all-space 为空的假变更。
+# 规则：文本文件统一以 LF 存入仓库并在工作区使用 LF；二进制文件不做转换。
+* text=auto eol=lf
+
+# 二进制/生成物：禁止行尾转换与 diff 文本化
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.pdf  binary
+*.zip  binary
+*.rar  binary
+*.7z   binary
+*.fs   binary
+*.bin  binary
+*.binx binary
+*.db   binary
+*.vcd  binary
+*.vvp  binary
+*.pyc  binary
+*.docx binary
+*.xlsx binary
+
+# 明确文本类型（便于 diff 与合并）
+*.v     text
+*.sv    text
+*.vh    text
+*.cst   text
+*.sdc   text
+*.tcl   text
+*.py    text
+*.md    text
+*.txt   text
+*.json  text
+*.c     text
+*.h     text
+*.ps1   text
