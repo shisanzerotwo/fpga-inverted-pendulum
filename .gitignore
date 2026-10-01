@@ -10,3 +10,5 @@ __pycache__/
 # Gowin 构建产物（gw_sh build.tcl 一键可重建，仅入库源文件与工程文件）
 /inverted-pendulum/fpga/test_env/test_env/impl/
 *.gprj.user
+/inverted-pendulum/fpga/pendulum/pendulum/
+.zcode/
