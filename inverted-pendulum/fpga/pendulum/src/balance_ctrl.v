@@ -69,10 +69,18 @@ module balance_ctrl #(
         .clk(clk), .rst_n(rst_n), .tick(loc_t), .clr_int(1'b0),
         .target(32'sd0), .actual(loc), .out(loc_out), .done(loc_done));
 
-    // 位置环改写摆角环目标（与参考一致：Target = CENTER − LocationPID.Out）
+    // 位置环改写摆角环目标（与参考一致：Target = CENTER − LocationPID.Out）。
+    // 注意：pid 是流水线的，loc_t 当拍 loc_out 还是上一次的结果，必须等 loc_done 之后一拍再采
+    // （参考是软件顺序执行，同一拍内 Out 已就绪；RTL 必须等 done，否则目标整体滞后一个位置环周期）。
+    reg loc_done_d;
     always @(posedge clk or negedge rst_n) begin
-        if (!rst_n)      tgt <= CENTER_X10;
-        else if (loc_t)  tgt <= CENTER_X10 - loc_out;
+        if (!rst_n)       loc_done_d <= 1'b0;
+        else              loc_done_d <= loc_done;
+    end
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)           tgt <= CENTER_X10;
+        else if (loc_done_d)  tgt <= CENTER_X10 - loc_out;
     end
 
     // ---------------- 安全态 ----------------
