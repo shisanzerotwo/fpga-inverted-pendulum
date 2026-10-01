@@ -12,3 +12,7 @@ __pycache__/
 *.gprj.user
 /inverted-pendulum/fpga/pendulum/pendulum/
 .zcode/
+
+# iverilog 仿真产物
+*.vvp
+*.vcd

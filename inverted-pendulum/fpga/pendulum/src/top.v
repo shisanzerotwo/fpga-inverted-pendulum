@@ -28,18 +28,40 @@ module top (
     assign adc_cs   = 1'b1;   // 不选中，MCP3202 空闲
     assign adc_sck  = 1'b0;
     assign adc_mosi = 1'b0;
-    assign uart_tx  = 1'b1;
+
+    // 串口自检：每 ~0.67s 向 COM7 发一个递增字节（115200 8N1）。
+    // 上电后 FPGA 无独立复位脚，用计数器前几拍当复位。
+    reg [3:0] rst_cnt = 4'd0;
+    wire      rst_n   = &rst_cnt;
+    always @(posedge sys_clk) if (!rst_n) rst_cnt <= rst_cnt + 1'b1;
+
+    reg [7:0] tx_byte = 8'd0;
+    reg       tx_valid = 1'b0;
+    wire      tx_ready;
+    uart_tx u_tx (
+        .clk(sys_clk), .rst_n(rst_n),
+        .data(tx_byte), .valid(tx_valid), .ready(tx_ready), .tx(uart_tx)
+    );
 
     wire unused = &{1'b0, kext};   // K1~K4 本版未用，占位防止被优化
 
     reg [24:0] cnt;
+    reg        hb_d;
     always @(posedge sys_clk) begin
         cnt    <= cnt + 1'b1;
+        hb_d   <= cnt[24];
         led[0] <= cnt[24];            // 心跳
         led[1] <= key[0];             // 按下(0) 点亮
         led[2] <= key[1];
         led[3] <= enc_a ^ enc_b;      // 静止时同相；转动时闪
         led[4] <= adc_miso;           // ADC 输出电平
         led[5] <= ~uart_rx;           // 串口空闲(高) 时点亮
+
+        // 心跳上升沿发一个字节；ready 为高才能被接收
+        tx_valid <= 1'b0;
+        if (cnt[24] & ~hb_d & tx_ready) begin
+            tx_valid <= 1'b1;
+            tx_byte  <= tx_byte + 1'b1;
+        end
     end
 endmodule

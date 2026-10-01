@@ -3,6 +3,7 @@
 set here [file dirname [file normalize [info script]]]
 create_project -name pendulum -force -dir $here -pn GW2A-LV18PG256C8/I7 -device_version C
 add_file $here/src/top.v
+add_file $here/src/uart_tx.v
 add_file $here/constraint/pendulum.cst
 add_file $here/constraint/pendulum.sdc
 set_option -top_module top
