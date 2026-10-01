@@ -6,14 +6,15 @@ module top_tb;
     wire [5:0] led;
     wire       uart_tx;
     reg        uart_rx = 1;
-    wire       pwma, ain1, ain2, adc_cs, adc_sck, adc_mosi;
-    reg        enc_a = 0, enc_b = 0, adc_miso = 0;
+    wire       pwma, ain1, ain2;
+    reg        enc_a = 0, enc_b = 0;
+    reg        adc_rx = 1;                 // GD32 未发帧：线路空闲为高
     reg  [3:0] kext = 4'b1111;
     integer    errors = 0, frames = 0;
 
     top dut (.sys_clk(sys_clk), .key(key), .led(led), .uart_tx(uart_tx), .uart_rx(uart_rx),
              .pwma(pwma), .ain1(ain1), .ain2(ain2), .enc_a(enc_a), .enc_b(enc_b),
-             .adc_cs(adc_cs), .adc_sck(adc_sck), .adc_mosi(adc_mosi), .adc_miso(adc_miso), .kext(kext));
+             .adc_rx(adc_rx), .kext(kext));
 
     always #10 sys_clk = ~sys_clk;
 
@@ -62,8 +63,12 @@ module top_tb;
     initial begin
         // 安全态断言
         repeat (20) @(posedge sys_clk); #1;
-        if (pwma !== 0 || ain1 !== 0 || ain2 !== 0 || adc_cs !== 1) begin
-            errors = errors + 1; $display("FAIL: motor/adc not in safe state");
+        if (pwma !== 0 || ain1 !== 0 || ain2 !== 0) begin
+            errors = errors + 1; $display("FAIL: motor not in safe state");
+        end
+        // GD32 未发帧：ADC 桥必须报 stale（led[4] 反映 stale）
+        if (led[4] !== 1'b1) begin
+            errors = errors + 1; $display("FAIL: adc stale not reported (led[4]=%b)", led[4]);
         end
         if (uart_tx !== 1'b1) begin errors = errors + 1; $display("FAIL: uart_tx idle not high"); end
 

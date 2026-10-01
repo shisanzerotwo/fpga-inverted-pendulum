@@ -2,7 +2,7 @@
 // 板载 2 个 RGB 彩灯 = led[0..5] 六通道（极性未核实，见 AGENTS.md §5.1）：
 //   led[0]=R9 心跳（约 1.5Hz）        led[1]=C10 跟随 D11
 //   led[2]=R7 跟随 F10                led[3]=N6  编码器计数最低位（转动时闪）
-//   led[4]=T10 反映 ADC_DOUT 电平     led[5]=P7  串口空闲时亮
+//   led[4]=T10 ADC 桥 stale（无合法帧）led[5]=P7  串口空闲时亮
 // 串口（板上读 COM9）：每次心跳发一个字节 = 编码器计数低 8 位（有符号，补码）。
 // 电机输出恒为安全态：PWM=0、AIN1=AIN2=0，上电不会驱动电机。
 module top (
@@ -16,24 +16,26 @@ module top (
     output wire       ain2,
     input  wire       enc_a,
     input  wire       enc_b,
-    output wire       adc_cs,
-    output wire       adc_sck,
-    output wire       adc_mosi,
-    input  wire       adc_miso,
+    input  wire       adc_rx,     // GD32 PA2(USART1_TX) -> K11，摆角 ADC 码值帧
     input  wire [3:0] kext
 );
-    // 电机与 ADC 片选全部停在安全态
+    // 电机输出停在安全态
     assign pwma     = 1'b0;
     assign ain1     = 1'b0;
     assign ain2     = 1'b0;
-    assign adc_cs   = 1'b1;   // 不选中，MCP3202 空闲
-    assign adc_sck  = 1'b0;
-    assign adc_mosi = 1'b0;
 
     // 上电后 FPGA 无独立复位脚，用计数器前几拍当复位。
     reg [3:0] rst_cnt = 4'd0;
     wire      rst_n   = &rst_cnt;
     always @(posedge sys_clk) if (!rst_n) rst_cnt <= rst_cnt + 1'b1;
+
+    // 摆角 ADC 码值桥（GD32 只采样转发；GD32 固件未就绪前 stale 恒为 1）
+    wire [11:0] adc_code;
+    wire        adc_valid, adc_stale;
+    adc_bridge #(.CLK_HZ(50_000_000), .BAUD(1_000_000), .TIMEOUT_MS(5)) u_ab (
+        .clk(sys_clk), .rst_n(rst_n), .rx(adc_rx),
+        .code(adc_code), .valid(adc_valid), .stale(adc_stale)
+    );
 
     // 编码器四倍频计数（输出轴一圈 408）
     wire signed [31:0] enc_count;
@@ -61,7 +63,7 @@ module top (
         led[1] <= key[0];             // 按下(0) 点亮
         led[2] <= key[1];
         led[3] <= enc_count[0];       // 计数最低位：转动时闪
-        led[4] <= adc_miso;           // ADC 输出电平
+        led[4] <= adc_stale;          // ADC 桥超时/未收到合法帧
         led[5] <= ~uart_rx;           // 串口空闲(高) 时点亮
 
         // 心跳上升沿发一个字节 = 编码器计数低 8 位；ready 为高才能被接收

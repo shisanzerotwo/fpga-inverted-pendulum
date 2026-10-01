@@ -44,15 +44,15 @@ IO_PORT "enc_a" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 IO_LOC "enc_b" K16;
 IO_PORT "enc_b" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 
-//------------------------------SPI ADC（MCP3202）[待丝印]---------------------
-IO_LOC "adc_cs" J16;
-IO_PORT "adc_cs" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC "adc_sck" J14;
-IO_PORT "adc_sck" IO_TYPE=LVCMOS33 PULL_MODE=DOWN DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC "adc_mosi" H15;
-IO_PORT "adc_mosi" IO_TYPE=LVCMOS33 PULL_MODE=DOWN DRIVE=8 BANK_VCCIO=3.3;
-IO_LOC "adc_miso" F14;
-IO_PORT "adc_miso" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+//------------------------------ADC 桥：GD32 PA2(USART1_TX) -> FPGA（板内直连，不经排针）---------
+// 双证（2026-10-01）：
+//   ① 官方引脚分配表：与ARM 通信 / PA2 output K11 USART1_TX
+//   ② 原理图 ProPrj_ProDoc_逻辑派.epro：2.esch 中 U1(GD32F303CBT6) 引脚 12 "PA2" -> 网络 PA2
+//      -> 短接符号（Short-Symbol，0Ω 连线）-> 网络 K11_IOT38A；1.esch 中 K11_IOT38A -> U7 引脚 K11 "IOT38A"
+// 板内直连，无丝印可核；上板实测待 GD32 固件就绪后进行。
+// 原 SPI ADC（MCP3202）4 脚 J16/J14/H15/F14 已移除：方案改为 GD32 ADC 桥，不外购芯片。
+IO_LOC "adc_rx" K11;
+IO_PORT "adc_rx" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 
 //------------------------------套件按键 K1~K4（可选）[待丝印]-----------------
 IO_LOC "kext[0]" N10;
