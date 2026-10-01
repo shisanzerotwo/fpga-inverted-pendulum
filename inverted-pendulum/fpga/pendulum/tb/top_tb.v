@@ -35,7 +35,26 @@ module top_tb;
         end
     endtask
 
-    reg [7:0] got, got2;
+    reg [7:0] got;
+
+    // 编码器激励：格雷码一步保持 HOLD 拍（与 quad_decoder_tb 同一协议，独立手写）
+    localparam HOLD = 20;
+    task set_ab(input a, input b);
+        begin enc_a = a; enc_b = b; repeat (HOLD) @(posedge sys_clk); end
+    endtask
+    task fwd_cycle; begin set_ab(1,0); set_ab(1,1); set_ab(0,1); set_ab(0,0); end endtask
+    task rev_cycle; begin set_ab(0,1); set_ab(1,1); set_ab(1,0); set_ab(0,0); end endtask
+
+    // 产生一次心跳上升沿并收下随之发出的字节
+    task heartbeat_and_recv(output [7:0] b);
+        begin
+            force dut.cnt[24] = 1'b0; repeat (4) @(posedge sys_clk);
+            force dut.cnt[24] = 1'b1;
+            recv_byte(b);
+            frames = frames + 1;
+            #(2 * BIT_CLKS * 20);                   // 等停止位结束、ready 恢复
+        end
+    endtask
     initial begin
         #20_000_000 $display("FAIL: watchdog"); $finish;
     end
@@ -48,18 +67,20 @@ module top_tb;
         end
         if (uart_tx !== 1'b1) begin errors = errors + 1; $display("FAIL: uart_tx idle not high"); end
 
-        // 把心跳位加速：直接驱动 cnt[24] 翻转两次，期望两字节连续递增
-        force dut.cnt[24] = 1'b0; repeat (4) @(posedge sys_clk);
-        force dut.cnt[24] = 1'b1;
-        recv_byte(got);
-        frames = frames + 1;
+        // 心跳加速：force cnt[24] 产生上升沿，触发发送一个字节 = 编码器计数低 8 位
+        // 1) 静止：期望 0x00
+        heartbeat_and_recv(got);
+        if (got !== 8'h00) begin errors = errors + 1; $display("FAIL: idle count byte %h want 00", got); end
 
-        #(2 * BIT_CLKS * 20);                       // 等停止位结束、ready 恢复
-        force dut.cnt[24] = 1'b0; repeat (4) @(posedge sys_clk);
-        force dut.cnt[24] = 1'b1;
-        recv_byte(got2);
-        if (got2 !== got + 8'd1) begin errors = errors + 1; $display("FAIL: bytes %h,%h not consecutive", got, got2); end
-        frames = frames + 1;
+        // 2) 正转 1 个周期 = +4：期望 0x04
+        fwd_cycle;
+        heartbeat_and_recv(got);
+        if (got !== 8'h04) begin errors = errors + 1; $display("FAIL: after +1 cycle byte %h want 04", got); end
+
+        // 3) 反转 2 个周期 = -8，累计 -4：期望补码 0xFC
+        rev_cycle; rev_cycle;
+        heartbeat_and_recv(got);
+        if (got !== 8'hFC) begin errors = errors + 1; $display("FAIL: after -2 cycles byte %h want FC", got); end
 
         if (errors == 0) $display("PASS: top smoke, %0d frames", frames);
         else             $display("RESULT: %0d failure(s)", errors);

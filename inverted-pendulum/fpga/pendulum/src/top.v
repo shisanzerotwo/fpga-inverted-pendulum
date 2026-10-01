@@ -1,8 +1,9 @@
-// M1 工程骨架顶层（D1 空板自检版）：不做控制，只验证 .cst 引脚与实物一致。
-// 板载 2 个 RGB 彩灯 = led[0..5] 六通道，共阳，输出低电平点亮：
-//   led[0]=R9 心跳（约 1.5Hz）        led[1]=C10 按 D11 亮
-//   led[2]=R7 按 F10 亮               led[3]=N6  转编码器时变化
+// M1 工程骨架顶层（D2 编码器自检版）：不做控制，验证引脚与采集链。
+// 板载 2 个 RGB 彩灯 = led[0..5] 六通道（极性未核实，见 AGENTS.md §5.1）：
+//   led[0]=R9 心跳（约 1.5Hz）        led[1]=C10 跟随 D11
+//   led[2]=R7 跟随 F10                led[3]=N6  编码器计数最低位（转动时闪）
 //   led[4]=T10 反映 ADC_DOUT 电平     led[5]=P7  串口空闲时亮
+// 串口（板上读 COM9）：每次心跳发一个字节 = 编码器计数低 8 位（有符号，补码）。
 // 电机输出恒为安全态：PWM=0、AIN1=AIN2=0，上电不会驱动电机。
 module top (
     input  wire       sys_clk,
@@ -29,11 +30,17 @@ module top (
     assign adc_sck  = 1'b0;
     assign adc_mosi = 1'b0;
 
-    // 串口自检：每 ~0.67s 向 COM7 发一个递增字节（115200 8N1）。
     // 上电后 FPGA 无独立复位脚，用计数器前几拍当复位。
     reg [3:0] rst_cnt = 4'd0;
     wire      rst_n   = &rst_cnt;
     always @(posedge sys_clk) if (!rst_n) rst_cnt <= rst_cnt + 1'b1;
+
+    // 编码器四倍频计数（输出轴一圈 408）
+    wire signed [31:0] enc_count;
+    quad_decoder #(.FILTER(4)) u_qd (
+        .clk(sys_clk), .rst_n(rst_n),
+        .enc_a(enc_a), .enc_b(enc_b), .count(enc_count)
+    );
 
     reg [7:0] tx_byte = 8'd0;
     reg       tx_valid = 1'b0;
@@ -53,15 +60,15 @@ module top (
         led[0] <= cnt[24];            // 心跳
         led[1] <= key[0];             // 按下(0) 点亮
         led[2] <= key[1];
-        led[3] <= enc_a ^ enc_b;      // 静止时同相；转动时闪
+        led[3] <= enc_count[0];       // 计数最低位：转动时闪
         led[4] <= adc_miso;           // ADC 输出电平
         led[5] <= ~uart_rx;           // 串口空闲(高) 时点亮
 
-        // 心跳上升沿发一个字节；ready 为高才能被接收
+        // 心跳上升沿发一个字节 = 编码器计数低 8 位；ready 为高才能被接收
         tx_valid <= 1'b0;
         if (cnt[24] & ~hb_d & tx_ready) begin
             tx_valid <= 1'b1;
-            tx_byte  <= tx_byte + 1'b1;
+            tx_byte  <= enc_count[7:0];
         end
     end
 endmodule
