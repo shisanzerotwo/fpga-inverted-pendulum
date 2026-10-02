@@ -121,7 +121,7 @@ static void timer_config(void)
     tp.prescaler         = 12000U - 1U;   /* 120 MHz / 12000 = 10 kHz */
     tp.period            = 10U - 1U;      /* 10 kHz / 10 = 1 kHz */
     tp.clockdivision     = TIMER_CKDIV_DIV1;
-    tp.counterdirection  = TIMER_COUNT_UP;
+    tp.counterdirection  = TIMER_COUNTER_UP;
     tp.alignedmode       = TIMER_COUNTER_EDGE;
     tp.repetitioncounter = 0U;
     timer_init(TIMER2, &tp);
