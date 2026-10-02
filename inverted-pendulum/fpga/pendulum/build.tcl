@@ -6,6 +6,10 @@ add_file $here/src/top.v
 add_file $here/src/uart_tx.v
 add_file $here/src/quad_decoder.v
 add_file $here/src/adc_bridge.v
+add_file $here/src/sign_map.v
+add_file $here/src/pid.v
+add_file $here/src/pwm_gen.v
+add_file $here/src/balance_ctrl.v
 add_file $here/constraint/pendulum.cst
 add_file $here/constraint/pendulum.sdc
 set_option -top_module top
