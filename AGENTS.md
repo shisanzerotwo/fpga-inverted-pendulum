@@ -97,7 +97,15 @@ gtkwave dump.vcd &               # 看波形（可选）
 - **未接入 `top.v`**：`pid` / `pwm_gen` / `balance_ctrl`（原先等 M1 丝印，现已解锁）。
 - 未提交（pi 侧本轮产物）：`AGENTS.md` 纪律与事实修正、`.gitattributes`、`tools/progress-check.py`、3 份文档（丝印核对清单 / 规划修订 / 排针映射修正）、`.cst` 去 `[待丝印]`。
 - 硬件：板子 USB 在线，`COM7`（ARM 通道身份）；上板验证 FPGA 侧需**按键切到 `COM9`**。
-- **待办**：① `top.v` 整链集成（现可做）② **GD32 固件**（ADC 采样 + 原码转发，1 Mbaud 4 字节帧，`A5|{0,code[11:8]}|code[7:0]|A5^hi^lo`）③ `seg_display` / `energy_swing` ④ 上板验证 ⑤ **合规口径待组委确认**（感知物理层在 MCU）。
+- **待办**：① ~~`top.v` 整链集成~~（已做，`94bdcfc`）② **GD32 固件**（已写，但缺工程骨架，见下）③ `seg_display` / `energy_swing` ④ 上板验证 ⑤ **合规口径待组委确认**（感知物理层在 MCU）。
+- 后续提交（20:50 后至 10-02 12:45）：`94bdcfc` top.v 整链集成 + 新增 `sign_map` 方向边界模块（Logic 1912/20736、Fmax 80.141MHz）；`4578948` GD32 固件源码。pi 侧已复现 8 个 TB 全 PASS。
+
+**GD32 固件状态（2026-10-02）**
+- 已写：`gd32_firmware/src/main.c`（148 行）+ `README.md`，提交 `4578948`。
+- 内容：`PB0`=`ADC01_IN8` 采 12bit 原码 → `PA2`=USART1_TX 转发；协议与 `adc_bridge.v` 一致（1 Mbaud 8N1、4 字节帧 `A5|{0,code[11:8]}|code[7:0]|A5^hi^lo`、1 kHz TIMER2 中断）；**只采样+转发**（无滤波/换算/判断），源码留档作“MCU 无算法”佐证。
+- **缺口**：无工程骨架（无 Keil 工程 / Makefile、无启动文件 / 链接脚本、无固件库依赖）→ **当前编译不了、也烧不进**；本机也无 ARM 工具链（无 arm-none-eabi-gcc / Keil）与 rar 解压工具。
+- **处置（用户 2026-10-02 选定方案 A）**：WSL 装 `gcc-arm-none-eabi` + `unrar`（需用户执行 `sudo apt install -y gcc-arm-none-eabi unrar`，apt 网络已验证可用）；之后由 pi 搭 Makefile + 启动文件 + 从官方固件库（`01官方资料/ARM/GD32F30x_固件库.rar`）提取依赖并做真正编译验证；**GD32 侧 Claude 暂停，避免重叠**。
+- 工具链注意：ADC 时钟必须 ≤ 14 MHz（120 MHz 下 /8=15 MHz 超限，main.c 已用 /12=10 MHz）；烧录走 6P/`COM7`，与 FPGA 通道（`COM9`）**互斥**（需按键切换）。
 
 **已完成并已核实（早前记录）**
 - 提交已推送 GitHub（`shisanzerotwo/fpga-inverted-pendulum`，master 到 `01b1f88`）。
