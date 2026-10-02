@@ -16,3 +16,6 @@ __pycache__/
 # iverilog 仿真产物
 *.vvp
 *.vcd
+
+# Claude Code 本地权限缓存（含本机路径，不入库）
+.claude/

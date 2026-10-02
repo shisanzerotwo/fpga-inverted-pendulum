@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "gowin": {
+      "command": "py",
+      "args": ["${CLAUDE_PROJECT_DIR}\\tools\\gowin-mcp\\server.py"],
+      "env": {
+        "GOWIN_ROOT": "E:\\FBGA\\Gowin\\Gowin_V1.9.10.02_x64"
+      }
+    }
+  }
+}
