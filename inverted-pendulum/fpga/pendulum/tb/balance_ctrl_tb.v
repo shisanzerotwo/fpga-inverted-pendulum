@@ -13,6 +13,7 @@ module balance_ctrl_tb;
     wire               u_mag, en;
     integer            errors = 0;
     integer            i, k;
+    integer            fd, nr, v_adc, v_loc, v_tgt, v_u, n_vec, n_mis, max_diff, d;
 
     // 用 100kHz 缩小仿真周期（节拍比例与 50MHz 完全一致），50MHz 的真实计数器宽度到集成时再验
     balance_ctrl #(.CLK_HZ(100_000), .ANG_DIV(5), .LOC_DIV(50)) dut (
@@ -63,6 +64,18 @@ module balance_ctrl_tb;
         begin
             s_loc = nloc;
             while (nloc < s_loc + n) @(posedge clk);
+            repeat (40) @(posedge clk);
+        end
+    endtask
+
+    // 等一个 ang_tick，并在"该拍"捕获 tgt_x10 —— 位置环与角度环同拍时，tgt 要到约 14 拍后才被改写，
+    // 故此处读到的正是本拍角度环实际使用的目标值（与向量语义一致）
+    reg signed [31:0] tgt_tick;
+    task step_ang_capture;
+        begin
+            s_ang = nang;
+            while (nang < s_ang + 1) @(posedge clk);
+            tgt_tick = tgt_x10;
             repeat (40) @(posedge clk);
         end
     endtask
@@ -150,6 +163,43 @@ module balance_ctrl_tb;
         check(en === 1'b1, "slice5: 100-code offset still inside window (en=1)");
         // 位置回零后的收敛依赖于位置环积分/微分历史（Ki=0 时只是 PD），不在此切片断言
         loc = 32'sd0;
+
+        // 切片 6：整链对拍。向量由 sim/export_balance_vectors.py 从阶段 0 闭环稳摆轨迹导出，
+        //  期望值为 Fraction 精确模型复刻"级联 + 先角环后位置环"；逐位一致（整数域零容差）。
+        //  每行 = 一个角度环拍（adc_code loc tgt_x10 expected_u），按拍推进 ang_tick。
+        do_reset;
+        stale = 0; loc = 32'sd0; adc_code = 12'd0;
+        fd = $fopen("vectors/bal_vec.txt", "r");
+        if (fd == 0) begin
+            errors = errors + 1;
+            $display("FAIL: slice6: cannot open vectors/bal_vec.txt");
+        end else begin
+            n_vec = 0; n_mis = 0; max_diff = 0;
+            nr = $fscanf(fd, "%d %d %d %d\n", v_adc, v_loc, v_tgt, v_u);
+            while (nr == 4) begin
+                loc      = v_loc;
+                adc_code = v_adc[11:0];
+                step_ang_capture;
+                d = u_dir - v_u; if (d < 0) d = -d;
+                if (d > max_diff) max_diff = d;
+                if (d != 0 || tgt_tick !== v_tgt) begin
+                    n_mis = n_mis + 1;
+                    if (n_mis <= 3)
+                        $display("  (bal vec %0d: adc=%0d loc=%0d got u=%0d tgt=%0d, want u=%0d tgt=%0d)",
+                                 n_vec, v_adc, v_loc, u_dir, tgt_tick, v_u, v_tgt);
+                end
+                n_vec = n_vec + 1;
+                if (!(en === 1'b1)) begin
+                    errors = errors + 1;
+                    $display("FAIL: slice6: en=0 at vector %0d (unexpected safe state)", n_vec);
+                end
+                nr = $fscanf(fd, "%d %d %d %d\n", v_adc, v_loc, v_tgt, v_u);
+            end
+            $fclose(fd);
+            $display("  slice6 balance chain: %0d vectors, %0d mismatches, max|diff|=%0d", n_vec, n_mis, max_diff);
+            check(n_vec == 400,   "slice6: bal vectors fully read (400 angle ticks)");
+            check(n_mis == 0,     "slice6: balance chain bit-exact vs exact model");
+        end
 
         if (errors == 0) $display("PASS: all slices");
         else             $display("RESULT: %0d failure(s)", errors);
