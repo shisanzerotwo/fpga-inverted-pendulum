@@ -1,0 +1,11 @@
+{
+  "command": [
+    "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+    "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\loc_target_tb\\loc_target_tb.vvp",
+    "-none"
+  ],
+  "exit": 0,
+  "elapsed_s": 45.91306049999548,
+  "passed": true,
+  "waveform_disabled": true
+}

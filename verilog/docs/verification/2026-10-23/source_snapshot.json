@@ -1,0 +1,140 @@
+[
+  {
+    "Path": "fpga_project/src/alpha_dot.v",
+    "SHA256": "e2ee0fa80bf260a6c3294d5e2e697f809dfc0f86845b18861073b47017949126",
+    "Bytes": 2358,
+    "Modified": "2026-10-03 15:09:09"
+  },
+  {
+    "Path": "fpga_project/src/arm_adc_link.v",
+    "SHA256": "046f277f5317d998c1a3306272ae3c7e74484f6d417bc81e49a365f0f685f747",
+    "Bytes": 6908,
+    "Modified": "2026-10-05 16:27:38"
+  },
+  {
+    "Path": "fpga_project/src/arm_adc_uart.v",
+    "SHA256": "27a7f396b11a326f89b56f28933857c7d002750f4b2e483d94f7e360cdcb0b25",
+    "Bytes": 5528,
+    "Modified": "2026-10-16 20:46:53"
+  },
+  {
+    "Path": "fpga_project/src/debug_uart.v",
+    "SHA256": "0b3ebccf3e9727e4caf7ad65fc88974e1d253914f1cebc6f5ffe6ee44f89d738",
+    "Bytes": 3365,
+    "Modified": "2026-10-01 18:06:07"
+  },
+  {
+    "Path": "fpga_project/src/enc_decoder.v",
+    "SHA256": "ba7067fdc3b88d033be6ce5549dd1c03ab141950fda97a6b129623249ea1be60",
+    "Bytes": 4031,
+    "Modified": "2026-10-01 19:31:12"
+  },
+  {
+    "Path": "fpga_project/src/enc_zone.v",
+    "SHA256": "d2b84678b2cf537e2633dc874c3f73956e93b6e1de74e65d8a5debe38088a232",
+    "Bytes": 1994,
+    "Modified": "2026-10-01 19:23:26"
+  },
+  {
+    "Path": "fpga_project/src/fpga_project.sdc",
+    "SHA256": "90795475e94f705d686b4f41bc63967e79fa9f379300b77bd0cdc2083ad1518b",
+    "Bytes": 193,
+    "Modified": "2026-09-26 13:19:50"
+  },
+  {
+    "Path": "fpga_project/src/loc_target_gen.v",
+    "SHA256": "cd25853309134077d9d12def9103ab96af9b13eb5ad2f96cebb422a09f874e7d",
+    "Bytes": 2921,
+    "Modified": "2026-10-03 17:03:26"
+  },
+  {
+    "Path": "fpga_project/src/motor_driver.v",
+    "SHA256": "6c82a2139659bcb8dea7fbb6ea922721e21ca95d54dd77b5757fd034f2fc13f5",
+    "Bytes": 2191,
+    "Modified": "2026-10-01 18:54:36"
+  },
+  {
+    "Path": "fpga_project/src/pendulum_ctrl.v",
+    "SHA256": "61c228a4a37f162574c9d299d9af576532ef1d2d61e34a972686fb982d3159a0",
+    "Bytes": 33872,
+    "Modified": "2026-10-14 16:40:22"
+  },
+  {
+    "Path": "fpga_project/src/pid.v",
+    "SHA256": "4ba95e1317e3f29407c066f34ac4e5b7c8f9b90dbc286fac3a96aed0fc615fe8",
+    "Bytes": 6120,
+    "Modified": "2026-10-07 20:07:39"
+  },
+  {
+    "Path": "fpga_project/src/pwm_gen.v",
+    "SHA256": "60bb652e0fbebef46d2c7a55c299a70818f1c95e29a397f1b8f8e58da92dfdab",
+    "Bytes": 1640,
+    "Modified": "2026-10-01 18:33:27"
+  },
+  {
+    "Path": "fpga_project/src/t_measure.v",
+    "SHA256": "14e79589534105160980a92059ad77b56680b9896fbb35d67ccef9813d731452",
+    "Bytes": 5061,
+    "Modified": "2026-10-01 19:39:00"
+  },
+  {
+    "Path": "fpga_project/src/telemetry.v",
+    "SHA256": "8fe68e2856e8b5c83111168e1cea3b56a73a127854e471dffa3bffcee62add74",
+    "Bytes": 5298,
+    "Modified": "2026-10-11 14:43:46"
+  },
+  {
+    "Path": "fpga_project/src/top.v",
+    "SHA256": "1818a6e3101de03fd264ea5e67fe0314c194ebe1143883bcb1fdee2bd7adcdae",
+    "Bytes": 19574,
+    "Modified": "2026-10-17 17:53:04"
+  },
+  {
+    "Path": "fpga_project/src/uart_rx.v",
+    "SHA256": "f307aa3bf8f7176f4b62b87074236489b142d2105f52333d3e3d89b6f4ddc58f",
+    "Bytes": 3173,
+    "Modified": "2026-10-16 20:29:52"
+  },
+  {
+    "Path": "fpga_project/src/uart_tx.v",
+    "SHA256": "3a715ecd74149bfb59d3873e064a2e357e4f8684fccc0edbd5878a5ee84126d2",
+    "Bytes": 1958,
+    "Modified": "2026-10-05 16:18:29"
+  },
+  {
+    "Path": "fpga_project/src/yingjiao.cst",
+    "SHA256": "d5e80ae4bd14baba675539022a307b21150f2fc59f177bb11d00f5dccadc2acb",
+    "Bytes": 7587,
+    "Modified": "2026-10-16 20:32:19"
+  },
+  {
+    "Path": "fpga_project/fpga_project.gprj",
+    "SHA256": "a5f212b6744e6b627c598d60c90504721899729534770789943541c52251f924",
+    "Bytes": 1437,
+    "Modified": "2026-10-16 20:32:37"
+  },
+  {
+    "Path": "gd32_fw/main_uart.c",
+    "SHA256": "ffdcdb9513cc889a2909d477ed3ccbbfa910c15d87a6fb1206d794f80d8a1ecc",
+    "Bytes": 11103,
+    "Modified": "2026-10-21 16:52:47"
+  },
+  {
+    "Path": "gd32_fw/build_uart/gd32_uart.hex",
+    "SHA256": "c0f3ad93f4e6ea243b148d51fb0cd1a69a578a3a6bfcfd227b9b4b9045c8f1be",
+    "Bytes": 9342,
+    "Modified": "2026-10-21 16:52:54"
+  },
+  {
+    "Path": "_tools/tlm_live.py",
+    "SHA256": "dc4a265bba7ccd9a9b1d55597697d61f12bca8a0dbd7dd3f11a66673d3bea633",
+    "Bytes": 4371,
+    "Modified": "2026-10-14 16:30:10"
+  },
+  {
+    "Path": "_tools/analyze_tlm.py",
+    "SHA256": "5f684b631148d35dc57896f36daf4865254f18c4b1a99efccc3ed988f3f269fd",
+    "Bytes": 9401,
+    "Modified": "2026-10-14 16:30:09"
+  }
+]

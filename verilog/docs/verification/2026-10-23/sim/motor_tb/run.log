@@ -1,0 +1,9 @@
+VCD info: dumpfile motor_tb.vcd opened for output.
+  ok  N1=IN2=1, mag=0)
+  ok  0, AIN1=1/AIN2=0
+  ok  0, AIN1=0/AIN2=1
+  ok  eadband -> brake
+  ok  eadband -> brake
+  ok  eadband -> drive
+PASS: motor_driver verified
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\motor_tb.v:75: $finish called at 191000 (1ps)

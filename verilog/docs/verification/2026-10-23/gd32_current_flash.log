@@ -1,0 +1,64 @@
+Opened COM7; read-only command allowlist active
+  handshake ACK (0x79) [as-is try 1]
+GetID 0x0414
+{
+  "port": "COM7",
+  "address": "0x08000000",
+  "length": 4096,
+  "allowed_commands": [
+    "GET",
+    "GET_ID",
+    "READ_MEMORY"
+  ],
+  "flash_written": false,
+  "device_id": "0x0414",
+  "sha256": "ac8d72a7021c2186e41af56eed80b9d181a6ca4943dd206d61b17de33952d1ae",
+  "repeat_identical": true,
+  "initial_sp": "0x20008000",
+  "reset_handler": "0x8000131",
+  "status": "ok",
+  "comparisons": [
+    {
+      "file": "gd32_fw\\build\\gd32_fw.hex",
+      "bytes": 3636,
+      "fully_covered": true,
+      "different_bytes": 3095,
+      "exact_match": false
+    },
+    {
+      "file": "gd32_fw\\build_diag\\diag_fw.hex",
+      "bytes": 2416,
+      "fully_covered": true,
+      "different_bytes": 1978,
+      "exact_match": false
+    },
+    {
+      "file": "gd32_fw\\build_scan\\gd32_scan.hex",
+      "bytes": 3524,
+      "fully_covered": true,
+      "different_bytes": 2730,
+      "exact_match": false
+    },
+    {
+      "file": "gd32_fw\\build_test\\gd32_test.hex",
+      "bytes": 1780,
+      "fully_covered": true,
+      "different_bytes": 1373,
+      "exact_match": false
+    },
+    {
+      "file": "gd32_fw\\build_test2\\gd32_test2.hex",
+      "bytes": 1848,
+      "fully_covered": true,
+      "different_bytes": 1431,
+      "exact_match": false
+    },
+    {
+      "file": "gd32_fw\\build_uart\\gd32_uart.hex",
+      "bytes": 3300,
+      "fully_covered": true,
+      "different_bytes": 0,
+      "exact_match": true
+    }
+  ]
+}

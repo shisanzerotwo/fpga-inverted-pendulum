@@ -1,0 +1,41 @@
+monitoring COM9 @ 115200 for 8s -> docs\verification\2026-10-23\after_sram.bin
+KEY1按一次启动，再按一次停止；松开不会停止。采集只读串口。
+[   0.2s] STOP  a= 14682 ad=   196 duty=     0 adc=3852 enc=    2 fr=28912 lk=1 en=0 brk=1 key=1 wd=0
+[   0.4s] STOP  a= 14723 ad=  -181 duty=     0 adc=3849 enc=    2 fr=39412 lk=1 en=0 brk=1 key=1 wd=0
+[   0.6s] STOP  a= 14723 ad=   469 duty=     0 adc=3844 enc=    2 fr=49912 lk=1 en=0 brk=1 key=1 wd=0
+[   0.8s] STOP  a= 14641 ad=   212 duty=     0 adc=3851 enc=    2 fr=60411 lk=1 en=0 brk=1 key=1 wd=0
+[   1.0s] STOP  a= 14666 ad=   -85 duty=     0 adc=3850 enc=    2 fr= 5375 lk=1 en=0 brk=1 key=1 wd=0
+[   1.3s] STOP  a= 14690 ad=  -169 duty=     0 adc=3842 enc=    2 fr=15875 lk=1 en=0 brk=1 key=1 wd=0
+[   1.5s] STOP  a= 14739 ad=   145 duty=     0 adc=3845 enc=    2 fr=26375 lk=1 en=0 brk=1 key=1 wd=0
+[   1.7s] STOP  a= 14674 ad=    23 duty=     0 adc=3853 enc=    2 fr=36875 lk=1 en=0 brk=1 key=1 wd=0
+[   1.9s] STOP  a= 14755 ad=   100 duty=     0 adc=3847 enc=    2 fr=47374 lk=1 en=0 brk=1 key=1 wd=0
+[   2.1s] STOP  a= 14739 ad=    61 duty=     0 adc=3848 enc=    2 fr=57874 lk=1 en=0 brk=1 key=1 wd=0
+[   2.3s] STOP  a= 14698 ad=    45 duty=     0 adc=3845 enc=    2 fr= 2838 lk=1 en=0 brk=1 key=1 wd=0
+[   2.5s] STOP  a= 14682 ad=   108 duty=     0 adc=3852 enc=    2 fr=13338 lk=1 en=0 brk=1 key=1 wd=0
+[   2.7s] STOP  a= 14698 ad=   165 duty=     0 adc=3847 enc=    2 fr=23838 lk=1 en=0 brk=1 key=1 wd=0
+[   2.9s] STOP  a= 14674 ad=   439 duty=     0 adc=3852 enc=    2 fr=34338 lk=1 en=0 brk=1 key=1 wd=0
+[   3.1s] STOP  a= 14666 ad=  -153 duty=     0 adc=3853 enc=    2 fr=44837 lk=1 en=0 brk=1 key=1 wd=0
+[   3.4s] STOP  a= 14706 ad=   -83 duty=     0 adc=3847 enc=    2 fr=55337 lk=1 en=0 brk=1 key=1 wd=0
+[   3.6s] STOP  a= 14731 ad=  -195 duty=     0 adc=3845 enc=    2 fr=  301 lk=1 en=0 brk=1 key=1 wd=0
+[   3.8s] STOP  a= 14706 ad=    60 duty=     0 adc=3844 enc=    2 fr=10801 lk=1 en=0 brk=1 key=1 wd=0
+[   4.0s] STOP  a= 14731 ad=   577 duty=     0 adc=3844 enc=    2 fr=21301 lk=1 en=0 brk=1 key=1 wd=0
+[   4.2s] STOP  a= 14715 ad=   533 duty=     0 adc=3845 enc=    2 fr=31800 lk=1 en=0 brk=1 key=1 wd=0
+[   4.4s] STOP  a= 14698 ad=    -9 duty=     0 adc=3844 enc=    2 fr=42300 lk=1 en=0 brk=1 key=1 wd=0
+[   4.6s] STOP  a= 14674 ad=   151 duty=     0 adc=3853 enc=    2 fr=52800 lk=1 en=0 brk=1 key=1 wd=0
+[   4.8s] STOP  a= 14715 ad=   352 duty=     0 adc=3846 enc=    2 fr=63300 lk=1 en=0 brk=1 key=1 wd=0
+[   5.0s] STOP  a= 14747 ad=  -299 duty=     0 adc=3848 enc=    2 fr= 8264 lk=1 en=0 brk=1 key=1 wd=0
+[   5.2s] STOP  a= 14666 ad=    18 duty=     0 adc=3850 enc=    2 fr=18764 lk=1 en=0 brk=1 key=1 wd=0
+[   5.5s] STOP  a= 14706 ad=   465 duty=     0 adc=3845 enc=    2 fr=29263 lk=1 en=0 brk=1 key=1 wd=0
+[   5.7s] STOP  a= 14747 ad=  -212 duty=     0 adc=3848 enc=    2 fr=39763 lk=1 en=0 brk=1 key=1 wd=0
+[   5.9s] STOP  a= 14674 ad=  -198 duty=     0 adc=3849 enc=    2 fr=50263 lk=1 en=0 brk=1 key=1 wd=0
+[   6.1s] STOP  a= 14706 ad=   267 duty=     0 adc=3844 enc=    2 fr=60763 lk=1 en=0 brk=1 key=1 wd=0
+[   6.3s] STOP  a= 14698 ad=  -212 duty=     0 adc=3847 enc=    2 fr= 5727 lk=1 en=0 brk=1 key=1 wd=0
+[   6.5s] STOP  a= 14706 ad=  -173 duty=     0 adc=3849 enc=    2 fr=16226 lk=1 en=0 brk=1 key=1 wd=0
+[   6.7s] STOP  a= 14698 ad=  -154 duty=     0 adc=3844 enc=    2 fr=26726 lk=1 en=0 brk=1 key=1 wd=0
+[   6.9s] STOP  a= 14674 ad=   -23 duty=     0 adc=3854 enc=    2 fr=37226 lk=1 en=0 brk=1 key=1 wd=0
+[   7.1s] STOP  a= 14715 ad=  -291 duty=     0 adc=3847 enc=    2 fr=47726 lk=1 en=0 brk=1 key=1 wd=0
+[   7.3s] STOP  a= 14715 ad=   115 duty=     0 adc=3844 enc=    2 fr=58226 lk=1 en=0 brk=1 key=1 wd=0
+[   7.6s] STOP  a= 14739 ad=    61 duty=     0 adc=3846 enc=    2 fr= 3190 lk=1 en=0 brk=1 key=1 wd=0
+[   7.8s] STOP  a= 14715 ad=   143 duty=     0 adc=3844 enc=    2 fr=13689 lk=1 en=0 brk=1 key=1 wd=0
+[   8.0s] STOP  a= 14723 ad=  -534 duty=     0 adc=3851 enc=    2 fr=24189 lk=1 en=0 brk=1 key=1 wd=0
+SUMMARY: frames=381 seq_breaks=0 elapsed=8.1s last_data=8.014113200013526 tail_silence=0.1s status=completed

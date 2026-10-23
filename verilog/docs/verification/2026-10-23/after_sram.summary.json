@@ -1,0 +1,21 @@
+{
+  "bytes": 5716,
+  "valid_frames": 381,
+  "skipped_bytes": 0,
+  "rejected_candidates": 0,
+  "trailing_bytes": 1,
+  "partial_frame_bytes": 1,
+  "modes": [
+    0
+  ],
+  "duty_range": [
+    0,
+    0
+  ],
+  "link_ok_samples": 381,
+  "adc_range": [
+    3835,
+    3855
+  ],
+  "stop_safe": true
+}

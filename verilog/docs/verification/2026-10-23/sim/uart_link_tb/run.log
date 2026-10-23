@@ -1,0 +1,11 @@
+ok  : link locks after 8 good frames
+ok  : adc reads back the last frame
+ok  : seq reads back the last frame
+ok  : bad seq frame drops link_ok
+ok  : ink re-locks after 8 good frames
+ok  : phase hunt re-aligns and locks
+      (locked after 209 frames)
+ok  : adc sane after re-align
+ok  : 5ms starvation drops link_ok
+PASS: uart_link_tb, 228 frames total
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\uart_link_tb.v:120: $finish called at 10602290000 (1ps)

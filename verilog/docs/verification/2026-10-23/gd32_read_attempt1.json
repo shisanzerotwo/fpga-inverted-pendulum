@@ -1,0 +1,13 @@
+{
+  "port": "COM7",
+  "address": "0x08000000",
+  "length": 4096,
+  "allowed_commands": [
+    "GET",
+    "GET_ID",
+    "READ_MEMORY"
+  ],
+  "flash_written": false,
+  "status": "failed",
+  "error": "bootloader handshake timed out; no Flash write attempted"
+}

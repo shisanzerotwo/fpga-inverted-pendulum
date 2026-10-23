@@ -1,0 +1,12 @@
+VCD info: dumpfile pwm_gen_tb.vcd opened for output.
+  ok   -> constant low (constant 0 for a full period)
+  ok  duty 3000: 30 / 70
+  ok  duty 3000: 30 / 70
+  ok  duty 3000: 30 / 70
+  ok  duty 5000: 50 / 50
+  ok  duty 5000: 50 / 50
+  ok  -> constant high (constant 1 for a full period)
+  ok  -> constant high (constant 1 for a full period)
+  ok   -> constant low (constant 0 for a full period)
+PASS: pwm_gen verified (0/3000/5000/10000/12500/99 duty)
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\pwm_gen_tb.v:164: $finish called at 14120000 (1ps)

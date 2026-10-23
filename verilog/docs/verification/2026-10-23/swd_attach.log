@@ -1,0 +1,3 @@
+0001092 W Board ID 0123 is not recognized [mbed_board]
+0001147 W Invalid coresight component, cidr=0x0 [rom_table]
+Error: command does not accept arguments

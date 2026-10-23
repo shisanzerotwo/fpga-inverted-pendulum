@@ -1,0 +1,3 @@
+# Keep diagnostic evidence byte-for-byte across Windows checkouts.
+docs/verification/2026-10-23/** -text
+docs/verification/2026-10-23/*.bin binary

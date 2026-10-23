@@ -1,0 +1,3 @@
+monitoring COM9 @ 115200 for 8s -> docs\verification\2026-10-23\initial_stop.bin
+KEY1按一次启动，再按一次停止；松开不会停止。采集只读串口。
+SUMMARY: frames=0 seq_breaks=0 elapsed=8.2s last_data=7.954285499989055 tail_silence=0.2s status=completed

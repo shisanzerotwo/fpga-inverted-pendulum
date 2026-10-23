@@ -1,0 +1,3 @@
+VCD info: dumpfile uart_tx_tb.vcd opened for output.
+PASS: all slices
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\uart_tx_tb.v:135: $finish called at 603570000 (1ps)

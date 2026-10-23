@@ -1,0 +1,8 @@
+VCD info: dumpfile t_measure_tb.vcd opened for output.
+  ok  /s -> omega 1000: 1000 (period=441170)
+  ok  alid after edges: 1 (period=441170)
+  ok   -> omega -10000: -10001 (period=44112)
+  ok  meout -> omega 0: 0 (period=44112)
+  ok  meout -> valid 0: 0 (period=44112)
+PASS: t_measure verified
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\t_measure_tb.v:86: $finish called at 70021791000 (1ps)

@@ -1,0 +1,33 @@
+{
+  "sim_passed": 13,
+  "sim_total": 14,
+  "build_command": [
+    "D:\\Gowin\\Gowin_V1.9.10.02_x64\\IDE\\bin\\gw_sh.exe",
+    "D:\\GitHub\\xiangmu\\FPGA\\verilog\\_tools\\gw_build.tcl"
+  ],
+  "build_exit": 0,
+  "bitstream_generated": true,
+  "source_unchanged": true,
+  "source_hashes": {
+    "fpga_project\\src\\alpha_dot.v": "e2ee0fa80bf260a6c3294d5e2e697f809dfc0f86845b18861073b47017949126",
+    "fpga_project\\src\\arm_adc_link.v": "046f277f5317d998c1a3306272ae3c7e74484f6d417bc81e49a365f0f685f747",
+    "fpga_project\\src\\arm_adc_uart.v": "27a7f396b11a326f89b56f28933857c7d002750f4b2e483d94f7e360cdcb0b25",
+    "fpga_project\\src\\debug_uart.v": "0b3ebccf3e9727e4caf7ad65fc88974e1d253914f1cebc6f5ffe6ee44f89d738",
+    "fpga_project\\src\\enc_decoder.v": "ba7067fdc3b88d033be6ce5549dd1c03ab141950fda97a6b129623249ea1be60",
+    "fpga_project\\src\\enc_zone.v": "d2b84678b2cf537e2633dc874c3f73956e93b6e1de74e65d8a5debe38088a232",
+    "fpga_project\\src\\loc_target_gen.v": "cd25853309134077d9d12def9103ab96af9b13eb5ad2f96cebb422a09f874e7d",
+    "fpga_project\\src\\motor_driver.v": "6c82a2139659bcb8dea7fbb6ea922721e21ca95d54dd77b5757fd034f2fc13f5",
+    "fpga_project\\src\\pendulum_ctrl.v": "61c228a4a37f162574c9d299d9af576532ef1d2d61e34a972686fb982d3159a0",
+    "fpga_project\\src\\pid.v": "4ba95e1317e3f29407c066f34ac4e5b7c8f9b90dbc286fac3a96aed0fc615fe8",
+    "fpga_project\\src\\pwm_gen.v": "60bb652e0fbebef46d2c7a55c299a70818f1c95e29a397f1b8f8e58da92dfdab",
+    "fpga_project\\src\\t_measure.v": "14e79589534105160980a92059ad77b56680b9896fbb35d67ccef9813d731452",
+    "fpga_project\\src\\telemetry.v": "8fe68e2856e8b5c83111168e1cea3b56a73a127854e471dffa3bffcee62add74",
+    "fpga_project\\src\\top.v": "1818a6e3101de03fd264ea5e67fe0314c194ebe1143883bcb1fdee2bd7adcdae",
+    "fpga_project\\src\\uart_rx.v": "f307aa3bf8f7176f4b62b87074236489b142d2105f52333d3e3d89b6f4ddc58f",
+    "fpga_project\\src\\uart_tx.v": "3a715ecd74149bfb59d3873e064a2e357e4f8684fccc0edbd5878a5ee84126d2",
+    "fpga_project\\fpga_project.gprj": "a5f212b6744e6b627c598d60c90504721899729534770789943541c52251f924"
+  },
+  "bitstream_sha256": "63cae0ec4fc8b4af6bb5c7f3dc1138d70bd7a411aa96de4b4275b38186eb6173",
+  "usercode": "0x0000FD3D",
+  "elapsed_s": 171.261
+}

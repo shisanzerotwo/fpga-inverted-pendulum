@@ -1,0 +1,11 @@
+{
+  "file": "gd32_cn1_12v_off_normal.bin",
+  "bytes": 2806,
+  "valid_lines": 400,
+  "elapsed_s": 8.007987699995283,
+  "flash_written": false,
+  "sha256": "74620e8e29c1f533810f6955e335e387c8f2caad5e5877d75d6d64694512676e",
+  "adc_min": 3842,
+  "adc_max": 3855,
+  "adc_median": 3848.0
+}

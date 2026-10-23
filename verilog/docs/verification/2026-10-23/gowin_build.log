@@ -1,0 +1,97 @@
+*** GOWIN Tcl Command Line Console  *** 
+alog error: failed to open log file: 'C:/Users/22421/AppData/Local/GowinSemi/IDE/cache/sh.log'
+===== OPEN PROJECT =====
+gprj: D:/GitHub/xiangmu/FPGA/verilog/fpga_project/fpga_project.gprj
+Open project D:/GitHub/xiangmu/FPGA/verilog/fpga_project/fpga_project.gprj finished
+OPEN_OK
+===== RUN ALL =====
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\top.v'
+Undeclared symbol 'ctrl_en', assumed default net type 'wire'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\top.v":219)
+WARN  (EX3638) : 'ctrl_en' is already implicitly declared on line 219("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\top.v":228)
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pwm_gen.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\enc_decoder.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\arm_adc_link.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\uart_rx.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\arm_adc_uart.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pid.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pendulum_ctrl.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\motor_driver.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\enc_zone.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\t_measure.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\alpha_dot.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\loc_target_gen.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\uart_tx.v'
+Analyzing Verilog file 'D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\telemetry.v'
+WARN  (EX3073) : Port 'edge_strobe' remains unconnected for this instance("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\top.v":124)
+Compiling module 'top'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\top.v":28)
+Compiling module 'enc_decoder'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\enc_decoder.v":3)
+Compiling module 'arm_adc_uart'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\arm_adc_uart.v":24)
+Compiling module 'uart_rx'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\uart_rx.v":13)
+Compiling module 'loc_target_gen'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\loc_target_gen.v":15)
+Compiling module 'pendulum_ctrl(ANG_OFFSET=2040,PUMP_DUTY=6000,PULSE_MS=90,POS_TRIM=1000)'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pendulum_ctrl.v":33)
+Compiling module 'alpha_dot'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\alpha_dot.v":19)
+Compiling module 'pid(KP=32'sb00000000001010000000000000000000,KI=32'sd0,KD=32'sb00000001100100000000000000000000,OUT_MIN=-1000,OUT_MAX=1000)'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pid.v":16)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 16("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pid.v":104)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 16("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pid.v":115)
+Compiling module 'pid(KP=32'sb00000000000000011101100110011001,KI=32'sb00000000000000000000111110111111,KD=32'sb00000000000100100000000000000000,OUT_MIN=-10000,I_MIN=32'sb11111111111111111111010001001000)'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pid.v":16)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 16("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pid.v":104)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 16("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pid.v":115)
+Compiling module 'motor_driver'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\motor_driver.v":18)
+Compiling module 'pwm_gen'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\pwm_gen.v":13)
+Compiling module 'enc_zone'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\enc_zone.v":14)
+Compiling module 'telemetry'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\telemetry.v":33)
+Compiling module 'uart_tx'("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\uart_tx.v":11)
+NOTE  (EX0101) : Current top module is "top"
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input uart_rxd is unused("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\top.v":34)
+WARN  (CV0016) : Input SPI_MISO is unused("D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\top.v":50)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\gwsynthesis\fpga_project.vg" completed
+[100%] Generate report file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\gwsynthesis\fpga_project_syn.rpt.html" completed
+GowinSynthesis finish
+Reading netlist file: "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\gwsynthesis\fpga_project.vg"
+Parsing netlist file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\gwsynthesis\fpga_project.vg" completed
+Processing netlist completed
+Reading constraint file: "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\src\yingjiao.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\pnr\fpga_project.power.html" completed
+Generate file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\pnr\fpga_project.pin.html" completed
+Generate file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\pnr\fpga_project.rpt.html" completed
+Generate file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\pnr\fpga_project.rpt.txt" completed
+Generate file "D:\GitHub\xiangmu\FPGA\verilog\fpga_project\impl\pnr\fpga_project.tr.html" completed
+Fri Oct 23 23:02:20 2026
+
+===== BUILD END =====

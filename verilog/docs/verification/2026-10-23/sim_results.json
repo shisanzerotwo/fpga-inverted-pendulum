@@ -1,0 +1,573 @@
+[
+  {
+    "name": "alpha_dot_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "alpha_dot_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\alpha_dot_tb\\alpha_dot_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\alpha_dot_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\alpha_dot_tb\\alpha_dot_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: alpha_dot verified"
+    ],
+    "elapsed_s": 7.996
+  },
+  {
+    "name": "arm_adc_link_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "arm_adc_link_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\arm_adc_link_tb\\arm_adc_link_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\arm_adc_link_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\arm_adc_link_tb\\arm_adc_link_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: arm_adc_link verified"
+    ],
+    "elapsed_s": 0.135
+  },
+  {
+    "name": "ctrl_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "ctrl_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\ctrl_tb\\ctrl_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\ctrl_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\ctrl_tb\\ctrl_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: pendulum_ctrl verified"
+    ],
+    "elapsed_s": 46.881
+  },
+  {
+    "name": "enc_decoder_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "enc_decoder_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\enc_decoder_tb\\enc_decoder_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\enc_decoder_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\enc_decoder_tb\\enc_decoder_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: enc_decoder verified"
+    ],
+    "elapsed_s": 3.597
+  },
+  {
+    "name": "loc_target_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "loc_target_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\loc_target_tb\\loc_target_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\loc_target_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\loc_target_tb\\loc_target_tb.vvp"
+      ]
+    ],
+    "passed": false,
+    "compile_exit": 0,
+    "error": "Command '['D:\\\\GitHub\\\\xiangmu\\\\FPGA\\\\iverilog\\\\bin\\\\vvp.exe', 'D:\\\\GitHub\\\\xiangmu\\\\FPGA\\\\verilog\\\\docs\\\\verification\\\\2026-10-23\\\\sim\\\\loc_target_tb\\\\loc_target_tb.vvp']' timed out after 90 seconds",
+    "elapsed_s": 90.091
+  },
+  {
+    "name": "motor_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "motor_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\motor_tb\\motor_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\motor_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\motor_tb\\motor_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: motor_driver verified"
+    ],
+    "elapsed_s": 0.119
+  },
+  {
+    "name": "pid_pipe_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "pid_pipe_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\pid_pipe_tb\\pid_pipe_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\pid_pipe_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\pid_pipe_tb\\pid_pipe_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: pipelined pid is bit-identical to the single-cycle reference (1 clock later)"
+    ],
+    "elapsed_s": 0.329
+  },
+  {
+    "name": "pid_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "pid_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\pid_tb\\pid_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\pid_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\pid_tb\\pid_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: pid verified"
+    ],
+    "elapsed_s": 0.668
+  },
+  {
+    "name": "pwm_gen_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "pwm_gen_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\pwm_gen_tb\\pwm_gen_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\pwm_gen_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\pwm_gen_tb\\pwm_gen_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: pwm_gen verified (0/3000/5000/10000/12500/99 duty)"
+    ],
+    "elapsed_s": 0.22
+  },
+  {
+    "name": "t_measure_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "t_measure_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\t_measure_tb\\t_measure_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\t_measure_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\t_measure_tb\\t_measure_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: t_measure verified"
+    ],
+    "elapsed_s": 18.185
+  },
+  {
+    "name": "telemetry_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "telemetry_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\telemetry_tb\\telemetry_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\telemetry_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\telemetry_tb\\telemetry_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: telemetry frame verified end-to-end"
+    ],
+    "elapsed_s": 1.269
+  },
+  {
+    "name": "uart_link_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "uart_link_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\uart_link_tb\\uart_link_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\uart_link_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\uart_link_tb\\uart_link_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: uart_link_tb, 228 frames total"
+    ],
+    "elapsed_s": 1.165
+  },
+  {
+    "name": "uart_tx_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "uart_tx_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\uart_tx_tb\\uart_tx_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\uart_tx_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\uart_tx_tb\\uart_tx_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: all slices"
+    ],
+    "elapsed_s": 0.189
+  },
+  {
+    "name": "zone_tb",
+    "commands": [
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\iverilog.exe",
+        "-g2012",
+        "-s",
+        "zone_tb",
+        "-o",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\zone_tb\\zone_tb.vvp",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\sim\\zone_tb.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\alpha_dot.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_link.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\arm_adc_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\debug_uart.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_decoder.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\enc_zone.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\loc_target_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\motor_driver.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pendulum_ctrl.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pid.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\pwm_gen.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\t_measure.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\telemetry.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\top.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_rx.v",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\fpga_project\\src\\uart_tx.v"
+      ],
+      [
+        "D:\\GitHub\\xiangmu\\FPGA\\iverilog\\bin\\vvp.exe",
+        "D:\\GitHub\\xiangmu\\FPGA\\verilog\\docs\\verification\\2026-10-23\\sim\\zone_tb\\zone_tb.vvp"
+      ]
+    ],
+    "passed": true,
+    "compile_exit": 0,
+    "run_exit": 0,
+    "pass_lines": [
+      "PASS: enc_zone verified"
+    ],
+    "elapsed_s": 0.103
+  }
+]

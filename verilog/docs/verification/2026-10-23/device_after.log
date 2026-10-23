@@ -1,0 +1,9 @@
+ Target Cable: Gowin USB Cable(FT2CH)/0/None/null@2.5MHz
+ Target Device: GW2A-18C(0x0000081B)
+ Operation "Read Device Codes" for device#1...
+ ID Code is: 0x0000081B
+ User Code is: 0x0000FD3D
+ Status Code is: 0x00006020
+ Finished.
+ Cost 0.1 second(s)
+  

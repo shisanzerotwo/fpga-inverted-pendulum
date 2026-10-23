@@ -1,0 +1,14 @@
+{
+  "bytes": 4276,
+  "valid_frames": 285,
+  "skipped_bytes": 0,
+  "rejected_candidates": 0,
+  "trailing_bytes": 1,
+  "partial_frame_bytes": 1,
+  "adc_min": 3826,
+  "adc_max": 3853,
+  "adc_median": 3846,
+  "stop_safe": true,
+  "link_good": true,
+  "median_delta_from_hanging": -3.0
+}

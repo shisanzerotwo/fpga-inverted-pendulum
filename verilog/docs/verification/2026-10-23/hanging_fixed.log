@@ -1,0 +1,31 @@
+monitoring COM9 @ 115200 for 6s -> docs\verification\2026-10-23\hanging_fixed.bin
+KEY1按一次启动，再按一次停止；松开不会停止。采集只读串口。
+[   0.2s] STOP  a= 14747 ad=   564 duty=     0 adc=3854 enc=    2 fr=16850 lk=1 en=0 brk=1 key=1 wd=0
+[   0.4s] STOP  a= 14763 ad=   105 duty=     0 adc=3854 enc=    2 fr=27350 lk=1 en=0 brk=1 key=1 wd=0
+[   0.6s] STOP  a= 14731 ad=    -2 duty=     0 adc=3852 enc=    2 fr=37850 lk=1 en=0 brk=1 key=1 wd=0
+[   0.8s] STOP  a= 14690 ad=    11 duty=     0 adc=3848 enc=    2 fr=48350 lk=1 en=0 brk=1 key=1 wd=0
+[   1.0s] STOP  a= 14682 ad=  -154 duty=     0 adc=3849 enc=    2 fr=58850 lk=1 en=0 brk=1 key=1 wd=0
+[   1.3s] STOP  a= 14747 ad=    16 duty=     0 adc=3852 enc=    2 fr= 3813 lk=1 en=0 brk=1 key=1 wd=0
+[   1.5s] STOP  a= 14755 ad=    17 duty=     0 adc=3856 enc=    2 fr=14313 lk=1 en=0 brk=1 key=1 wd=0
+[   1.7s] STOP  a= 14731 ad=    -8 duty=     0 adc=3850 enc=    2 fr=24813 lk=1 en=0 brk=1 key=1 wd=0
+[   1.9s] STOP  a= 14698 ad=  -125 duty=     0 adc=3848 enc=    2 fr=35313 lk=1 en=0 brk=1 key=1 wd=0
+[   2.1s] STOP  a= 14698 ad=    46 duty=     0 adc=3851 enc=    2 fr=45813 lk=1 en=0 brk=1 key=1 wd=0
+[   2.3s] STOP  a= 14755 ad=   121 duty=     0 adc=3855 enc=    2 fr=56313 lk=1 en=0 brk=1 key=1 wd=0
+[   2.5s] STOP  a= 14715 ad=   -27 duty=     0 adc=3848 enc=    2 fr= 1276 lk=1 en=0 brk=1 key=1 wd=0
+[   2.7s] STOP  a= 14731 ad=    72 duty=     0 adc=3848 enc=    2 fr=11776 lk=1 en=0 brk=1 key=1 wd=0
+[   2.9s] STOP  a= 14771 ad=    33 duty=     0 adc=3859 enc=    2 fr=22276 lk=1 en=0 brk=1 key=1 wd=0
+[   3.1s] STOP  a= 14771 ad=    -3 duty=     0 adc=3855 enc=    2 fr=32776 lk=1 en=0 brk=1 key=1 wd=0
+[   3.4s] STOP  a= 14755 ad=   -37 duty=     0 adc=3857 enc=    2 fr=43276 lk=1 en=0 brk=1 key=1 wd=0
+[   3.6s] STOP  a= 14763 ad=   -23 duty=     0 adc=3854 enc=    2 fr=53775 lk=1 en=0 brk=1 key=1 wd=0
+[   3.8s] STOP  a= 14755 ad=   -85 duty=     0 adc=3859 enc=    2 fr=64275 lk=1 en=0 brk=1 key=1 wd=0
+[   4.0s] STOP  a= 14755 ad=   202 duty=     0 adc=3852 enc=    2 fr= 9239 lk=1 en=0 brk=1 key=1 wd=0
+[   4.2s] STOP  a= 14698 ad=  -122 duty=     0 adc=3848 enc=    2 fr=19739 lk=1 en=0 brk=1 key=1 wd=0
+[   4.4s] STOP  a= 14747 ad=  -246 duty=     0 adc=3854 enc=    2 fr=30239 lk=1 en=0 brk=1 key=1 wd=0
+[   4.6s] STOP  a= 14755 ad=  -112 duty=     0 adc=3855 enc=    2 fr=40738 lk=1 en=0 brk=1 key=1 wd=0
+[   4.8s] STOP  a= 14698 ad=   100 duty=     0 adc=3848 enc=    2 fr=51238 lk=1 en=0 brk=1 key=1 wd=0
+[   5.0s] STOP  a= 14739 ad=    20 duty=     0 adc=3855 enc=    2 fr=61738 lk=1 en=0 brk=1 key=1 wd=0
+[   5.2s] STOP  a= 14715 ad=  -115 duty=     0 adc=3848 enc=    2 fr= 6702 lk=1 en=0 brk=1 key=1 wd=0
+[   5.5s] STOP  a= 14682 ad=   -47 duty=     0 adc=3848 enc=    2 fr=17202 lk=1 en=0 brk=1 key=1 wd=0
+[   5.7s] STOP  a= 14747 ad=   -31 duty=     0 adc=3852 enc=    2 fr=27702 lk=1 en=0 brk=1 key=1 wd=0
+[   5.9s] STOP  a= 14771 ad=   140 duty=     0 adc=3855 enc=    2 fr=38201 lk=1 en=0 brk=1 key=1 wd=0
+SUMMARY: frames=286 seq_breaks=0 elapsed=6.1s last_data=6.019619899976533 tail_silence=0.1s status=completed

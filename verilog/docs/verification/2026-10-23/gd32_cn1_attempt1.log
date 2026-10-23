@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "D:\GitHub\xiangmu\FPGA\verilog\docs\verification\2026-10-23\capture_gd32_debug.py", line 59, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "D:\GitHub\xiangmu\FPGA\verilog\docs\verification\2026-10-23\capture_gd32_debug.py", line 33, in main
+    pid = bl.get_id()  # Also works when ROM was already synced by prior readback.
+  File "D:\GitHub\xiangmu\FPGA\verilog\_tools\gd32_isp.py", line 118, in get_id
+    self.cmd(0x02)
+    ~~~~~~~~^^^^^^
+  File "D:\GitHub\xiangmu\FPGA\verilog\_tools\gd32_isp.py", line 87, in cmd
+    self._expect_ack('sending cmd 0x%02X' % c)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GitHub\xiangmu\FPGA\verilog\_tools\gd32_isp.py", line 75, in _expect_ack
+    raise RuntimeError('NACK while %s' % what)
+RuntimeError: NACK while sending cmd 0x02

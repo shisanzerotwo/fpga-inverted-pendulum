@@ -1,0 +1,11 @@
+VCD info: dumpfile zone_tb.vcd opened for output.
+  ok  ounts -> ezone 1 (ezone=1)
+  ok  ounts -> ezone 0 (ezone=0)
+  ok   -> ezone frozen (ezone=0)
+  ok  d 123 -> ezone 3 (ezone=3)
+  ok   back to ezone 0 (ezone=0)
+  ok  ay after reverse (ezone=0)
+  ok  mp stays in 0..9 (ezone=1)
+  ok  back, still sane (ezone=0)
+PASS: enc_zone verified
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\zone_tb.v:86: $finish called at 14871000 (1ps)

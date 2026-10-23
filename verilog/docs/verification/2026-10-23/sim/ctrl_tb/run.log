@@ -1,0 +1,31 @@
+VCD info: dumpfile ctrl_tb.vcd opened for output.
+  ok   -> STOP, duty 0
+  ok  pump pulse +4500
+  ok  end of +pulse
+  ok  n +wait (duty 0)
+  ok  hen -pulse -4500
+  ok  n -wait (duty 0)
+  ok  GE or direct BAL
+  ok  entry -> BALANCE
+  ok  live (duty != 0)
+  ok  ce duty in range
+  ok  ase window seen)
+  ok  g release window
+  ok  re/after release
+  ok  stent saturation
+  ok  d release window
+  ok  when unsaturated
+  ok  de still BALANCE
+  ok  ch: alpha frozen
+  ok  d, still BALANCE
+  ok  l near pre value
+  ok  lows (no freeze)
+  ok   -> STOP, duty 0
+  ok  frozen at 150 ms
+  ok  ws after timeout
+  ok  ze (still JUDGE)
+  ok  fter adc returns
+  ok  restarted pump
+  ok  y 0 (same cycle)
+PASS: pendulum_ctrl verified
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\ctrl_tb.v:295: $finish called at 113819991000 (1ps)

@@ -1,0 +1,44 @@
+{
+  "captures": [
+    {
+      "bytes": 4291,
+      "valid_frames": 286,
+      "skipped_bytes": 0,
+      "rejected_candidates": 0,
+      "trailing_bytes": 1,
+      "partial_frame_bytes": 1,
+      "file": "hanging_fixed.bin",
+      "sha256": "401ea0018d4d00178eb54ead3efb5de55de01f7008b211770150d89be6189cd5",
+      "sequence_breaks": 0,
+      "stop_safe": true,
+      "link_good": true,
+      "adc_min": 3839,
+      "adc_max": 3859,
+      "adc_median": 3852.0
+    },
+    {
+      "bytes": 4291,
+      "valid_frames": 286,
+      "skipped_bytes": 0,
+      "rejected_candidates": 0,
+      "trailing_bytes": 1,
+      "partial_frame_bytes": 1,
+      "file": "upright_fixed.bin",
+      "sha256": "4d97c65b1561158b3271fc28783616a51d33dfdb47ec64929cdb593c051808c3",
+      "sequence_breaks": 0,
+      "stop_safe": true,
+      "link_good": true,
+      "adc_min": 3846,
+      "adc_max": 3859,
+      "adc_median": 3853.0
+    }
+  ],
+  "absolute_median_delta": 1.0,
+  "max_static_span": 20,
+  "diagnostic_threshold": 200,
+  "criterion": "usable STOP/link captures, >=100 frames each, delta > max(200, 3*static_span)",
+  "usable": true,
+  "adc_follow_pass": false,
+  "time_axis": "sample index; no transport clock assumed",
+  "parser_sha256": "5f684b631148d35dc57896f36daf4865254f18c4b1a99efccc3ed988f3f269fd"
+}

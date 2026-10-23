@@ -1,0 +1,10 @@
+Opened COM7; read-only command allowlist active
+WAITING_FOR_BUTTONS: hold SW5, tap SW4, release SW5; port stays open (180 seconds)
+ERROR: bootloader handshake timed out; no Flash write attempted
+Traceback (most recent call last):
+  File "D:\GitHub\xiangmu\FPGA\verilog\docs\verification\2026-10-23\read_current_flash.py", line 89, in <module>
+    main()
+    ~~~~^^
+  File "D:\GitHub\xiangmu\FPGA\verilog\docs\verification\2026-10-23\read_current_flash.py", line 54, in main
+    raise RuntimeError("bootloader handshake timed out; no Flash write attempted")
+RuntimeError: bootloader handshake timed out; no Flash write attempted

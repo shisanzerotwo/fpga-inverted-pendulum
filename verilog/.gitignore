@@ -1,0 +1,5 @@
+# Local debug dependencies and generated simulation artifacts.
+_tools/pyocd_lib/
+**/__pycache__/
+docs/verification/2026-10-23/sim/**/*.vcd
+docs/verification/2026-10-23/sim/**/*.vvp

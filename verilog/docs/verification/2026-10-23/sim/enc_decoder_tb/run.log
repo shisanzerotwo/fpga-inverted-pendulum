@@ -1,0 +1,9 @@
+VCD info: dumpfile enc_decoder_tb.vcd opened for output.
+  ok  reset: pos=0 delta=0
+  ok  408 forward edges -> pos=408  (1 arm revolution)
+  ok  100 reverse edges -> pos=308
+  ok  delta over one 1 ms tick = 20
+  ok  3-clock (60 ns) spike rejected, pos unchanged
+  ok  real edge counted: pos 328 -> 329, dir=1
+PASS: enc_decoder verified
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\enc_decoder_tb.v:203: $finish called at 12021160000 (1ps)

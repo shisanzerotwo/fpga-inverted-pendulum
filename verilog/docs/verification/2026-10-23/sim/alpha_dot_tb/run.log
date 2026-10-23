@@ -1,0 +1,8 @@
+VCD info: dumpfile alpha_dot_tb.vcd opened for output.
+  ok   still -> adot 0: 0
+  ok  mp up mid-flight: 22493
+  ok   up end -> 20000: 22493
+  ok  wn end -> -20000: -22500
+  ok  hold again -> 0: -7
+PASS: alpha_dot verified
+D:\GitHub\xiangmu\FPGA\verilog\fpga_project\sim\alpha_dot_tb.v:74: $finish called at 33499991000 (1ps)
