@@ -1,0 +1,18 @@
+{
+  "port": "COM9",
+  "started_at": "2026-10-24T19:28:10.718008+08:00",
+  "ended_at": "2026-10-24T19:32:10.839147+08:00",
+  "requested_s": 240.0,
+  "elapsed_s": 240.12103360000765,
+  "status": "completed",
+  "error": null,
+  "bytes": 171436,
+  "valid_frames": 11429,
+  "sequence_breaks": 0,
+  "rejected_candidates": 0,
+  "buffered_tail_bytes": 1,
+  "last_data_s": 240.0177737000049,
+  "trailing_silence_s": 0.10325990000274032,
+  "max_silence_s": 0.10325990000274032,
+  "host_average_hz": 47.596829934683555
+}
