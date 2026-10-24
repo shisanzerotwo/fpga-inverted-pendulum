@@ -264,7 +264,7 @@ module top (
                                 // the rod near vertical; the position loop
                                 // stays a slow outer trim.  (RTL default
                                 // still 2000, ctrl_tb context untouched.)
-        .DUTY_LIM   (10000)     // back to full authority (2026-10-07): the
+        .DUTY_LIM   (10000),    // back to full authority (2026-10-07): the
                                 // 3000 cap was a band-aid for the ground-bounce
                                 // alpha corruption, which the alpha slew limiter
                                 // now handles properly.  Bench: captures now
@@ -273,14 +273,23 @@ module top (
                                 // gravity -- the rod free-falls out at
                                 // ~210 deg/s.  Full torque + 100 ms soft start
                                 // retained.
-                                // Kp is NOT overridden here (stays at the RTL
-                                // default 1.85): the 2026-10-11 run1 data shows
-                                // 1.85 held BALANCE 28.1 s at a bounded
-                                // +/-42 deg limit cycle, so the loop works; the
-                                // lost runs were ADC glitches, not tuning
-                                // (see the glitch fix in pendulum_ctrl.v).  Kp
-                                // retune is a separate single-variable
-                                // experiment AFTER the glitch fix is proven.
+        //
+        // ---- 2026-10-24 jitter retune: JiangXie V1.1 factory equivalents ----
+        // The old RTL defaults (Kp 1.85 / Kd 18 / pos 40|400) were bench-stiff
+        // on the GLITCHY old-board ADC; on the clean new board (2026-10-24
+        // 3-pose span 37) they pump a +/-15 deg limit cycle: run1/run3 BAL
+        // alpha std ~1550 cdeg, with 30 deg/20 ms jumps -- far past the rod's
+        // physical speed, i.e. loop-induced arm chatter.  Same motor, same
+        // pot, same 5 ms/50 ms ticks as the reference kit, so drop in the
+        // factory set ("no retune needed after ship"), unit-converted:
+        //   angle: duty_x100/cdeg = PWM_per_count * 100 / 8.12988
+        //          (8.12988 cdeg per ADC count = 33300/4096)
+        //   position: cdeg/count  = counts_per_count * 8.12988
+        .KP_ANG     (32'sd201528),   // 3.075  = 0.25  PWM/cnt  (was 1.85)
+        .KI_ANG     (32'sd7255),     // 0.1107 = 0.009 PWM/cnt  (was 0.0615)
+        .KD_ANG     (32'sd330506),   // 5.043  = 0.41  PWM/cnt  (was 18 = 3.6x)
+        .KP_POS     (32'sd277056),   // 4.228 cdeg/cnt = 0.52   (was 40 = 9.5x)
+        .KD_POS     (32'sd2429568)   // 37.07 cdeg/cnt = 4.56   (was 400 = 10.8x)
     ) u_ctrl (
         .clk      (sys_clk),
         .rst_n    (rst_n),
