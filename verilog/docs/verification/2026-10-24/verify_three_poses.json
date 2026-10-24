@@ -1,0 +1,80 @@
+{
+  "captures": {
+    "hanging": {
+      "file": "calib_hanging_stop_1826.bin",
+      "sha256": "f0f3f499bb06255b7206a0a748981d98bacd5f285466b6dced5c549ae00dcf6c",
+      "valid_frames": 952,
+      "stop_link_frames": 952,
+      "sequence_breaks": null,
+      "rejected_candidates": 0,
+      "all_stop": true,
+      "all_link": true,
+      "all_duty_zero": true,
+      "all_braking": true,
+      "all_key_released": true,
+      "adc_median": 0.0,
+      "adc_min": 0,
+      "adc_max": 0,
+      "span": 0,
+      "enough_stop_frames": true,
+      "safety_clean": true
+    },
+    "upright": {
+      "file": "calib_upright_1831.bin",
+      "sha256": "1a9b1d06a5a8daea703b4fb1cbc2109570a480d9d728c2c12f858c516f5964c5",
+      "valid_frames": 952,
+      "stop_link_frames": 952,
+      "sequence_breaks": null,
+      "rejected_candidates": 0,
+      "all_stop": true,
+      "all_link": true,
+      "all_duty_zero": true,
+      "all_braking": true,
+      "all_key_released": true,
+      "adc_median": 2057.0,
+      "adc_min": 2034,
+      "adc_max": 2071,
+      "span": 37,
+      "enough_stop_frames": true,
+      "safety_clean": true
+    },
+    "hanging_return": {
+      "file": "calib_hanging_return_1834.bin",
+      "sha256": "065d71fd62f3b7b6f2096f4d095d606e5f47613f45472d96498d0038ff8cb3ba",
+      "valid_frames": 952,
+      "stop_link_frames": 952,
+      "sequence_breaks": null,
+      "rejected_candidates": 0,
+      "all_stop": true,
+      "all_link": true,
+      "all_duty_zero": true,
+      "all_braking": true,
+      "all_key_released": true,
+      "adc_median": 0.0,
+      "adc_min": 0,
+      "adc_max": 0,
+      "span": 0,
+      "enough_stop_frames": true,
+      "safety_clean": true
+    }
+  },
+  "pairs": {
+    "hanging_vs_upright": {
+      "median_diff": 2057.0,
+      "gate": 200,
+      "pass": true
+    },
+    "upright_vs_hanging_return": {
+      "median_diff": 2057.0,
+      "gate": 200,
+      "pass": true
+    },
+    "hanging_vs_hanging_return": {
+      "median_diff": 0.0,
+      "gate": 200,
+      "pass": false
+    }
+  },
+  "ang_offset_suggestion": 2057.0,
+  "all_pass": false
+}

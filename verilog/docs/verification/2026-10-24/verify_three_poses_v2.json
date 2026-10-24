@@ -1,0 +1,28 @@
+{
+  "note": "修正判定语义：hanging_vs_hanging_return 是同姿态重复性检查（预期差≈0），不适用姿态区分门槛",
+  "follow_check": {
+    "hanging_vs_upright": {
+      "diff": 2057.0,
+      "gate": 200,
+      "pass": true
+    },
+    "upright_vs_hanging_return": {
+      "diff": 2057.0,
+      "gate": 200,
+      "pass": true
+    }
+  },
+  "repeatability_check": {
+    "hanging_vs_hanging_return": {
+      "diff": 0.0,
+      "gate": 200,
+      "pass": true,
+      "meaning": "同姿态回归读数一致，重复性通过"
+    }
+  },
+  "safety_all_clean": true,
+  "adc_follow_verdict": "PASS",
+  "ang_offset_suggestion": 2057.0,
+  "upright_span": 37,
+  "predecessor_evidence": "verify_three_poses.json (exit=1，聚合语义将同姿态对误判为需>门槛；原始数据与本文件一致)"
+}
