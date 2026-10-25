@@ -85,15 +85,31 @@ module pendulum_ctrl #(
     // 10-24 (SWINGUP_RANDOM_REPORT): 46/64 pumps fired on a still rod, 5
     // false captures lived 0.2 s, swing-up success 1/6.  These gates make
     // every judge/capture decision out of REAL samples only.
-    parameter integer PEAK_VMIN    = 2000,    // cdeg/s: a judge pump requires
-                                              // the PREVIOUS judge sample's
-                                              // adot to be beyond this on the
-                                              // "moving" side of the flip --
-                                              // a real out-of-window peak is
-                                              // preceded by real speed; the
-                                              // sign flip alone fires on
-                                              // near-zero noise (still-rod
-                                              // micro-sway, dropout decay).
+    parameter integer PEAK_VMIN    = 0,       // cdeg/s minimum speed on the
+                                              // losing side of the adot sign
+                                              // flip for a judge pump.
+                                              // 2026-10-25 RETUNE FROM THE
+                                              // 10-24 SUCCESS RECORDS: their
+                                              // winning pumps (#1/#2/#3/#5 in
+                                              // factory_run1, ALL THREE in
+                                              // run3) fired at adot 68~1462 --
+                                              // near-still "retry pumps" at
+                                              // the hanging rest position.
+                                              // The swing-up WORKS by repeated
+                                              // relaunches (rod flung to
+                                              // ~150 deg, overshoots the top,
+                                              // decays, hangs still, gets
+                                              // pumped again) until one
+                                              // launch crosses the top slow
+                                              // enough to capture.  The old
+                                              // 2000 threshold killed every
+                                              // retry pump -> one overshoot,
+                                              // dead hang, no relaunch, 0/23.
+                                              // False peaks (dropout-bounce
+                                              // sign flapping) are already
+                                              // excluded by the trusted
+                                              // judge-sampling gate -- that
+                                              // one is doing the real work.
     parameter integer CLEAN_MS     = 60,      // ms of glitch-free signal
                                               // required before JUDGE->BAL
                                               // capture: spans the 40 ms adot
