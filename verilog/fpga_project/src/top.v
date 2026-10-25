@@ -307,9 +307,14 @@ module top (
         .mode     (ctrl_mode)
     );
 
-    // motor front-end: signed duty -> TB6612 (brake-aware, deadband)
+    // motor front-end: signed duty -> TB6612 (brake-aware, min-drive)
     motor_driver #(
-        .DEADBAND (150)         // 1.5 % dead zone
+        .DEADBAND (80)          // 0.8 % min-drive lift (JiangXie "PWM offset").
+                                // 2026-10-25 bench: 150 (1.5 %) left a 0.18 s
+                                // period high-frequency wobble (JiangXie pid-3:
+                                // "offset too LARGE -> high-frequency wobble");
+                                // halve the over-zero torque step.  Was 150 as
+                                // a pure deadband-to-brake before the rework.
     ) u_motor (
         .clk      (sys_clk),
         .rst_n    (rst_n),

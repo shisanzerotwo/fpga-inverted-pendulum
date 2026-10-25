@@ -1,0 +1,717 @@
+monitoring COM9 @ 115200 for 150s -> ..\docs\verification\2026-10-25\swingup_a25_run3.bin
+KEY1按一次启动，再按一次停止；松开不会停止。采集只读串口。
+[   0.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34895 lk=1 en=0 brk=1 key=1 wd=0
+[   0.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45395 lk=1 en=0 brk=1 key=1 wd=0
+[   0.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55894 lk=1 en=0 brk=1 key=1 wd=0
+[   0.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  858 lk=1 en=0 brk=1 key=1 wd=0
+[   1.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11358 lk=1 en=0 brk=1 key=1 wd=0
+[   1.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21858 lk=1 en=0 brk=1 key=1 wd=0
+[   1.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32358 lk=1 en=0 brk=1 key=1 wd=0
+[   1.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42858 lk=1 en=0 brk=1 key=1 wd=0
+[   1.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53357 lk=1 en=0 brk=1 key=1 wd=0
+[   2.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63857 lk=1 en=0 brk=1 key=1 wd=0
+[   2.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8821 lk=1 en=0 brk=1 key=1 wd=0
+[   2.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19321 lk=1 en=0 brk=1 key=1 wd=0
+[   2.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29821 lk=1 en=0 brk=1 key=1 wd=0
+[   2.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40321 lk=1 en=0 brk=1 key=1 wd=0
+[   3.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50821 lk=1 en=0 brk=1 key=1 wd=0
+[   3.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61320 lk=1 en=0 brk=1 key=1 wd=0
+[   3.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6284 lk=1 en=0 brk=1 key=1 wd=0
+[   3.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16784 lk=1 en=0 brk=1 key=1 wd=0
+[   4.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27284 lk=1 en=0 brk=1 key=1 wd=0
+[   4.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37784 lk=1 en=0 brk=1 key=1 wd=0
+[   4.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48284 lk=1 en=0 brk=1 key=1 wd=0
+[   4.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58784 lk=1 en=0 brk=1 key=1 wd=0
+[   4.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3747 lk=1 en=0 brk=1 key=1 wd=0
+[   5.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14247 lk=1 en=0 brk=1 key=1 wd=0
+[   5.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24747 lk=1 en=0 brk=1 key=1 wd=0
+[   5.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35247 lk=1 en=0 brk=1 key=1 wd=0
+[   5.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45747 lk=1 en=0 brk=1 key=1 wd=0
+[   5.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56247 lk=1 en=0 brk=1 key=1 wd=0
+[   6.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1211 lk=1 en=0 brk=1 key=1 wd=0
+[   6.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11710 lk=1 en=0 brk=1 key=1 wd=0
+[   6.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22210 lk=1 en=0 brk=1 key=1 wd=0
+[   6.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32710 lk=1 en=0 brk=1 key=1 wd=0
+[   6.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43210 lk=1 en=0 brk=1 key=1 wd=0
+[   7.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53710 lk=1 en=0 brk=1 key=1 wd=0
+[   7.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64210 lk=1 en=0 brk=1 key=1 wd=0
+[   7.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9173 lk=1 en=0 brk=1 key=1 wd=0
+[   7.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19673 lk=1 en=0 brk=1 key=1 wd=0
+[   8.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30173 lk=1 en=0 brk=1 key=1 wd=0
+[   8.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40673 lk=1 en=0 brk=1 key=1 wd=0
+[   8.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51173 lk=1 en=0 brk=1 key=1 wd=0
+[   8.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61673 lk=1 en=0 brk=1 key=1 wd=0
+[   8.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6637 lk=1 en=0 brk=1 key=1 wd=0
+[   9.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17136 lk=1 en=0 brk=1 key=1 wd=0
+[   9.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27636 lk=1 en=0 brk=1 key=1 wd=0
+[   9.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38136 lk=1 en=0 brk=1 key=1 wd=0
+[   9.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48636 lk=1 en=0 brk=1 key=1 wd=0
+[   9.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59136 lk=1 en=0 brk=1 key=1 wd=0
+[  10.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4100 lk=1 en=0 brk=1 key=1 wd=0
+[  10.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14600 lk=1 en=0 brk=1 key=1 wd=0
+[  10.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25099 lk=1 en=0 brk=1 key=1 wd=0
+[  10.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35599 lk=1 en=0 brk=1 key=1 wd=0
+[  10.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46099 lk=1 en=0 brk=1 key=1 wd=0
+[  11.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56599 lk=1 en=0 brk=1 key=1 wd=0
+[  11.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1563 lk=1 en=0 brk=1 key=1 wd=0
+[  11.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12063 lk=1 en=0 brk=1 key=1 wd=0
+[  11.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22563 lk=1 en=0 brk=1 key=1 wd=0
+[  12.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33062 lk=1 en=0 brk=1 key=1 wd=0
+[  12.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43562 lk=1 en=0 brk=1 key=1 wd=0
+[  12.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54062 lk=1 en=0 brk=1 key=1 wd=0
+[  12.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64562 lk=1 en=0 brk=1 key=1 wd=0
+[  12.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9526 lk=1 en=0 brk=1 key=1 wd=0
+[  13.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20026 lk=1 en=0 brk=1 key=1 wd=0
+[  13.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30526 lk=1 en=0 brk=1 key=1 wd=0
+[  13.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41025 lk=1 en=0 brk=1 key=1 wd=0
+[  13.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51525 lk=1 en=0 brk=1 key=1 wd=0
+[  13.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62025 lk=1 en=0 brk=1 key=1 wd=0
+[  14.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6989 lk=1 en=0 brk=1 key=1 wd=0
+[  14.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17489 lk=1 en=0 brk=1 key=1 wd=0
+[  14.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27989 lk=1 en=0 brk=1 key=1 wd=0
+[  14.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38488 lk=1 en=0 brk=1 key=1 wd=0
+[  14.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48988 lk=1 en=0 brk=1 key=1 wd=0
+[  15.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59488 lk=1 en=0 brk=1 key=1 wd=0
+[  15.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4452 lk=1 en=0 brk=1 key=1 wd=0
+[  15.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14952 lk=1 en=0 brk=1 key=1 wd=0
+[  15.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25452 lk=1 en=0 brk=1 key=1 wd=0
+[  16.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35952 lk=1 en=0 brk=1 key=1 wd=0
+[  16.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46451 lk=1 en=0 brk=1 key=1 wd=0
+[  16.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56951 lk=1 en=0 brk=1 key=1 wd=0
+[  16.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1915 lk=1 en=0 brk=1 key=1 wd=0
+[  16.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12415 lk=1 en=0 brk=1 key=1 wd=0
+[  17.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22915 lk=1 en=0 brk=1 key=1 wd=0
+[  17.2s] PUMP  a=-11382 ad= 16873 duty= -4500 adc= 644 enc= -195 fr=33415 lk=1 en=1 brk=0 key=1 wd=0
+[  17.4s] JUDGE a=-16724 ad= -1925 duty=     0 adc=3608 enc= -121 fr=43915 lk=1 en=1 brk=1 key=1 wd=0
+[  17.6s] JUDGE a= 16137 ad=  3221 duty=     0 adc= 337 enc= -126 fr=54414 lk=1 en=1 brk=1 key=1 wd=0
+[  17.9s] JUDGE a=-16724 ad=-16067 duty=     0 adc=4032 enc= -124 fr=64914 lk=1 en=1 brk=1 key=1 wd=0
+[  18.1s] JUDGE a= 16129 ad= 14550 duty=     0 adc=4033 enc= -126 fr= 9878 lk=1 en=1 brk=1 key=1 wd=0
+[  18.3s] JUDGE a= 16105 ad=   240 duty=     0 adc= 210 enc= -126 fr=20378 lk=1 en=1 brk=1 key=1 wd=0
+[  18.5s] JUDGE a=-16724 ad= -1789 duty=     0 adc=3950 enc= -126 fr=30878 lk=1 en=1 brk=1 key=1 wd=0
+[  18.7s] JUDGE a= 16080 ad=  4454 duty=     0 adc=   1 enc= -126 fr=41378 lk=1 en=1 brk=1 key=1 wd=0
+[  18.9s] JUDGE a=-16716 ad=-23082 duty=     0 adc=   2 enc= -126 fr=51878 lk=1 en=1 brk=1 key=1 wd=0
+[  19.1s] JUDGE a=-16724 ad=  -157 duty=     0 adc=4012 enc= -126 fr=62377 lk=1 en=1 brk=1 key=1 wd=0
+[  19.3s] JUDGE a= 16129 ad=   928 duty=     0 adc=  54 enc= -126 fr= 7341 lk=1 en=1 brk=1 key=1 wd=0
+[  19.5s] JUDGE a=-16724 ad= -3328 duty=     0 adc=   0 enc= -126 fr=17841 lk=1 en=1 brk=1 key=1 wd=0
+[  19.7s] JUDGE a=-16724 ad=   -15 duty=     0 adc=   0 enc= -126 fr=28341 lk=1 en=1 brk=1 key=1 wd=0
+[  20.0s] JUDGE a=-16724 ad=   317 duty=     0 adc=   1 enc= -126 fr=38841 lk=1 en=1 brk=1 key=1 wd=0
+[  20.2s] JUDGE a=-16724 ad=   -27 duty=     0 adc=4033 enc= -126 fr=49341 lk=1 en=1 brk=1 key=1 wd=0
+[  20.4s] JUDGE a=-16724 ad=    13 duty=     0 adc=   1 enc= -126 fr=59841 lk=1 en=1 brk=1 key=1 wd=0
+[  20.6s] JUDGE a=-16724 ad=   -56 duty=     0 adc=   0 enc= -126 fr= 4804 lk=1 en=1 brk=1 key=1 wd=0
+[  20.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=15304 lk=1 en=1 brk=1 key=1 wd=0
+[  21.0s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=25804 lk=1 en=1 brk=1 key=1 wd=0
+[  21.2s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=36304 lk=1 en=1 brk=1 key=1 wd=0
+[  21.4s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=46804 lk=1 en=1 brk=1 key=1 wd=0
+[  21.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=57304 lk=1 en=1 brk=1 key=1 wd=0
+[  21.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr= 2267 lk=1 en=1 brk=1 key=1 wd=0
+[  22.1s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=12767 lk=1 en=1 brk=1 key=1 wd=0
+[  22.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=23267 lk=1 en=1 brk=1 key=1 wd=0
+[  22.5s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=33767 lk=1 en=1 brk=1 key=1 wd=0
+[  22.7s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=44267 lk=1 en=1 brk=1 key=1 wd=0
+[  22.9s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=54767 lk=1 en=1 brk=1 key=1 wd=0
+[  23.1s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=65267 lk=1 en=1 brk=1 key=1 wd=0
+[  23.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=10230 lk=1 en=1 brk=1 key=1 wd=0
+[  23.5s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=20730 lk=1 en=1 brk=1 key=1 wd=0
+[  23.7s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=31230 lk=1 en=1 brk=1 key=1 wd=0
+[  23.9s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=41730 lk=1 en=1 brk=1 key=1 wd=0
+[  24.2s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=52230 lk=1 en=1 brk=1 key=1 wd=0
+[  24.4s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=62730 lk=1 en=1 brk=1 key=1 wd=0
+[  24.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr= 7694 lk=1 en=1 brk=1 key=1 wd=0
+[  24.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=18193 lk=1 en=1 brk=1 key=1 wd=0
+[  25.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=28693 lk=1 en=0 brk=1 key=1 wd=0
+[  25.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=39193 lk=1 en=0 brk=1 key=1 wd=0
+[  25.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=49693 lk=1 en=0 brk=1 key=1 wd=0
+[  25.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -126 fr=60193 lk=1 en=0 brk=1 key=1 wd=0
+[  25.8s] PUMP  a=-12504 ad= 18606 duty=     0 adc= 525 enc= -179 fr= 5157 lk=1 en=1 brk=1 key=0 wd=0
+[  26.0s] PUMP  a=-16724 ad=-24303 duty=     0 adc=3847 enc= -142 fr=15657 lk=1 en=1 brk=1 key=1 wd=0
+[  26.3s] JUDGE a=-16724 ad= -1740 duty=     0 adc=   1 enc= -132 fr=26156 lk=1 en=1 brk=1 key=1 wd=0
+[  26.5s] PUMP  a=-14634 ad= -8090 duty=  6000 adc= 261 enc= -143 fr=36656 lk=1 en=1 brk=0 key=1 wd=0
+[  26.7s] PUMP  a=-16716 ad=-20458 duty= -6000 adc=   1 enc= -202 fr=47156 lk=1 en=1 brk=0 key=1 wd=0
+[  26.9s] PUMP  a= -8724 ad=  3481 duty=     0 adc=2417 enc= -182 fr=57656 lk=1 en=1 brk=1 key=1 wd=0
+[  27.1s] PUMP  a= 16137 ad= 29814 duty=     0 adc=  43 enc= -207 fr= 2620 lk=1 en=1 brk=1 key=1 wd=0
+[  27.3s] JUDGE a= -5992 ad=-14424 duty=     0 adc=1312 enc= -168 fr=13120 lk=1 en=1 brk=1 key=1 wd=0
+[  27.5s] JUDGE a=-16724 ad=-11515 duty=     0 adc=3568 enc= -149 fr=23619 lk=1 en=1 brk=1 key=1 wd=0
+[  27.7s] JUDGE a= 15804 ad= 25327 duty=     0 adc=4038 enc= -160 fr=34119 lk=1 en=1 brk=1 key=1 wd=0
+[  27.9s] JUDGE a= 16235 ad=   328 duty=     0 adc= 501 enc= -155 fr=44619 lk=1 en=1 brk=1 key=1 wd=0
+[  28.1s] JUDGE a=-16724 ad= -3247 duty=     0 adc=3705 enc= -156 fr=55119 lk=1 en=1 brk=1 key=1 wd=0
+[  28.4s] JUDGE a= 16048 ad= 15541 duty=     0 adc=   1 enc= -160 fr=   83 lk=1 en=1 brk=1 key=1 wd=0
+[  28.6s] JUDGE a=-15626 ad=-19640 duty=     0 adc= 132 enc= -158 fr=10583 lk=1 en=1 brk=1 key=1 wd=0
+[  28.8s] JUDGE a=-16724 ad=  -530 duty=     0 adc=3868 enc= -159 fr=21083 lk=1 en=1 brk=1 key=1 wd=0
+[  29.0s] JUDGE a= 16056 ad=  2217 duty=     0 adc= 112 enc= -160 fr=31582 lk=1 en=1 brk=1 key=1 wd=0
+[  29.2s] JUDGE a=-16724 ad=-12525 duty=     0 adc=   0 enc= -160 fr=42082 lk=1 en=1 brk=1 key=1 wd=0
+[  29.4s] JUDGE a=-16724 ad=   -50 duty=     0 adc=4031 enc= -160 fr=52582 lk=1 en=1 brk=1 key=1 wd=0
+[  29.6s] JUDGE a= 16145 ad=   214 duty=     0 adc=  75 enc= -160 fr=63082 lk=1 en=1 brk=1 key=1 wd=0
+[  29.8s] JUDGE a=-15577 ad= 19043 duty=     0 adc=4048 enc= -160 fr= 8046 lk=1 en=1 brk=1 key=1 wd=0
+[  30.0s] JUDGE a=-16724 ad=-15288 duty=     0 adc=   1 enc= -160 fr=18546 lk=1 en=1 brk=1 key=1 wd=0
+[  30.2s] JUDGE a=-16716 ad=  -595 duty=     0 adc=   1 enc= -160 fr=29046 lk=1 en=1 brk=1 key=1 wd=0
+[  30.5s] JUDGE a=-16724 ad=    -7 duty=     0 adc=4031 enc= -160 fr=39545 lk=1 en=1 brk=1 key=1 wd=0
+[  30.7s] PUMP  a= -9740 ad= 25854 duty=     0 adc= 870 enc= -229 fr=50045 lk=1 en=1 brk=1 key=1 wd=0
+[  30.9s] PUMP  a= -4415 ad= 18501 duty=     0 adc=1507 enc= -208 fr=60545 lk=1 en=1 brk=1 key=1 wd=0
+[  31.1s] PUMP  a=-15309 ad=  1843 duty=     0 adc=3434 enc= -218 fr= 5509 lk=1 en=1 brk=1 key=1 wd=0
+[  31.3s] JUDGE a= 12959 ad= 25377 duty=     0 adc=3662 enc= -158 fr=16009 lk=1 en=1 brk=1 key=1 wd=0
+[  31.5s] JUDGE a= 16064 ad=   651 duty=     0 adc= 968 enc= -146 fr=26509 lk=1 en=1 brk=1 key=1 wd=0
+[  31.7s] JUDGE a=-16724 ad=-11130 duty=     0 adc=3704 enc= -136 fr=37009 lk=1 en=1 brk=1 key=1 wd=0
+[  31.9s] JUDGE a= 15983 ad= 24668 duty=     0 adc=4025 enc= -144 fr=47508 lk=1 en=1 brk=1 key=1 wd=0
+[  32.1s] JUDGE a= 16154 ad=   299 duty=     0 adc= 448 enc= -139 fr=58008 lk=1 en=1 brk=1 key=1 wd=0
+[  32.3s] JUDGE a=-16724 ad= -3077 duty=     0 adc=3757 enc= -140 fr= 2972 lk=1 en=1 brk=1 key=1 wd=0
+[  32.6s] JUDGE a= 15958 ad= 11243 duty=     0 adc=   0 enc= -142 fr=13472 lk=1 en=1 brk=1 key=1 wd=0
+[  32.8s] JUDGE a=-15854 ad=-20946 duty=     0 adc= 104 enc= -142 fr=23972 lk=1 en=1 brk=1 key=1 wd=0
+[  33.0s] JUDGE a=-16724 ad=  -448 duty=     0 adc=3891 enc= -142 fr=34472 lk=1 en=1 brk=1 key=1 wd=0
+[  33.2s] JUDGE a= 16113 ad=  2496 duty=     0 adc= 110 enc= -142 fr=44972 lk=1 en=1 brk=1 key=1 wd=0
+[  33.4s] JUDGE a=-16724 ad=-10062 duty=     0 adc=   0 enc= -142 fr=55471 lk=1 en=1 brk=1 key=1 wd=0
+[  33.6s] JUDGE a=-16724 ad=   -42 duty=     0 adc=4045 enc= -142 fr=  435 lk=1 en=1 brk=1 key=1 wd=0
+[  33.8s] JUDGE a= 16007 ad=   154 duty=     0 adc=  70 enc= -142 fr=10935 lk=1 en=1 brk=1 key=1 wd=0
+[  34.0s] JUDGE a=-16724 ad=  -798 duty=     0 adc=4043 enc= -142 fr=21435 lk=1 en=1 brk=1 key=1 wd=0
+[  34.2s] JUDGE a=-16724 ad=    18 duty=     0 adc=   1 enc= -142 fr=31935 lk=1 en=1 brk=1 key=1 wd=0
+[  34.4s] JUDGE a=-16716 ad=  -189 duty=     0 adc=   1 enc= -142 fr=42435 lk=1 en=1 brk=1 key=1 wd=0
+[  34.7s] JUDGE a=-16724 ad=    -7 duty=     0 adc=4048 enc= -142 fr=52934 lk=1 en=1 brk=1 key=1 wd=0
+[  34.9s] JUDGE a=-16724 ad=   134 duty=     0 adc=   0 enc= -142 fr=63434 lk=1 en=1 brk=1 key=1 wd=0
+[  35.1s] JUDGE a=-16724 ad=   -55 duty=     0 adc=   0 enc= -142 fr= 8398 lk=1 en=1 brk=1 key=1 wd=0
+[  35.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=18898 lk=1 en=1 brk=1 key=1 wd=0
+[  35.5s] JUDGE a=-16724 ad=    36 duty=     0 adc=   0 enc= -142 fr=29398 lk=1 en=1 brk=1 key=1 wd=0
+[  35.7s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=39898 lk=1 en=1 brk=1 key=1 wd=0
+[  35.9s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=50398 lk=1 en=1 brk=1 key=1 wd=0
+[  36.1s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=60897 lk=1 en=1 brk=1 key=1 wd=0
+[  36.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr= 5861 lk=1 en=1 brk=1 key=1 wd=0
+[  36.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=16361 lk=1 en=1 brk=1 key=1 wd=0
+[  36.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=26861 lk=1 en=1 brk=1 key=1 wd=0
+[  37.0s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=37361 lk=1 en=1 brk=1 key=1 wd=0
+[  37.2s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=47861 lk=1 en=1 brk=1 key=1 wd=0
+[  37.4s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=58361 lk=1 en=1 brk=1 key=1 wd=0
+[  37.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr= 3324 lk=1 en=1 brk=1 key=1 wd=0
+[  37.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -142 fr=13824 lk=1 en=0 brk=1 key=0 wd=0
+[  38.0s] PUMP  a=-11789 ad= 25299 duty=     0 adc= 610 enc= -200 fr=24324 lk=1 en=1 brk=1 key=1 wd=0
+[  38.2s] PUMP  a=-16724 ad=-17948 duty=     0 adc=3804 enc= -156 fr=34824 lk=1 en=1 brk=1 key=1 wd=0
+[  38.4s] JUDGE a=-15943 ad=  4048 duty=     0 adc= 103 enc= -149 fr=45324 lk=1 en=1 brk=1 key=1 wd=0
+[  38.6s] JUDGE a=-16675 ad=-20888 duty=     0 adc=   2 enc= -149 fr=55824 lk=1 en=1 brk=1 key=1 wd=0
+[  38.9s] JUDGE a=-15504 ad=   753 duty=     0 adc=3915 enc= -149 fr=  788 lk=1 en=1 brk=1 key=1 wd=0
+[  39.1s] JUDGE a= 16121 ad=  1298 duty=     0 adc= 151 enc= -149 fr=11287 lk=1 en=1 brk=1 key=1 wd=0
+[  39.3s] JUDGE a=-16724 ad= -5612 duty=     0 adc=4034 enc= -149 fr=21787 lk=1 en=1 brk=1 key=1 wd=0
+[  39.5s] JUDGE a= 16056 ad=  7367 duty=     0 adc=4044 enc= -149 fr=32287 lk=1 en=1 brk=1 key=1 wd=0
+[  39.7s] JUDGE a= -1846 ad= -6946 duty=     0 adc=  55 enc= -149 fr=42787 lk=1 en=1 brk=1 key=1 wd=0
+[  39.9s] JUDGE a=-16724 ad=  -456 duty=     0 adc=4036 enc= -149 fr=53287 lk=1 en=1 brk=1 key=1 wd=0
+[  40.1s] JUDGE a=-16724 ad=    47 duty=     0 adc=   0 enc= -149 fr=63787 lk=1 en=1 brk=1 key=1 wd=0
+[  40.3s] JUDGE a=-16707 ad=  -348 duty=     0 adc=   1 enc= -149 fr= 8751 lk=1 en=1 brk=1 key=1 wd=0
+[  40.5s] JUDGE a=-15301 ad=  2161 duty=     0 adc=4049 enc= -149 fr=19250 lk=1 en=1 brk=1 key=1 wd=0
+[  40.7s] JUDGE a=-16716 ad=  -451 duty=     0 adc=   2 enc= -149 fr=29750 lk=1 en=1 brk=1 key=1 wd=0
+[  41.0s] JUDGE a=-16724 ad=   -46 duty=     0 adc=   0 enc= -149 fr=40250 lk=1 en=1 brk=1 key=1 wd=0
+[  41.2s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=50750 lk=1 en=1 brk=1 key=1 wd=0
+[  41.4s] JUDGE a=-16724 ad=  -117 duty=     0 adc=   0 enc= -149 fr=61250 lk=1 en=1 brk=1 key=1 wd=0
+[  41.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr= 6214 lk=1 en=1 brk=1 key=1 wd=0
+[  41.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=16713 lk=1 en=1 brk=1 key=1 wd=0
+[  42.0s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=27213 lk=1 en=1 brk=1 key=1 wd=0
+[  42.2s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=37713 lk=1 en=1 brk=1 key=1 wd=0
+[  42.4s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=48213 lk=1 en=1 brk=1 key=1 wd=0
+[  42.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=58713 lk=1 en=1 brk=1 key=1 wd=0
+[  42.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr= 3677 lk=1 en=1 brk=1 key=1 wd=0
+[  43.1s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=14177 lk=1 en=1 brk=1 key=1 wd=0
+[  43.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=24676 lk=1 en=1 brk=1 key=1 wd=0
+[  43.5s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=35176 lk=1 en=1 brk=1 key=1 wd=0
+[  43.7s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=45676 lk=1 en=1 brk=1 key=1 wd=0
+[  43.9s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=56176 lk=1 en=1 brk=1 key=1 wd=0
+[  44.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr= 1140 lk=1 en=0 brk=1 key=0 wd=0
+[  44.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=11640 lk=1 en=0 brk=1 key=1 wd=0
+[  44.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -149 fr=22140 lk=1 en=0 brk=1 key=1 wd=0
+[  44.7s] PUMP  a=-11179 ad= 23516 duty=     0 adc= 689 enc= -216 fr=32639 lk=1 en=1 brk=1 key=0 wd=0
+[  44.9s] PUMP  a=-16724 ad= -9436 duty=     0 adc=3664 enc= -154 fr=43139 lk=1 en=1 brk=1 key=1 wd=0
+[  45.2s] JUDGE a=-15220 ad= 14129 duty=     0 adc= 187 enc= -156 fr=53639 lk=1 en=1 brk=1 key=1 wd=0
+[  45.4s] JUDGE a=-16724 ad=-24380 duty=     0 adc=   0 enc= -156 fr=64139 lk=1 en=1 brk=1 key=1 wd=0
+[  45.6s] JUDGE a=-16724 ad=  -130 duty=     0 adc=3956 enc= -156 fr= 9103 lk=1 en=1 brk=1 key=1 wd=0
+[  45.8s] JUDGE a= 16072 ad=   588 duty=     0 adc= 170 enc= -156 fr=19603 lk=1 en=1 brk=1 key=1 wd=0
+[  46.0s] JUDGE a=-16390 ad=  1713 duty=     0 adc=4031 enc= -156 fr=30103 lk=1 en=1 brk=1 key=1 wd=0
+[  46.2s] JUDGE a= 16210 ad= 20992 duty=     0 adc=   0 enc= -156 fr=40602 lk=1 en=1 brk=1 key=1 wd=0
+[  46.4s] JUDGE a=-16464 ad=-16398 duty=     0 adc=  32 enc= -156 fr=51102 lk=1 en=1 brk=1 key=1 wd=0
+[  46.6s] JUDGE a=-16724 ad=  -285 duty=     0 adc=4037 enc= -156 fr=61602 lk=1 en=1 brk=1 key=1 wd=0
+[  46.8s] JUDGE a=-16716 ad=   681 duty=     0 adc=   0 enc= -156 fr= 6566 lk=1 en=1 brk=1 key=1 wd=0
+[  47.0s] PUMP  a=-11415 ad= 24612 duty=     0 adc= 662 enc= -220 fr=17066 lk=1 en=1 brk=1 key=1 wd=0
+[  47.3s] PUMP  a=-11927 ad=-22839 duty=     0 adc= 577 enc= -218 fr=27566 lk=1 en=1 brk=1 key=1 wd=0
+[  47.5s] PUMP  a=-10269 ad= 26661 duty=     0 adc= 796 enc= -261 fr=38065 lk=1 en=1 brk=1 key=1 wd=0
+[  47.7s] PUMP  a=-16724 ad= -9838 duty=     0 adc=3940 enc= -180 fr=48565 lk=1 en=1 brk=1 key=1 wd=0
+[  47.9s] JUDGE a=-14374 ad= 19379 duty=     0 adc= 287 enc= -178 fr=59065 lk=1 en=1 brk=1 key=1 wd=0
+[  48.1s] PUMP  a=-10643 ad= 27524 duty=     0 adc= 746 enc= -267 fr= 4029 lk=1 en=1 brk=1 key=1 wd=0
+[  48.3s] PUMP  a=-16724 ad= -5586 duty=     0 adc=3435 enc= -184 fr=14529 lk=1 en=1 brk=1 key=1 wd=0
+[  48.5s] PUMP  a=-16407 ad=   513 duty= -6000 adc=   0 enc= -270 fr=25029 lk=1 en=1 brk=0 key=1 wd=0
+[  48.7s] JUDGE a= -4724 ad=  3721 duty=     0 adc=2230 enc= -196 fr=35529 lk=1 en=1 brk=1 key=1 wd=0
+[  48.9s] BAL   a=  -700 ad= 12553 duty= -7387 adc=1971 enc=  -80 fr=46028 lk=1 en=1 brk=0 key=1 wd=0
+[  49.1s] BAL   a=  2024 ad= 17770 duty=  1595 adc=2307 enc=   82 fr=56528 lk=1 en=1 brk=0 key=1 wd=0
+[  49.4s] BAL   a=  1130 ad= -4643 duty=   615 adc=2194 enc=  109 fr= 1492 lk=1 en=1 brk=0 key=1 wd=0
+[  49.6s] BAL   a=   699 ad= -6324 duty=  1459 adc=2143 enc=   66 fr=11992 lk=1 en=1 brk=0 key=1 wd=0
+[  49.8s] BAL   a=  -350 ad= -8737 duty=   626 adc=2002 enc=  -27 fr=22492 lk=1 en=1 brk=0 key=1 wd=0
+[  50.0s] BAL   a=    -9 ad=   450 duty=  1431 adc=2054 enc= -116 fr=32992 lk=1 en=1 brk=0 key=1 wd=0
+[  50.2s] BAL   a=  -643 ad= -1794 duty=  1024 adc=1974 enc= -187 fr=43492 lk=1 en=1 brk=0 key=1 wd=0
+[  50.4s] BAL   a=  -342 ad=  8106 duty=   971 adc=2015 enc= -231 fr=53991 lk=1 en=1 brk=0 key=1 wd=0
+[  50.6s] BAL   a=  -561 ad= -2356 duty=   -18 adc=1981 enc= -253 fr=64491 lk=1 en=1 brk=0 key=1 wd=0
+[  50.8s] BAL   a=  -480 ad= -1793 duty=  -240 adc=2004 enc= -258 fr= 9455 lk=1 en=1 brk=0 key=1 wd=0
+[  51.0s] BAL   a=  -472 ad=   514 duty=  -331 adc=2005 enc= -248 fr=19955 lk=1 en=1 brk=0 key=1 wd=0
+[  51.2s] BAL   a=    97 ad=  2283 duty=  -975 adc=2114 enc= -230 fr=30455 lk=1 en=1 brk=0 key=1 wd=0
+[  51.5s] BAL   a=   252 ad=  1636 duty=   809 adc=2078 enc= -218 fr=40955 lk=1 en=1 brk=0 key=1 wd=0
+[  51.7s] BAL   a=     0 ad=  -167 duty=  -516 adc=2053 enc= -210 fr=51455 lk=1 en=1 brk=0 key=1 wd=0
+[  51.9s] BAL   a=   -57 ad=  -616 duty=  -549 adc=2048 enc= -204 fr=61954 lk=1 en=1 brk=0 key=1 wd=0
+[  52.1s] BAL   a=    24 ad=   815 duty= -1264 adc=2064 enc= -198 fr= 6918 lk=1 en=1 brk=0 key=1 wd=0
+[  52.3s] BAL   a=    65 ad=   211 duty=  -632 adc=2057 enc= -196 fr=17418 lk=1 en=1 brk=0 key=1 wd=0
+[  52.5s] BAL   a=    24 ad=  -506 duty=   102 adc=2062 enc= -197 fr=27918 lk=1 en=1 brk=0 key=1 wd=0
+[  52.7s] BAL   a=  -383 ad= -5688 duty=  -818 adc=2090 enc= -204 fr=38418 lk=1 en=1 brk=0 key=1 wd=0
+[  52.9s] BAL   a=  -196 ad=   299 duty=  4247 adc=2035 enc= -213 fr=48918 lk=1 en=1 brk=0 key=1 wd=0
+[  53.1s] BAL   a=   186 ad=  7411 duty=  1035 adc=2090 enc= -211 fr=59418 lk=1 en=1 brk=0 key=1 wd=0
+[  53.3s] BAL   a=   -98 ad=   929 duty=   178 adc=2051 enc= -218 fr= 4381 lk=1 en=1 brk=0 key=1 wd=0
+[  53.6s] BAL   a=  -114 ad=  -173 duty=  -201 adc=2036 enc= -220 fr=14881 lk=1 en=1 brk=0 key=1 wd=0
+[  53.8s] BAL   a=  -179 ad=   755 duty=  -636 adc=2034 enc= -220 fr=25381 lk=1 en=1 brk=0 key=1 wd=0
+[  54.0s] BAL   a=     0 ad=    88 duty=  -942 adc=2045 enc= -216 fr=35881 lk=1 en=1 brk=0 key=1 wd=0
+[  54.2s] BAL   a=  -212 ad= -2395 duty=  -766 adc=2109 enc= -220 fr=46381 lk=1 en=1 brk=0 key=1 wd=0
+[  54.4s] BAL   a=   -41 ad= -5460 duty=  4249 adc=2040 enc= -214 fr=56881 lk=1 en=1 brk=0 key=1 wd=0
+[  54.6s] BAL   a=    16 ad=  5463 duty=    57 adc=2062 enc= -216 fr= 1844 lk=1 en=1 brk=0 key=1 wd=0
+[  54.8s] BAL   a=  -163 ad= -1225 duty=   387 adc=2034 enc= -222 fr=12344 lk=1 en=1 brk=0 key=1 wd=0
+[  55.0s] BAL   a=  -122 ad=  -107 duty=   468 adc=2037 enc= -224 fr=22844 lk=1 en=1 brk=0 key=1 wd=0
+[  55.2s] BAL   a=  -163 ad=  -483 duty=   641 adc=2038 enc= -224 fr=33344 lk=1 en=1 brk=0 key=1 wd=0
+[  55.4s] BAL   a=  -228 ad=   -48 duty=  -813 adc=2030 enc= -220 fr=43844 lk=1 en=1 brk=0 key=1 wd=0
+[  55.7s] BAL   a=   -33 ad=  2014 duty=  -569 adc=2060 enc= -212 fr=54344 lk=1 en=1 brk=0 key=1 wd=0
+[  55.9s] BAL   a=  -131 ad= -5870 duty=-10000 adc=2054 enc= -204 fr=64844 lk=1 en=1 brk=0 key=1 wd=0
+[  56.1s] BAL   a=    73 ad=  -154 duty=   825 adc=2068 enc= -208 fr= 9807 lk=1 en=1 brk=0 key=1 wd=0
+[  56.3s] BAL   a=   -17 ad=  1434 duty=   494 adc=2055 enc= -216 fr=20307 lk=1 en=1 brk=0 key=1 wd=0
+[  56.5s] BAL   a=  -114 ad=   296 duty=   435 adc=2041 enc= -222 fr=30807 lk=1 en=1 brk=0 key=1 wd=0
+[  56.7s] BAL   a=  -187 ad=   157 duty=   534 adc=2037 enc= -222 fr=41307 lk=1 en=1 brk=0 key=1 wd=0
+[  56.9s] BAL   a=  -253 ad= -1731 duty=  -726 adc=2020 enc= -220 fr=51807 lk=1 en=1 brk=0 key=1 wd=0
+[  57.1s] BAL   a=     8 ad=  2130 duty=   527 adc=2061 enc= -215 fr=62307 lk=1 en=1 brk=0 key=1 wd=0
+[  57.3s] BAL   a=   219 ad=  2547 duty=   505 adc=2096 enc= -207 fr= 7271 lk=1 en=1 brk=0 key=1 wd=0
+[  57.5s] BAL   a=   -66 ad=   -83 duty=   186 adc=2063 enc= -210 fr=17770 lk=1 en=1 brk=0 key=1 wd=0
+[  57.8s] BAL   a=  -139 ad= -2029 duty=  -178 adc=2043 enc= -212 fr=28270 lk=1 en=1 brk=0 key=1 wd=0
+[  58.0s] BAL   a=  -155 ad=   -15 duty=  -647 adc=2045 enc= -211 fr=38770 lk=1 en=1 brk=0 key=1 wd=0
+[  58.2s] BAL   a=    48 ad=  1107 duty= -1743 adc=2062 enc= -209 fr=49270 lk=1 en=1 brk=0 key=1 wd=0
+[  58.4s] BAL   a=   -74 ad=  1800 duty=   537 adc=2053 enc= -206 fr=59770 lk=1 en=1 brk=0 key=1 wd=0
+[  58.6s] BAL   a=  -122 ad= -3787 duty= -1081 adc=2041 enc= -204 fr= 4734 lk=1 en=1 brk=0 key=1 wd=0
+[  58.8s] BAL   a=   -66 ad=   572 duty=    94 adc=2056 enc= -202 fr=15234 lk=1 en=1 brk=0 key=1 wd=0
+[  59.0s] BAL   a=   -25 ad= -1099 duty=   389 adc=2056 enc= -210 fr=25733 lk=1 en=1 brk=0 key=1 wd=0
+[  59.2s] BAL   a=  -155 ad=  -964 duty=   945 adc=2045 enc= -218 fr=36233 lk=1 en=1 brk=0 key=1 wd=0
+[  59.4s] BAL   a=  -163 ad=   440 duty=   411 adc=2038 enc= -222 fr=46733 lk=1 en=1 brk=0 key=1 wd=0
+[  59.6s] BAL   a=   -66 ad=  6727 duty= -3159 adc=2054 enc= -223 fr=57233 lk=1 en=1 brk=0 key=1 wd=0
+[  59.9s] BAL   a=    48 ad=  -333 duty=  -328 adc=2061 enc= -218 fr= 2197 lk=1 en=1 brk=0 key=1 wd=0
+[  60.1s] BAL   a=   162 ad=  2338 duty=   197 adc=2078 enc= -216 fr=12697 lk=1 en=1 brk=0 key=1 wd=0
+[  60.3s] BAL   a=   -49 ad=  -900 duty=  -510 adc=2039 enc= -216 fr=23196 lk=1 en=1 brk=0 key=1 wd=0
+[  60.5s] BAL   a=   -41 ad=  -170 duty=  -506 adc=2052 enc= -216 fr=33696 lk=1 en=1 brk=0 key=1 wd=0
+[  60.7s] BAL   a=  -179 ad=  -214 duty=   -25 adc=2036 enc= -216 fr=44196 lk=1 en=1 brk=0 key=1 wd=0
+[  60.9s] BAL   a=   -66 ad=   486 duty=  -216 adc=2055 enc= -214 fr=54696 lk=1 en=1 brk=0 key=1 wd=0
+[  61.1s] BAL   a=   -74 ad= -2388 duty=  -807 adc=2041 enc= -212 fr=65196 lk=1 en=1 brk=0 key=1 wd=0
+[  61.3s] BAL   a=  -399 ad= -2976 duty= -1048 adc=2007 enc= -212 fr=10160 lk=1 en=1 brk=0 key=1 wd=0
+[  61.5s] BAL   a=     8 ad=  1165 duty=   383 adc=2065 enc= -208 fr=20660 lk=1 en=1 brk=0 key=1 wd=0
+[  61.7s] BAL   a=  -122 ad=  -839 duty=  -152 adc=2039 enc= -211 fr=31159 lk=1 en=1 brk=0 key=1 wd=0
+[  62.0s] BAL   a=   146 ad=   597 duty=   847 adc=2070 enc= -211 fr=41659 lk=1 en=1 brk=0 key=1 wd=0
+[  62.2s] BAL   a=   -49 ad=  1066 duty=   636 adc=2048 enc= -216 fr=52159 lk=1 en=1 brk=0 key=1 wd=0
+[  62.4s] BAL   a=  -196 ad=   236 duty=   327 adc=2030 enc= -220 fr=62659 lk=1 en=1 brk=0 key=1 wd=0
+[  62.6s] BAL   a=   227 ad=  5828 duty=   882 adc=2080 enc= -212 fr= 7623 lk=1 en=1 brk=0 key=1 wd=0
+[  62.8s] BAL   a=   -33 ad=  1382 duty=  -864 adc=2058 enc= -205 fr=18123 lk=1 en=1 brk=0 key=1 wd=0
+[  63.0s] BAL   a=   203 ad=  2537 duty=  -384 adc=2081 enc= -200 fr=28623 lk=1 en=1 brk=0 key=1 wd=0
+[  63.2s] BAL   a=   138 ad=   527 duty=   946 adc=2077 enc= -202 fr=39122 lk=1 en=1 brk=0 key=1 wd=0
+[  63.4s] BAL   a=    32 ad=  1663 duty=  1033 adc=2056 enc= -211 fr=49622 lk=1 en=1 brk=0 key=1 wd=0
+[  63.6s] BAL   a=   -98 ad=  1989 duty=   679 adc=2050 enc= -217 fr=60122 lk=1 en=1 brk=0 key=1 wd=0
+[  63.8s] BAL   a=  -440 ad=  -620 duty=  -584 adc=2007 enc= -218 fr= 5086 lk=1 en=1 brk=0 key=1 wd=0
+[  64.1s] BAL   a=   260 ad=  1935 duty=  -123 adc=2060 enc= -208 fr=15586 lk=1 en=1 brk=0 key=1 wd=0
+[  64.3s] BAL   a=     8 ad=  1051 duty=  -365 adc=2055 enc= -205 fr=26086 lk=1 en=1 brk=0 key=1 wd=0
+[  64.5s] BAL   a=  -903 ad=   278 duty=  -439 adc=2054 enc= -204 fr=36586 lk=1 en=1 brk=0 key=1 wd=0
+[  64.7s] BAL   a=   -41 ad=  -155 duty=   314 adc=2051 enc= -208 fr=47085 lk=1 en=1 brk=0 key=1 wd=0
+[  64.9s] BAL   a=  -131 ad=  -760 duty=   545 adc=2057 enc= -207 fr=57585 lk=1 en=1 brk=0 key=1 wd=0
+[  65.1s] BAL   a=   -98 ad=  -282 duty=    65 adc=2048 enc= -208 fr= 2549 lk=1 en=1 brk=0 key=1 wd=0
+[  65.3s] BAL   a=  -139 ad=   743 duty=  -675 adc=2039 enc= -204 fr=13049 lk=1 en=1 brk=0 key=1 wd=0
+[  65.5s] BAL   a=   658 ad=  1461 duty=  -667 adc=2057 enc= -201 fr=23549 lk=1 en=1 brk=0 key=1 wd=0
+[  65.7s] BAL   a=     0 ad=  -416 duty=  -209 adc=2061 enc= -205 fr=34049 lk=1 en=1 brk=0 key=1 wd=0
+[  65.9s] BAL   a=     0 ad=  5519 duty=   289 adc=2051 enc= -207 fr=44548 lk=1 en=1 brk=0 key=1 wd=0
+[  66.2s] BAL   a=     0 ad=   409 duty=   780 adc=2055 enc= -210 fr=55048 lk=1 en=1 brk=0 key=1 wd=0
+[  66.4s] BAL   a=  -187 ad=    78 duty=  -127 adc=2033 enc= -212 fr=   12 lk=1 en=1 brk=0 key=1 wd=0
+[  66.6s] BAL   a=    56 ad=  1455 duty=  -537 adc=2062 enc= -208 fr=10512 lk=1 en=1 brk=0 key=1 wd=0
+[  66.8s] BAL   a=    16 ad=  3555 duty=   263 adc=2063 enc= -208 fr=21012 lk=1 en=1 brk=0 key=1 wd=0
+[  67.0s] BAL   a=   121 ad=  -545 duty=  -659 adc=2024 enc= -212 fr=31512 lk=1 en=1 brk=0 key=1 wd=0
+[  67.2s] BAL   a=  -261 ad= -7080 duty=   -60 adc=2031 enc= -212 fr=42012 lk=1 en=1 brk=0 key=1 wd=0
+[  67.4s] BAL   a=  -196 ad=   103 duty= -1205 adc=2032 enc= -210 fr=52511 lk=1 en=1 brk=0 key=1 wd=0
+[  67.6s] BAL   a=     8 ad=   -16 duty=  -119 adc=2063 enc= -208 fr=63011 lk=1 en=1 brk=0 key=1 wd=0
+[  67.8s] BAL   a=   -25 ad=   -51 duty=   696 adc=2065 enc= -209 fr= 7975 lk=1 en=1 brk=0 key=1 wd=0
+[  68.0s] BAL   a=   -66 ad=   334 duty=    89 adc=2050 enc= -212 fr=18475 lk=1 en=1 brk=0 key=1 wd=0
+[  68.3s] BAL   a=   -66 ad=  3167 duty=   -35 adc=2109 enc= -208 fr=28975 lk=1 en=1 brk=0 key=1 wd=0
+[  68.5s] BAL   a=     8 ad=   245 duty= -3847 adc=2049 enc= -203 fr=39475 lk=1 en=1 brk=0 key=1 wd=0
+[  68.7s] BAL   a=    73 ad=  -265 duty=    -8 adc=2063 enc= -200 fr=49975 lk=1 en=1 brk=0 key=1 wd=0
+[  68.9s] BAL   a=   -66 ad=  -883 duty=  1364 adc=2045 enc= -208 fr=60474 lk=1 en=1 brk=0 key=1 wd=0
+[  69.1s] BAL   a=  -147 ad= -1840 duty=   269 adc=2031 enc= -214 fr= 5438 lk=1 en=1 brk=0 key=1 wd=0
+[  69.3s] BAL   a=  -228 ad= -2002 duty=   245 adc=2030 enc= -220 fr=15938 lk=1 en=1 brk=0 key=1 wd=0
+[  69.5s] BAL   a=  -261 ad=  -266 duty=   -57 adc=2027 enc= -222 fr=26438 lk=1 en=1 brk=0 key=1 wd=0
+[  69.7s] BAL   a=  -106 ad=  2663 duty=  -247 adc=2096 enc= -214 fr=36938 lk=1 en=1 brk=0 key=1 wd=0
+[  69.9s] BAL   a=   138 ad=  2700 duty=  4884 adc=2078 enc= -208 fr=47438 lk=1 en=1 brk=0 key=1 wd=0
+[  70.1s] BAL   a=   252 ad=  2773 duty=   446 adc=2095 enc= -201 fr=57938 lk=1 en=1 brk=0 key=1 wd=0
+[  70.4s] BAL   a=     0 ad=   844 duty=   563 adc=2055 enc= -205 fr= 2901 lk=1 en=1 brk=0 key=1 wd=0
+[  70.6s] BAL   a=    -9 ad=  1079 duty=  1198 adc=2060 enc= -210 fr=13401 lk=1 en=1 brk=0 key=1 wd=0
+[  70.8s] BAL   a=  -204 ad=    42 duty=   522 adc=2035 enc= -214 fr=23901 lk=1 en=1 brk=0 key=1 wd=0
+[  71.0s] BAL   a=    65 ad=  2043 duty=  -480 adc=2062 enc= -208 fr=34401 lk=1 en=1 brk=0 key=1 wd=0
+[  71.2s] BAL   a=   -25 ad=  1798 duty=   -75 adc=2312 enc= -210 fr=44901 lk=1 en=1 brk=0 key=1 wd=0
+[  71.4s] BAL   a=   -74 ad= -4268 duty=  4064 adc=2053 enc= -210 fr=55401 lk=1 en=1 brk=0 key=1 wd=0
+[  71.6s] BAL   a=   243 ad=  4236 duty=   586 adc=2084 enc= -211 fr=  364 lk=1 en=1 brk=0 key=1 wd=0
+[  71.8s] BAL   a=   -17 ad=  1036 duty=   680 adc=2057 enc= -216 fr=10864 lk=1 en=1 brk=0 key=1 wd=0
+[  72.0s] BAL   a=  -171 ad=  -249 duty=   535 adc=2041 enc= -219 fr=21364 lk=1 en=1 brk=0 key=1 wd=0
+[  72.2s] BAL   a=  -171 ad=  -163 duty=  -271 adc=2042 enc= -219 fr=31864 lk=1 en=1 brk=0 key=1 wd=0
+[  72.5s] BAL   a=   -25 ad=    51 duty=  -418 adc=2048 enc= -215 fr=42364 lk=1 en=1 brk=0 key=1 wd=0
+[  72.7s] BAL   a=   -66 ad= -1736 duty=  -265 adc=2051 enc= -216 fr=52864 lk=1 en=1 brk=0 key=1 wd=0
+[  72.9s] BAL   a=   211 ad=  5833 duty= -1847 adc=2087 enc= -214 fr=63364 lk=1 en=1 brk=0 key=1 wd=0
+[  73.1s] BAL   a=  -163 ad= -1322 duty=    76 adc=2037 enc= -216 fr= 8327 lk=1 en=1 brk=0 key=1 wd=0
+[  73.3s] BAL   a=  -114 ad=  -426 duty=  -597 adc=2051 enc= -212 fr=18827 lk=1 en=1 brk=0 key=1 wd=0
+[  73.5s] BAL   a=    48 ad=  1197 duty=  -434 adc=2069 enc= -207 fr=29327 lk=1 en=1 brk=0 key=1 wd=0
+[  73.7s] BAL   a=    65 ad=   596 duty=   592 adc=2068 enc= -208 fr=39827 lk=1 en=1 brk=0 key=1 wd=0
+[  73.9s] BAL   a=  -228 ad= -2469 duty=  -297 adc=2032 enc= -211 fr=50327 lk=1 en=1 brk=0 key=1 wd=0
+[  74.1s] BAL   a=   -25 ad=  5673 duty=  1605 adc=2054 enc= -210 fr=60827 lk=1 en=1 brk=0 key=1 wd=0
+[  74.3s] BAL   a=    48 ad=   489 duty=   572 adc=2060 enc= -210 fr= 5791 lk=1 en=1 brk=0 key=1 wd=0
+[  74.6s] BAL   a=  -179 ad= -1022 duty=  -157 adc=2036 enc= -214 fr=16290 lk=1 en=1 brk=0 key=1 wd=0
+[  74.8s] BAL   a=  -114 ad=  -841 duty=   360 adc=2048 enc= -217 fr=26790 lk=1 en=1 brk=0 key=1 wd=0
+[  75.0s] BAL   a=  -171 ad=  -287 duty=   639 adc=2026 enc= -219 fr=37290 lk=1 en=1 brk=0 key=1 wd=0
+[  75.2s] BAL   a=  -285 ad=  -581 duty= -1065 adc=2020 enc= -218 fr=47790 lk=1 en=1 brk=0 key=1 wd=0
+[  75.4s] BAL   a=    97 ad=  3489 duty=   330 adc=2063 enc= -214 fr=58290 lk=1 en=1 brk=0 key=1 wd=0
+[  75.6s] BAL   a=   -41 ad= -2277 duty=   171 adc=2052 enc= -216 fr= 3254 lk=1 en=1 brk=0 key=1 wd=0
+[  75.8s] BAL   a=   -25 ad=  2739 duty=  -505 adc=2051 enc= -214 fr=13754 lk=1 en=1 brk=0 key=1 wd=0
+[  76.0s] BAL   a=  -139 ad=   481 duty=    85 adc=2054 enc= -212 fr=24253 lk=1 en=1 brk=0 key=1 wd=0
+[  76.2s] BAL   a=     8 ad=  1698 duty=  -519 adc=2065 enc= -208 fr=34753 lk=1 en=1 brk=0 key=1 wd=0
+[  76.4s] BAL   a=    -9 ad=   391 duty=  -356 adc=2064 enc= -208 fr=45253 lk=1 en=1 brk=0 key=1 wd=0
+[  76.7s] BAL   a=  -114 ad=     5 duty= -3543 adc=2032 enc= -215 fr=55753 lk=1 en=1 brk=0 key=1 wd=0
+[  76.9s] BAL   a=  -139 ad=  1199 duty=  -386 adc=2051 enc= -207 fr=  717 lk=1 en=1 brk=0 key=1 wd=0
+[  77.1s] BAL   a=   -17 ad=  1680 duty=   -96 adc=2058 enc= -206 fr=11217 lk=1 en=1 brk=0 key=1 wd=0
+[  77.3s] BAL   a=   -17 ad=   870 duty=   249 adc=2052 enc= -205 fr=21717 lk=1 en=1 brk=0 key=1 wd=0
+[  77.5s] BAL   a=    24 ad=    38 duty=   380 adc=2057 enc= -206 fr=32216 lk=1 en=1 brk=0 key=1 wd=0
+[  77.7s] BAL   a=  -220 ad= -3421 duty=   992 adc=2035 enc= -214 fr=42716 lk=1 en=1 brk=0 key=1 wd=0
+[  77.9s] BAL   a=  -122 ad=   376 duty=   142 adc=2043 enc= -216 fr=53216 lk=1 en=1 brk=0 key=1 wd=0
+[  78.1s] BAL   a=  -309 ad= -5104 duty= -1078 adc=2025 enc= -214 fr=63716 lk=1 en=1 brk=0 key=1 wd=0
+[  78.3s] BAL   a=   -17 ad=  1656 duty=   -82 adc=2050 enc= -208 fr= 8680 lk=1 en=1 brk=0 key=1 wd=0
+[  78.5s] BAL   a=   325 ad=  1032 duty=  2147 adc=2100 enc= -199 fr=19180 lk=1 en=1 brk=0 key=1 wd=0
+[  78.8s] BAL   a=   113 ad=  4317 duty=  1043 adc=2076 enc= -202 fr=29679 lk=1 en=1 brk=0 key=1 wd=0
+[  79.0s] BAL   a=  -106 ad=   612 duty=   777 adc=2040 enc= -209 fr=40179 lk=1 en=1 brk=0 key=1 wd=0
+[  79.2s] BAL   a=  -163 ad=  -694 duty=   817 adc=2030 enc= -216 fr=50679 lk=1 en=1 brk=0 key=1 wd=0
+[  79.4s] BAL   a=  -236 ad=   337 duty=    10 adc=2028 enc= -221 fr=61179 lk=1 en=1 brk=0 key=1 wd=0
+[  79.6s] BAL   a=    48 ad=  3636 duty=   394 adc=2063 enc= -214 fr= 6143 lk=1 en=1 brk=0 key=1 wd=0
+[  79.8s] BAL   a=   268 ad=  6737 duty=   193 adc=2091 enc= -208 fr=16643 lk=1 en=1 brk=0 key=1 wd=0
+[  80.0s] BAL   a=  -139 ad=  -636 duty= -1160 adc=2039 enc= -206 fr=27143 lk=1 en=1 brk=0 key=1 wd=0
+[  80.2s] BAL   a=    16 ad=   238 duty=   -37 adc=2051 enc= -208 fr=37642 lk=1 en=1 brk=0 key=1 wd=0
+[  80.4s] BAL   a=    40 ad=  -973 duty=   270 adc=2063 enc= -210 fr=48142 lk=1 en=1 brk=0 key=1 wd=0
+[  80.6s] BAL   a=  -179 ad=   534 duty=  -120 adc=2035 enc= -213 fr=58642 lk=1 en=1 brk=0 key=1 wd=0
+[  80.9s] BAL   a=  -196 ad=  1547 duty=   552 adc=2034 enc= -212 fr= 3606 lk=1 en=1 brk=0 key=1 wd=0
+[  81.1s] BAL   a=  -236 ad= -3286 duty=  -143 adc=2040 enc= -214 fr=14106 lk=1 en=1 brk=0 key=1 wd=0
+[  81.3s] BAL   a=  -179 ad=   -84 duty=  -498 adc=2040 enc= -211 fr=24606 lk=1 en=1 brk=0 key=1 wd=0
+[  81.5s] BAL   a=  -187 ad= -1018 duty=   274 adc=2032 enc= -211 fr=35106 lk=1 en=1 brk=0 key=1 wd=0
+[  81.7s] BAL   a=    16 ad=  -178 duty=   133 adc=2060 enc= -214 fr=45605 lk=1 en=1 brk=0 key=1 wd=0
+[  81.9s] BAL   a=   -98 ad=  -579 duty=    76 adc=2052 enc= -216 fr=56105 lk=1 en=1 brk=0 key=1 wd=0
+[  82.1s] BAL   a=  -131 ad=   298 duty=   -25 adc=2031 enc= -218 fr= 1069 lk=1 en=1 brk=0 key=1 wd=0
+[  82.3s] BAL   a=   -17 ad=   -92 duty=  -528 adc=2056 enc= -214 fr=11569 lk=1 en=1 brk=0 key=1 wd=0
+[  82.5s] BAL   a=   365 ad=  3705 duty=  -121 adc=2050 enc= -212 fr=22069 lk=1 en=1 brk=0 key=1 wd=0
+[  82.7s] BAL   a=   138 ad=  4149 duty=   612 adc=2075 enc= -210 fr=32569 lk=1 en=1 brk=0 key=1 wd=0
+[  83.0s] BAL   a=    40 ad= -1703 duty=-10000 adc=2056 enc= -211 fr=43069 lk=1 en=1 brk=0 key=1 wd=0
+[  83.2s] BAL   a=  -155 ad= -1852 duty=   -17 adc=2034 enc= -216 fr=53568 lk=1 en=1 brk=0 key=1 wd=0
+[  83.4s] BAL   a=  -204 ad=  -630 duty=   160 adc=2032 enc= -222 fr=64068 lk=1 en=1 brk=0 key=1 wd=0
+[  83.6s] BAL   a=  -187 ad=  -159 duty=    90 adc=2030 enc= -224 fr= 9032 lk=1 en=1 brk=0 key=1 wd=0
+[  83.8s] BAL   a=   -17 ad=  4560 duty=  -362 adc=2056 enc= -218 fr=19532 lk=1 en=1 brk=0 key=1 wd=0
+[  84.0s] BAL   a=   186 ad=  4479 duty=  -906 adc=2056 enc= -213 fr=30032 lk=1 en=1 brk=0 key=1 wd=0
+[  84.2s] BAL   a=    16 ad=  -795 duty=   480 adc=1967 enc= -213 fr=40532 lk=1 en=1 brk=0 key=1 wd=0
+[  84.4s] BAL   a=    48 ad=  2489 duty=  -275 adc=2065 enc= -208 fr=51031 lk=1 en=1 brk=0 key=1 wd=0
+[  84.6s] BAL   a=  -228 ad= -4106 duty=   349 adc=2029 enc= -214 fr=61531 lk=1 en=1 brk=0 key=1 wd=0
+[  84.8s] BAL   a=   -57 ad=   873 duty=   251 adc=2049 enc= -210 fr= 6495 lk=1 en=1 brk=0 key=1 wd=0
+[  85.1s] BAL   a=   -74 ad=  1105 duty=  -610 adc=2043 enc= -208 fr=16995 lk=1 en=1 brk=0 key=1 wd=0
+[  85.3s] BAL   a=    24 ad=   680 duty=   633 adc=2092 enc= -212 fr=27495 lk=1 en=1 brk=0 key=1 wd=0
+[  85.5s] BAL   a=     0 ad=  5669 duty=   447 adc=2061 enc= -211 fr=37995 lk=1 en=1 brk=0 key=1 wd=0
+[  85.7s] BAL   a=  -212 ad=  -296 duty=  -675 adc=2037 enc= -214 fr=48495 lk=1 en=1 brk=0 key=1 wd=0
+[  85.9s] BAL   a=   170 ad=  2886 duty=   607 adc=2074 enc= -213 fr=58994 lk=1 en=1 brk=0 key=1 wd=0
+[  86.1s] BAL   a=  -244 ad= -2423 duty=   796 adc=2029 enc= -219 fr= 3958 lk=1 en=1 brk=0 key=1 wd=0
+[  86.3s] BAL   a=  -163 ad=  -478 duty=   464 adc=2038 enc= -222 fr=14458 lk=1 en=1 brk=0 key=1 wd=0
+[  86.5s] BAL   a=  -196 ad=   -28 duty=   469 adc=2041 enc= -224 fr=24958 lk=1 en=1 brk=0 key=1 wd=0
+[  86.7s] BAL   a=  -212 ad= -1018 duty=  -743 adc=2111 enc= -217 fr=35458 lk=1 en=1 brk=0 key=1 wd=0
+[  86.9s] BAL   a=    81 ad= -1531 duty=  2524 adc=2061 enc= -210 fr=45958 lk=1 en=1 brk=0 key=1 wd=0
+[  87.2s] BAL   a=   -17 ad= -5979 duty=  1242 adc=2061 enc= -210 fr=56458 lk=1 en=1 brk=0 key=1 wd=0
+[  87.4s] BAL   a=     0 ad=  -321 duty=   537 adc=2053 enc= -213 fr= 1421 lk=1 en=1 brk=0 key=1 wd=0
+[  87.6s] BAL   a=   -66 ad=   152 duty=   658 adc=2050 enc= -216 fr=11921 lk=1 en=1 brk=0 key=1 wd=0
+[  87.8s] BAL   a=  -131 ad=  -472 duty=   -66 adc=2052 enc= -217 fr=22421 lk=1 en=1 brk=0 key=1 wd=0
+[  88.0s] BAL   a=  -220 ad=  -424 duty=  -150 adc=2039 enc= -216 fr=32921 lk=1 en=1 brk=0 key=1 wd=0
+[  88.2s] BAL   a=  -179 ad=   225 duty= -1193 adc=2061 enc= -212 fr=43421 lk=1 en=1 brk=0 key=1 wd=0
+[  88.4s] BAL   a=   -41 ad=  2722 duty=  5619 adc=2053 enc= -213 fr=53921 lk=1 en=1 brk=0 key=1 wd=0
+[  88.6s] BAL   a=  -131 ad=  -133 duty=  -131 adc=2028 enc= -215 fr=64421 lk=1 en=1 brk=0 key=1 wd=0
+[  88.8s] BAL   a=  -204 ad=  -878 duty=  -590 adc=2034 enc= -211 fr= 9384 lk=1 en=1 brk=0 key=1 wd=0
+[  89.0s] BAL   a=     8 ad=   -32 duty=  -259 adc=2062 enc= -207 fr=19884 lk=1 en=1 brk=0 key=1 wd=0
+[  89.3s] BAL   a=    24 ad=   -24 duty=   391 adc=2063 enc= -208 fr=30384 lk=1 en=1 brk=0 key=1 wd=0
+[  89.5s] BAL   a=  -155 ad= -3643 duty=  -285 adc=2033 enc= -212 fr=40884 lk=1 en=1 brk=0 key=1 wd=0
+[  89.7s] BAL   a=   -17 ad=   943 duty=   696 adc=2053 enc= -206 fr=51384 lk=1 en=1 brk=0 key=1 wd=0
+[  89.9s] BAL   a=   -41 ad=  -319 duty=  1114 adc=2053 enc= -206 fr=61884 lk=1 en=1 brk=0 key=1 wd=0
+[  90.1s] BAL   a=  -212 ad= -2543 duty=  -577 adc=2026 enc= -205 fr= 6847 lk=1 en=1 brk=0 key=1 wd=0
+[  90.3s] BAL   a=    48 ad=   902 duty=  -711 adc=2056 enc= -200 fr=17347 lk=1 en=1 brk=0 key=1 wd=0
+[  90.5s] BAL   a=    40 ad=   169 duty=  -598 adc=2059 enc= -196 fr=27847 lk=1 en=1 brk=0 key=1 wd=0
+[  90.7s] BAL   a=   121 ad=  -173 duty=  -542 adc=2067 enc= -193 fr=38347 lk=1 en=1 brk=0 key=1 wd=0
+[  90.9s] BAL   a=  -326 ad= -8221 duty=  -875 adc=2019 enc= -199 fr=48847 lk=1 en=1 brk=0 key=1 wd=0
+[  91.1s] BAL   a=     8 ad=  -731 duty=  1086 adc=2057 enc= -203 fr=59347 lk=1 en=1 brk=0 key=1 wd=0
+[  91.4s] BAL   a=   284 ad=  1699 duty=   989 adc=2091 enc= -202 fr= 4311 lk=1 en=1 brk=0 key=1 wd=0
+[  91.6s] BAL   a=  -139 ad=  -303 duty=  -231 adc=2033 enc= -206 fr=14810 lk=1 en=1 brk=0 key=1 wd=0
+[  91.8s] BAL   a=  -179 ad= -1152 duty=  -942 adc=2041 enc= -204 fr=25310 lk=1 en=1 brk=0 key=1 wd=0
+[  92.0s] BAL   a=   186 ad=   671 duty=   620 adc=2076 enc= -200 fr=35810 lk=1 en=1 brk=0 key=1 wd=0
+[  92.2s] BAL   a=    16 ad=  1661 duty=   772 adc=2056 enc= -210 fr=46310 lk=1 en=1 brk=0 key=1 wd=0
+[  92.4s] BAL   a=    16 ad=  -454 duty=   838 adc=2063 enc= -214 fr=56810 lk=1 en=1 brk=0 key=1 wd=0
+[  92.6s] BAL   a=  -309 ad=  1456 duty=   133 adc=2023 enc= -216 fr= 1774 lk=1 en=1 brk=0 key=1 wd=0
+[  92.8s] BAL   a=    -9 ad=   915 duty=  -507 adc=2061 enc= -208 fr=12274 lk=1 en=1 brk=0 key=1 wd=0
+[  93.0s] BAL   a=    -9 ad=  1631 duty=  -433 adc=2060 enc= -206 fr=22773 lk=1 en=1 brk=0 key=1 wd=0
+[  93.2s] BAL   a=   -66 ad= -1200 duty=  -911 adc=2034 enc= -203 fr=33273 lk=1 en=1 brk=0 key=1 wd=0
+[  93.5s] BAL   a=    40 ad=    42 duty=   155 adc=2070 enc= -200 fr=43773 lk=1 en=1 brk=0 key=1 wd=0
+[  93.7s] BAL   a=  -131 ad= -2138 duty=   -99 adc=2054 enc= -208 fr=54273 lk=1 en=1 brk=0 key=1 wd=0
+[  93.9s] BAL   a=   -33 ad= -3314 duty=  1595 adc=2054 enc= -208 fr=64773 lk=1 en=1 brk=0 key=1 wd=0
+[  94.1s] BAL   a=  -196 ad=   -37 duty=   -42 adc=2029 enc= -212 fr= 9737 lk=1 en=1 brk=0 key=1 wd=0
+[  94.3s] BAL   a=  -179 ad= -2947 duty=   491 adc=2029 enc= -212 fr=20237 lk=1 en=1 brk=0 key=1 wd=0
+[  94.5s] BAL   a=     8 ad=  2859 duty=   169 adc=2062 enc= -207 fr=30736 lk=1 en=1 brk=0 key=1 wd=0
+[  94.7s] BAL   a=  -131 ad= -2735 duty=   542 adc=2038 enc= -213 fr=41236 lk=1 en=1 brk=0 key=1 wd=0
+[  94.9s] BAL   a=   -49 ad=   815 duty=   585 adc=2052 enc= -215 fr=51736 lk=1 en=1 brk=0 key=1 wd=0
+[  95.1s] BAL   a=  -253 ad= -3395 duty= -4540 adc=2020 enc= -216 fr=62236 lk=1 en=1 brk=0 key=1 wd=0
+[  95.3s] BAL   a=   422 ad=   368 duty=   792 adc=1902 enc= -208 fr= 7200 lk=1 en=1 brk=0 key=1 wd=0
+[  95.6s] BAL   a=   -41 ad=  1559 duty= -1602 adc=2061 enc= -202 fr=17700 lk=1 en=1 brk=0 key=1 wd=0
+[  95.8s] BAL   a=   235 ad=  1157 duty=   463 adc=2074 enc= -202 fr=28199 lk=1 en=1 brk=0 key=1 wd=0
+[  96.0s] BAL   a=   -41 ad=  -893 duty=   565 adc=2049 enc= -210 fr=38699 lk=1 en=1 brk=0 key=1 wd=0
+[  96.2s] BAL   a=  -187 ad= -1676 duty=   459 adc=2025 enc= -219 fr=49199 lk=1 en=1 brk=0 key=1 wd=0
+[  96.4s] BAL   a=  -171 ad=    86 duty=   421 adc=2039 enc= -222 fr=59699 lk=1 en=1 brk=0 key=1 wd=0
+[  96.6s] BAL   a=   -57 ad=  2208 duty= -1765 adc=2040 enc= -216 fr= 4663 lk=1 en=1 brk=0 key=1 wd=0
+[  96.8s] BAL   a=  -196 ad=  3490 duty= -1429 adc=2038 enc= -208 fr=15163 lk=1 en=1 brk=0 key=1 wd=0
+[  97.0s] BAL   a=    -9 ad= -2148 duty=  1596 adc=2061 enc= -207 fr=25663 lk=1 en=1 brk=0 key=1 wd=0
+[  97.2s] BAL   a=   -98 ad=  -708 duty=    79 adc=2043 enc= -207 fr=36162 lk=1 en=1 brk=0 key=1 wd=0
+[  97.4s] BAL   a=   -49 ad=   198 duty=   386 adc=2048 enc= -206 fr=46662 lk=1 en=1 brk=0 key=1 wd=0
+[  97.7s] BAL   a=  -147 ad=  -512 duty=  -777 adc=2039 enc= -206 fr=57162 lk=1 en=1 brk=0 key=1 wd=0
+[  97.9s] BAL   a=  -106 ad=  -197 duty=  -476 adc=2048 enc= -205 fr= 2126 lk=1 en=1 brk=0 key=1 wd=0
+[  98.1s] BAL   a=  -334 ad=    49 duty=  -155 adc=2074 enc= -204 fr=12626 lk=1 en=1 brk=0 key=1 wd=0
+[  98.3s] BAL   a=  -147 ad=  -757 duty= -2253 adc=2035 enc= -204 fr=23126 lk=1 en=1 brk=0 key=1 wd=0
+[  98.5s] BAL   a=   -49 ad=  1078 duty=   761 adc=2053 enc= -206 fr=33626 lk=1 en=1 brk=0 key=1 wd=0
+[  98.7s] BAL   a=   -74 ad=   143 duty= -1123 adc=2045 enc= -202 fr=44125 lk=1 en=1 brk=0 key=1 wd=0
+[  98.9s] BAL   a=   -49 ad=  -171 duty=  -457 adc=2045 enc= -200 fr=54625 lk=1 en=1 brk=0 key=1 wd=0
+[  99.1s] BAL   a=   -33 ad=   -15 duty=  -577 adc=2057 enc= -200 fr=65125 lk=1 en=1 brk=0 key=1 wd=0
+[  99.3s] BAL   a=     8 ad=  1613 duty=   880 adc=2055 enc= -202 fr=10089 lk=1 en=1 brk=0 key=1 wd=0
+[  99.5s] BAL   a=   626 ad=  5412 duty=   972 adc=2078 enc= -202 fr=20589 lk=1 en=1 brk=0 key=1 wd=0
+[  99.8s] BAL   a=     0 ad=    -6 duty=   969 adc=2055 enc= -207 fr=31089 lk=1 en=1 brk=0 key=1 wd=0
+[ 100.0s] BAL   a=  -212 ad= -1143 duty=  2290 adc=2029 enc= -210 fr=41589 lk=1 en=1 brk=0 key=1 wd=0
+[ 100.2s] BAL   a=   -25 ad=   361 duty=   446 adc=2053 enc= -217 fr=52088 lk=1 en=1 brk=0 key=1 wd=0
+[ 100.4s] BAL   a=  -269 ad=  -838 duty=  -589 adc=2025 enc= -219 fr=62588 lk=1 en=1 brk=0 key=1 wd=0
+[ 100.6s] BAL   a=  -155 ad=  -696 duty= -1000 adc=2044 enc= -212 fr= 7552 lk=1 en=1 brk=0 key=1 wd=0
+[ 100.8s] BAL   a=   -49 ad=  -968 duty=     2 adc=2008 enc= -206 fr=18052 lk=1 en=1 brk=0 key=1 wd=0
+[ 101.0s] BAL   a=   528 ad=  1385 duty= -1136 adc=2038 enc= -203 fr=28552 lk=1 en=1 brk=0 key=1 wd=0
+[ 101.2s] BAL   a=   243 ad=  3170 duty=   580 adc=2016 enc= -202 fr=39052 lk=1 en=1 brk=0 key=1 wd=0
+[ 101.4s] BAL   a=  -399 ad= -4021 duty=  -898 adc=2017 enc= -207 fr=49551 lk=1 en=1 brk=0 key=1 wd=0
+[ 101.6s] BAL   a=   -41 ad=   797 duty=   756 adc=2056 enc= -208 fr=60051 lk=1 en=1 brk=0 key=1 wd=0
+[ 101.9s] BAL   a=    -9 ad=   164 duty=   744 adc=2057 enc= -210 fr= 5015 lk=1 en=1 brk=0 key=1 wd=0
+[ 102.1s] BAL   a=  -236 ad=  -112 duty=  -373 adc=2031 enc= -212 fr=15515 lk=1 en=1 brk=0 key=1 wd=0
+[ 102.3s] BAL   a=   138 ad=  1805 duty=    41 adc=2031 enc= -207 fr=26015 lk=1 en=1 brk=0 key=1 wd=0
+[ 102.5s] BAL   a=   154 ad=   535 duty=  -537 adc=2032 enc= -213 fr=36515 lk=1 en=1 brk=0 key=1 wd=0
+[ 102.7s] BAL   a=  -407 ad= -7878 duty=  -672 adc=2008 enc= -211 fr=47015 lk=1 en=1 brk=0 key=1 wd=0
+[ 102.9s] BAL   a=    -9 ad= -1154 duty=    60 adc=2056 enc= -209 fr=57514 lk=1 en=1 brk=0 key=1 wd=0
+[ 103.1s] BAL   a=     8 ad=  -182 duty=  -156 adc=2053 enc= -206 fr= 2478 lk=1 en=1 brk=0 key=1 wd=0
+[ 103.3s] BAL   a=   -57 ad=   187 duty=   196 adc=2050 enc= -204 fr=12978 lk=1 en=1 brk=0 key=1 wd=0
+[ 103.5s] BAL   a=  -114 ad=  -636 duty= -1081 adc=2049 enc= -204 fr=23478 lk=1 en=1 brk=0 key=1 wd=0
+[ 103.7s] BAL   a=   154 ad=  1229 duty=   315 adc=2124 enc= -201 fr=33978 lk=1 en=1 brk=0 key=1 wd=0
+[ 104.0s] BAL   a=   154 ad=  4875 duty=   883 adc=2071 enc= -207 fr=44478 lk=1 en=1 brk=0 key=1 wd=0
+[ 104.2s] BAL   a=  -228 ad=  -892 duty=  -482 adc=1885 enc= -211 fr=54978 lk=1 en=1 brk=0 key=1 wd=0
+[ 104.4s] BAL   a=   -49 ad= -1299 duty=  1264 adc=2058 enc= -212 fr=65477 lk=1 en=1 brk=0 key=1 wd=0
+[ 104.6s] BAL   a=   -66 ad=  -683 duty=   726 adc=2037 enc= -216 fr=10441 lk=1 en=1 brk=0 key=1 wd=0
+[ 104.8s] BAL   a=  -196 ad= -1888 duty=   581 adc=2030 enc= -220 fr=20941 lk=1 en=1 brk=0 key=1 wd=0
+[ 105.0s] BAL   a=  -212 ad=  -145 duty=  -438 adc=2031 enc= -219 fr=31441 lk=1 en=1 brk=0 key=1 wd=0
+[ 105.2s] BAL   a=  -334 ad= -4067 duty=  -339 adc=2112 enc= -214 fr=41941 lk=1 en=1 brk=0 key=1 wd=0
+[ 105.4s] BAL   a=     0 ad=  3436 duty=  1826 adc=2061 enc= -207 fr=52441 lk=1 en=1 brk=0 key=1 wd=0
+[ 105.6s] BAL   a=  -139 ad= -2587 duty= -1112 adc=2057 enc= -202 fr=62941 lk=1 en=1 brk=0 key=1 wd=0
+[ 105.8s] BAL   a=    65 ad=  -920 duty=   875 adc=2059 enc= -205 fr= 7904 lk=1 en=1 brk=0 key=1 wd=0
+[ 106.1s] BAL   a=   -41 ad=  -979 duty=   270 adc=2044 enc= -215 fr=18404 lk=1 en=1 brk=0 key=1 wd=0
+[ 106.3s] BAL   a=  -204 ad=   171 duty=   569 adc=2029 enc= -223 fr=28904 lk=1 en=1 brk=0 key=1 wd=0
+[ 106.5s] BAL   a=  -204 ad=  -292 duty=   566 adc=2037 enc= -224 fr=39404 lk=1 en=1 brk=0 key=1 wd=0
+[ 106.7s] BAL   a=  -244 ad=  2232 duty=  -268 adc=2062 enc= -219 fr=49904 lk=1 en=1 brk=0 key=1 wd=0
+[ 106.9s] BAL   a=    81 ad=  -413 duty=  5739 adc=2071 enc= -210 fr=60404 lk=1 en=1 brk=0 key=1 wd=0
+[ 107.1s] BAL   a=    65 ad=  1576 duty=  -873 adc=2066 enc= -200 fr= 5368 lk=1 en=1 brk=0 key=1 wd=0
+[ 107.3s] BAL   a=  -147 ad= -1743 duty=  -980 adc=2045 enc= -196 fr=15867 lk=1 en=1 brk=0 key=1 wd=0
+[ 107.5s] BAL   a=   252 ad=   709 duty=   155 adc=2084 enc= -196 fr=26367 lk=1 en=1 brk=0 key=1 wd=0
+[ 107.7s] BAL   a=  -155 ad=   247 duty=  -357 adc=2043 enc= -209 fr=36867 lk=1 en=1 brk=0 key=1 wd=0
+[ 107.9s] BAL   a=    73 ad=  2828 duty=   551 adc=2056 enc= -214 fr=47367 lk=1 en=1 brk=0 key=1 wd=0
+[ 108.2s] BAL   a=  -383 ad= -2140 duty=   161 adc=2014 enc= -217 fr=57867 lk=1 en=1 brk=0 key=1 wd=0
+[ 108.4s] BAL   a=   -49 ad=  1343 duty=   834 adc=2049 enc= -218 fr= 2831 lk=1 en=1 brk=0 key=1 wd=0
+[ 108.6s] BAL   a=   -66 ad=  1081 duty=    33 adc=2052 enc= -214 fr=13330 lk=1 en=1 brk=0 key=1 wd=0
+[ 108.8s] BAL   a=  -139 ad=  -390 duty=  -273 adc=2034 enc= -213 fr=23830 lk=1 en=1 brk=0 key=1 wd=0
+[ 109.0s] BAL   a=  -106 ad=  -485 duty=  -741 adc=2036 enc= -210 fr=34330 lk=1 en=1 brk=0 key=1 wd=0
+[ 109.2s] BAL   a=   138 ad=   425 duty=   755 adc=2074 enc= -210 fr=44830 lk=1 en=1 brk=0 key=1 wd=0
+[ 109.4s] BAL   a=  -350 ad= -4966 duty=  -964 adc=2010 enc= -214 fr=55330 lk=1 en=1 brk=0 key=1 wd=0
+[ 109.6s] BAL   a=  -204 ad= -2019 duty=  -278 adc=2032 enc= -210 fr=  294 lk=1 en=1 brk=0 key=1 wd=0
+[ 109.8s] BAL   a=   -74 ad=   190 duty=  -230 adc=2038 enc= -210 fr=10794 lk=1 en=1 brk=0 key=1 wd=0
+[ 110.0s] BAL   a=  -106 ad=   797 duty= -1294 adc=2051 enc= -207 fr=21293 lk=1 en=1 brk=0 key=1 wd=0
+[ 110.3s] BAL   a=   -57 ad=   337 duty=  -934 adc=2048 enc= -203 fr=31793 lk=1 en=1 brk=0 key=1 wd=0
+[ 110.5s] BAL   a=   -25 ad=  -621 duty=  -591 adc=2061 enc= -198 fr=42293 lk=1 en=1 brk=0 key=1 wd=0
+[ 110.7s] BAL   a=   333 ad=  2937 duty=   449 adc=2107 enc= -198 fr=52793 lk=1 en=1 brk=0 key=1 wd=0
+[ 110.9s] BAL   a=   -49 ad=   -85 duty=  1855 adc=2058 enc= -208 fr=63293 lk=1 en=1 brk=0 key=1 wd=0
+[ 111.1s] BAL   a=   -74 ad=   -49 duty=  1179 adc=2053 enc= -215 fr= 8257 lk=1 en=1 brk=0 key=1 wd=0
+[ 111.3s] BAL   a=  -196 ad=   685 duty=   -61 adc=2035 enc= -218 fr=18757 lk=1 en=1 brk=0 key=1 wd=0
+[ 111.5s] BAL   a=  -131 ad=   222 duty=  -928 adc=2034 enc= -210 fr=29256 lk=1 en=1 brk=0 key=1 wd=0
+[ 111.7s] BAL   a=   -49 ad=  -890 duty=  -509 adc=2051 enc= -204 fr=39756 lk=1 en=1 brk=0 key=1 wd=0
+[ 111.9s] BAL   a=   -17 ad=  -814 duty=  -638 adc=2062 enc= -199 fr=50256 lk=1 en=1 brk=0 key=1 wd=0
+[ 112.1s] BAL   a=   -25 ad=   481 duty=  -879 adc=2064 enc= -199 fr=60756 lk=1 en=1 brk=0 key=1 wd=0
+[ 112.4s] BAL   a=   -17 ad=    -6 duty=   229 adc=2049 enc= -201 fr= 5720 lk=1 en=1 brk=0 key=1 wd=0
+[ 112.6s] BAL   a=  -122 ad= -1397 duty=  -457 adc=2036 enc= -205 fr=16220 lk=1 en=1 brk=0 key=1 wd=0
+[ 112.8s] BAL   a=  -529 ad= -3456 duty= -1057 adc=2001 enc= -205 fr=26720 lk=1 en=1 brk=0 key=1 wd=0
+[ 113.0s] BAL   a=  -106 ad=   613 duty=   302 adc=2055 enc= -204 fr=37219 lk=1 en=1 brk=0 key=1 wd=0
+[ 113.2s] BAL   a=   -25 ad=    -2 duty=  -329 adc=2049 enc= -204 fr=47719 lk=1 en=1 brk=0 key=1 wd=0
+[ 113.4s] BAL   a=   -25 ad=   -97 duty=   388 adc=2053 enc= -204 fr=58219 lk=1 en=1 brk=0 key=1 wd=0
+[ 113.6s] BAL   a=  -179 ad= -2706 duty= -3932 adc=2027 enc= -208 fr= 3183 lk=1 en=1 brk=0 key=1 wd=0
+[ 113.8s] BAL   a=   -49 ad=  -186 duty=   220 adc=2050 enc= -204 fr=13683 lk=1 en=1 brk=0 key=1 wd=0
+[ 114.0s] BAL   a=   219 ad=  2539 duty=   675 adc=2086 enc= -204 fr=24183 lk=1 en=1 brk=0 key=1 wd=0
+[ 114.2s] BAL   a=  -179 ad= -1339 duty= -1401 adc=2043 enc= -206 fr=34682 lk=1 en=1 brk=0 key=1 wd=0
+[ 114.5s] BAL   a=    32 ad=   -57 duty=   586 adc=2053 enc= -208 fr=45182 lk=1 en=1 brk=0 key=1 wd=0
+[ 114.7s] BAL   a=    16 ad=   128 duty=   663 adc=2060 enc= -210 fr=55682 lk=1 en=1 brk=0 key=1 wd=0
+[ 114.9s] BAL   a=  -391 ad= -5384 duty=   -84 adc=2003 enc= -210 fr=  646 lk=1 en=1 brk=0 key=1 wd=0
+[ 115.1s] BAL   a=  -163 ad= -1012 duty= -2290 adc=2032 enc= -205 fr=11146 lk=1 en=1 brk=0 key=1 wd=0
+[ 115.3s] BAL   a=    89 ad=  2901 duty=   198 adc=2059 enc= -197 fr=21646 lk=1 en=1 brk=0 key=1 wd=0
+[ 115.5s] BAL   a=    48 ad= -1647 duty= -1691 adc=2059 enc= -194 fr=32146 lk=1 en=1 brk=0 key=1 wd=0
+[ 115.7s] BAL   a=   121 ad=  1188 duty=   486 adc=2069 enc= -196 fr=42645 lk=1 en=1 brk=0 key=1 wd=0
+[ 115.9s] BAL   a=     0 ad=  1029 duty=  1035 adc=2067 enc= -202 fr=53145 lk=1 en=1 brk=0 key=1 wd=0
+[ 116.1s] BAL   a=   -33 ad=   992 duty=   352 adc=2051 enc= -208 fr=63645 lk=1 en=1 brk=0 key=1 wd=0
+[ 116.3s] BAL   a=  -196 ad=  1214 duty=  -216 adc=2035 enc= -213 fr= 8609 lk=1 en=1 brk=0 key=1 wd=0
+[ 116.6s] BAL   a=  -309 ad=  2906 duty=    -3 adc=2053 enc= -206 fr=19109 lk=1 en=1 brk=0 key=1 wd=0
+[ 116.8s] BAL   a=   276 ad=  2985 duty=   380 adc=2075 enc= -203 fr=29609 lk=1 en=1 brk=0 key=1 wd=0
+[ 117.0s] BAL   a=  -805 ad= -3772 duty=   458 adc=2009 enc= -208 fr=40109 lk=1 en=1 brk=0 key=1 wd=0
+[ 117.2s] BAL   a=  -122 ad=    63 duty=  -438 adc=2053 enc= -212 fr=50608 lk=1 en=1 brk=0 key=1 wd=0
+[ 117.4s] BAL   a=  -196 ad=   -32 duty=   140 adc=2040 enc= -212 fr=61108 lk=1 en=1 brk=0 key=1 wd=0
+[ 117.6s] BAL   a=   -17 ad=  1759 duty=   171 adc=2060 enc= -208 fr= 6072 lk=1 en=1 brk=0 key=1 wd=0
+[ 117.8s] BAL   a=  -114 ad=   989 duty=    75 adc=2023 enc= -212 fr=16572 lk=1 en=1 brk=0 key=1 wd=0
+[ 118.0s] BAL   a=   365 ad=   914 duty= -2838 adc=2060 enc= -206 fr=27072 lk=1 en=1 brk=0 key=1 wd=0
+[ 118.2s] BAL   a=   146 ad= -1923 duty=    64 adc=2072 enc= -207 fr=37572 lk=1 en=1 brk=0 key=1 wd=0
+[ 118.4s] BAL   a=    97 ad=  5167 duty=   238 adc=2066 enc= -208 fr=48072 lk=1 en=1 brk=0 key=1 wd=0
+[ 118.7s] BAL   a=  -228 ad= -3956 duty=  -219 adc=2025 enc= -214 fr=58571 lk=1 en=1 brk=0 key=1 wd=0
+[ 118.9s] BAL   a=  -261 ad= -2646 duty=   -91 adc=2026 enc= -220 fr= 3535 lk=1 en=1 brk=0 key=1 wd=0
+[ 119.1s] BAL   a=  -139 ad=   207 duty=  -721 adc=2051 enc= -215 fr=14035 lk=1 en=1 brk=0 key=1 wd=0
+[ 119.3s] BAL   a=  -179 ad= -1836 duty= -2318 adc=2026 enc= -213 fr=24535 lk=1 en=1 brk=0 key=1 wd=0
+[ 119.5s] BAL   a=   593 ad=  -249 duty=  -526 adc=2038 enc= -209 fr=35035 lk=1 en=1 brk=0 key=1 wd=0
+[ 119.7s] BAL   a=   -17 ad=   -56 duty=  -865 adc=2052 enc= -204 fr=45535 lk=1 en=1 brk=0 key=1 wd=0
+[ 119.9s] BAL   a=   349 ad=  3615 duty=   156 adc=2103 enc= -200 fr=56034 lk=1 en=1 brk=0 key=1 wd=0
+[ 120.1s] BAL   a=  -196 ad= -2533 duty=   372 adc=2039 enc= -208 fr=  998 lk=1 en=1 brk=0 key=1 wd=0
+[ 120.3s] BAL   a=  -122 ad=  2411 duty=  1261 adc=2043 enc= -216 fr=11498 lk=1 en=1 brk=0 key=1 wd=0
+[ 120.5s] BAL   a=  -342 ad= -1153 duty=   -62 adc=2019 enc= -219 fr=21998 lk=1 en=1 brk=0 key=1 wd=0
+[ 120.8s] BAL   a=  -187 ad=  -841 duty=  -414 adc=2040 enc= -213 fr=32498 lk=1 en=1 brk=0 key=1 wd=0
+[ 121.0s] BAL   a=    32 ad=  -183 duty=  -239 adc=2044 enc= -207 fr=42998 lk=1 en=1 brk=0 key=1 wd=0
+[ 121.2s] BAL   a=     0 ad= -1911 duty=  -962 adc=2057 enc= -201 fr=53498 lk=1 en=1 brk=0 key=1 wd=0
+[ 121.4s] BAL   a=  -171 ad= -3116 duty=   462 adc=2032 enc= -207 fr=63997 lk=1 en=1 brk=0 key=1 wd=0
+[ 121.6s] BAL   a=   -49 ad=   465 duty=    -8 adc=2056 enc= -208 fr= 8961 lk=1 en=1 brk=0 key=1 wd=0
+[ 121.8s] BAL   a=   -41 ad=   232 duty=   583 adc=2060 enc= -208 fr=19461 lk=1 en=1 brk=0 key=1 wd=0
+[ 122.0s] BAL   a=  -122 ad=   190 duty=  -430 adc=2056 enc= -210 fr=29961 lk=1 en=1 brk=0 key=1 wd=0
+[ 122.2s] BAL   a=  -204 ad=  -375 duty=  -678 adc=2072 enc= -204 fr=40461 lk=1 en=1 brk=0 key=1 wd=0
+[ 122.4s] BAL   a=   -17 ad=  1689 duty=   827 adc=2058 enc= -197 fr=50961 lk=1 en=1 brk=0 key=1 wd=0
+[ 122.6s] BAL   a=  -147 ad= -6959 duty=  -634 adc=2036 enc= -196 fr=61461 lk=1 en=1 brk=0 key=1 wd=0
+[ 122.9s] BAL   a=    40 ad=   183 duty=  -219 adc=2054 enc= -194 fr= 6424 lk=1 en=1 brk=0 key=1 wd=0
+[ 123.1s] BAL   a=   -57 ad= -1227 duty=   920 adc=2051 enc= -200 fr=16924 lk=1 en=1 brk=0 key=1 wd=0
+[ 123.3s] BAL   a=     0 ad=  -196 duty=   553 adc=2057 enc= -203 fr=27424 lk=1 en=1 brk=0 key=1 wd=0
+[ 123.5s] BAL   a=  -269 ad=   -47 duty=  -555 adc=2027 enc= -204 fr=37924 lk=1 en=1 brk=0 key=1 wd=0
+[ 123.7s] BAL   a=   -33 ad=   930 duty=  -911 adc=2131 enc= -199 fr=48424 lk=1 en=1 brk=0 key=1 wd=0
+[ 123.9s] BAL   a=    56 ad=   510 duty=   744 adc=2062 enc= -194 fr=58924 lk=1 en=1 brk=0 key=1 wd=0
+[ 124.1s] BAL   a=    48 ad= -2318 duty=   538 adc=2065 enc= -196 fr= 3888 lk=1 en=1 brk=0 key=1 wd=0
+[ 124.3s] BAL   a=    56 ad=  -813 duty=   683 adc=2059 enc= -202 fr=14387 lk=1 en=1 brk=0 key=1 wd=0
+[ 124.5s] BAL   a=  -163 ad=  1943 duty=   836 adc=2043 enc= -212 fr=24887 lk=1 en=1 brk=0 key=1 wd=0
+[ 124.7s] BAL   a=   -57 ad= -1064 duty=   864 adc=2043 enc= -217 fr=35387 lk=1 en=1 brk=0 key=1 wd=0
+[ 125.0s] BAL   a=  -244 ad=  3295 duty= -1590 adc=2020 enc= -214 fr=45887 lk=1 en=1 brk=0 key=1 wd=0
+[ 125.2s] BAL   a=  -155 ad=   527 duty=  -464 adc=2041 enc= -208 fr=56387 lk=1 en=1 brk=0 key=1 wd=0
+[ 125.4s] BAL   a=  -139 ad=  -501 duty=  4912 adc=2034 enc= -203 fr= 1351 lk=1 en=1 brk=0 key=1 wd=0
+[ 125.6s] BAL   a=   105 ad= -1757 duty=  1465 adc=2086 enc= -203 fr=11850 lk=1 en=1 brk=0 key=1 wd=0
+[ 125.8s] BAL   a=    24 ad=  2471 duty=   623 adc=2065 enc= -210 fr=22350 lk=1 en=1 brk=0 key=1 wd=0
+[ 126.0s] BAL   a=  -179 ad=   757 duty=    30 adc=2041 enc= -216 fr=32850 lk=1 en=1 brk=0 key=1 wd=0
+[ 126.2s] BAL   a=  -212 ad=  -257 duty=  -136 adc=2049 enc= -218 fr=43350 lk=1 en=1 brk=0 key=1 wd=0
+[ 126.4s] BAL   a=  -155 ad=   513 duty=  -380 adc=2036 enc= -215 fr=53850 lk=1 en=1 brk=0 key=1 wd=0
+[ 126.6s] BAL   a=  -269 ad=  -637 duty= -1938 adc=2030 enc= -212 fr=64350 lk=1 en=1 brk=0 key=1 wd=0
+[ 126.8s] BAL   a=    97 ad= -1155 duty=   588 adc=2073 enc= -206 fr= 9314 lk=1 en=1 brk=0 key=1 wd=0
+[ 127.1s] BAL   a=    -9 ad=    85 duty=   204 adc=2061 enc= -204 fr=19813 lk=1 en=1 brk=0 key=1 wd=0
+[ 127.3s] BAL   a=    24 ad=  -155 duty=   818 adc=2060 enc= -208 fr=30313 lk=1 en=1 brk=0 key=1 wd=0
+[ 127.5s] BAL   a=   -33 ad=  -576 duty=   854 adc=2056 enc= -211 fr=40813 lk=1 en=1 brk=0 key=1 wd=0
+[ 127.7s] BAL   a=  -358 ad= -2160 duty=  -927 adc=2018 enc= -210 fr=51313 lk=1 en=1 brk=0 key=1 wd=0
+[ 127.9s] BAL   a=  -212 ad= -3699 duty=  -631 adc=2020 enc= -206 fr=61813 lk=1 en=1 brk=0 key=1 wd=0
+[ 128.1s] BAL   a=    -9 ad= -1045 duty=  -126 adc=2058 enc= -202 fr= 6777 lk=1 en=1 brk=0 key=1 wd=0
+[ 128.3s] BAL   a=  -187 ad= -3375 duty=  -332 adc=2035 enc= -204 fr=17277 lk=1 en=1 brk=0 key=1 wd=0
+[ 128.5s] BAL   a=  -179 ad= -3742 duty=   -83 adc=2031 enc= -206 fr=27776 lk=1 en=1 brk=0 key=1 wd=0
+[ 128.7s] BAL   a=  -106 ad=   540 duty=   -15 adc=2048 enc= -206 fr=38276 lk=1 en=1 brk=0 key=1 wd=0
+[ 128.9s] BAL   a=   -57 ad=   402 duty=  -185 adc=2053 enc= -206 fr=48776 lk=1 en=1 brk=0 key=1 wd=0
+[ 129.2s] BAL   a=  -285 ad= -2922 duty=  -257 adc=2022 enc= -206 fr=59276 lk=1 en=1 brk=0 key=1 wd=0
+[ 129.4s] BAL   a=  -220 ad= -6226 duty= -1159 adc=2031 enc= -204 fr= 4240 lk=1 en=1 brk=0 key=1 wd=0
+[ 129.6s] BAL   a=  -334 ad= -7149 duty=   515 adc=2005 enc= -210 fr=14740 lk=1 en=1 brk=0 key=1 wd=0
+[ 129.8s] BAL   a=   -41 ad=   564 duty=  -145 adc=2049 enc= -206 fr=25240 lk=1 en=1 brk=0 key=1 wd=0
+[ 130.0s] BAL   a=   -66 ad=    54 duty=  -712 adc=2042 enc= -206 fr=35739 lk=1 en=1 brk=0 key=1 wd=0
+[ 130.2s] BAL   a=   -41 ad=   184 duty=  -265 adc=2048 enc= -206 fr=46239 lk=1 en=1 brk=0 key=1 wd=0
+[ 130.4s] BAL   a=   -66 ad=  -108 duty=  -591 adc=2051 enc= -206 fr=56739 lk=1 en=1 brk=0 key=1 wd=0
+[ 130.6s] BAL   a=  -106 ad=   507 duty=  -938 adc=2048 enc= -206 fr= 1703 lk=1 en=1 brk=0 key=1 wd=0
+[ 130.8s] BAL   a=    48 ad=  -671 duty=  -272 adc=2059 enc= -208 fr=12203 lk=1 en=1 brk=0 key=1 wd=0
+[ 131.0s] BAL   a=  -244 ad= -4832 duty=   160 adc=2038 enc= -207 fr=22703 lk=1 en=1 brk=0 key=1 wd=0
+[ 131.3s] BAL   a=  -171 ad=  1099 duty=   163 adc=2032 enc= -209 fr=33202 lk=1 en=1 brk=0 key=1 wd=0
+[ 131.5s] BAL   a=     0 ad=   405 duty=    -1 adc=2053 enc= -209 fr=43702 lk=1 en=1 brk=0 key=1 wd=0
+[ 131.7s] BAL   a=  -122 ad=  -946 duty=  -209 adc=2040 enc= -212 fr=54202 lk=1 en=1 brk=0 key=1 wd=0
+[ 131.9s] BAL   a=  -196 ad=  -310 duty=   -47 adc=2034 enc= -212 fr=64702 lk=1 en=1 brk=0 key=1 wd=0
+[ 132.1s] BAL   a=    65 ad=  2326 duty= -3356 adc=2057 enc= -212 fr= 9666 lk=1 en=1 brk=0 key=1 wd=0
+[ 132.3s] BAL   a=    81 ad=   906 duty=   223 adc=2073 enc= -209 fr=20166 lk=1 en=1 brk=0 key=1 wd=0
+[ 132.5s] BAL   a=  -407 ad=  -512 duty=  -172 adc=2009 enc= -214 fr=30666 lk=1 en=1 brk=0 key=1 wd=0
+[ 132.7s] BAL   a=   -66 ad=  -870 duty=  -401 adc=2039 enc= -212 fr=41165 lk=1 en=1 brk=0 key=1 wd=0
+[ 132.9s] BAL   a=    48 ad= -1742 duty=   274 adc=2066 enc= -208 fr=51665 lk=1 en=1 brk=0 key=1 wd=0
+[ 133.1s] BAL   a=  -236 ad= -1691 duty=  1206 adc=2043 enc= -216 fr=62165 lk=1 en=1 brk=0 key=1 wd=0
+[ 133.4s] BAL   a=  -277 ad= -1943 duty=   208 adc=2030 enc= -221 fr= 7129 lk=1 en=1 brk=0 key=1 wd=0
+[ 133.6s] BAL   a=  -179 ad=   685 duty=  -688 adc=2037 enc= -220 fr=17629 lk=1 en=1 brk=0 key=1 wd=0
+[ 133.8s] BAL   a=  -269 ad=  -199 duty=  -874 adc=2030 enc= -212 fr=28129 lk=1 en=1 brk=0 key=1 wd=0
+[ 134.0s] BAL   a=    48 ad=  2131 duty=  3140 adc=2066 enc= -206 fr=38629 lk=1 en=1 brk=0 key=1 wd=0
+[ 134.2s] BAL   a=    -9 ad=  1878 duty=  -532 adc=2060 enc= -207 fr=49128 lk=1 en=1 brk=0 key=1 wd=0
+[ 134.4s] BAL   a=   -74 ad=  -730 duty=  -313 adc=2044 enc= -206 fr=59628 lk=1 en=1 brk=0 key=1 wd=0
+[ 134.6s] BAL   a=   -74 ad=  -484 duty=  -206 adc=2051 enc= -202 fr= 4592 lk=1 en=1 brk=0 key=1 wd=0
+[ 134.8s] BAL   a=    81 ad=  -671 duty=  -245 adc=2056 enc= -199 fr=15092 lk=1 en=1 brk=0 key=1 wd=0
+[ 135.0s] BAL   a=   211 ad=    58 duty=  1639 adc=2072 enc= -201 fr=25592 lk=1 en=1 brk=0 key=1 wd=0
+[ 135.2s] BAL   a=  -309 ad= -2763 duty=  -566 adc=1997 enc= -206 fr=36092 lk=1 en=1 brk=0 key=1 wd=0
+[ 135.5s] BAL   a=   105 ad= -2169 duty= -7786 adc=2083 enc= -207 fr=46592 lk=1 en=1 brk=0 key=1 wd=0
+[ 135.7s] BAL   a=  -139 ad=  -911 duty=   639 adc=2031 enc= -215 fr=57091 lk=1 en=1 brk=0 key=1 wd=0
+[ 135.9s] BAL   a=  -106 ad=   302 duty=   964 adc=2050 enc= -218 fr= 2055 lk=1 en=1 brk=0 key=1 wd=0
+[ 136.1s] BAL   a=  -236 ad=  -755 duty= -1526 adc=2027 enc= -218 fr=12555 lk=1 en=1 brk=0 key=1 wd=0
+[ 136.3s] BAL   a=  -131 ad=   808 duty=  -268 adc=1995 enc= -216 fr=23055 lk=1 en=1 brk=0 key=1 wd=0
+[ 136.5s] BAL   a=  -399 ad=  1452 duty=    38 adc=2076 enc= -213 fr=33555 lk=1 en=1 brk=0 key=1 wd=0
+[ 136.7s] BAL   a=   -98 ad=  2485 duty=  -436 adc=2052 enc= -212 fr=44055 lk=1 en=1 brk=0 key=1 wd=0
+[ 136.9s] BAL   a=   -41 ad=   564 duty=  -340 adc=2054 enc= -207 fr=54554 lk=1 en=1 brk=0 key=1 wd=0
+[ 137.1s] BAL   a=  -139 ad= -1521 duty= -1234 adc=2056 enc= -202 fr=65054 lk=1 en=1 brk=0 key=1 wd=0
+[ 137.3s] BAL   a=    24 ad=  -410 duty=  -471 adc=2066 enc= -198 fr=10018 lk=1 en=1 brk=0 key=1 wd=0
+[ 137.6s] BAL   a=   -17 ad=  -210 duty=  -887 adc=2069 enc= -198 fr=20518 lk=1 en=1 brk=0 key=1 wd=0
+[ 137.8s] BAL   a=  -187 ad= -1116 duty=  -567 adc=2030 enc= -203 fr=31018 lk=1 en=1 brk=0 key=1 wd=0
+[ 138.0s] BAL   a=   658 ad=  -309 duty=  -623 adc=2051 enc= -199 fr=41518 lk=1 en=1 brk=0 key=1 wd=0
+[ 138.2s] BAL   a=    -9 ad= -2375 duty= -1047 adc=2055 enc= -199 fr=52018 lk=1 en=1 brk=0 key=1 wd=0
+[ 138.4s] BAL   a=    65 ad=  2196 duty=   593 adc=2071 enc= -204 fr=62517 lk=1 en=1 brk=0 key=1 wd=0
+[ 138.6s] BAL   a=   -33 ad=   316 duty=   787 adc=2055 enc= -211 fr= 7481 lk=1 en=1 brk=0 key=1 wd=0
+[ 138.8s] BAL   a=  -171 ad=  1201 duty=   -30 adc=2043 enc= -216 fr=17981 lk=1 en=1 brk=0 key=1 wd=0
+[ 139.0s] BAL   a=  -204 ad=  -813 duty=  -337 adc=2030 enc= -219 fr=28481 lk=1 en=1 brk=0 key=1 wd=0
+[ 139.2s] BAL   a=   -25 ad=  3746 duty=  -720 adc=2051 enc= -212 fr=38981 lk=1 en=1 brk=0 key=1 wd=0
+[ 139.4s] BAL   a=   -74 ad= -4909 duty=  -686 adc=2027 enc= -204 fr=49481 lk=1 en=1 brk=0 key=1 wd=0
+[ 139.7s] BAL   a=  -163 ad= -6785 duty=   574 adc=1906 enc= -202 fr=59981 lk=1 en=1 brk=0 key=1 wd=0
+[ 139.9s] BAL   a=   -17 ad=  2834 duty=  -187 adc=2059 enc= -204 fr= 4944 lk=1 en=1 brk=0 key=1 wd=0
+[ 140.1s] BAL   a=     0 ad=   182 duty=  -135 adc=2048 enc= -204 fr=15444 lk=1 en=1 brk=0 key=1 wd=0
+[ 140.3s] BAL   a=   -49 ad=  -752 duty=    -7 adc=2050 enc= -208 fr=25944 lk=1 en=1 brk=0 key=1 wd=0
+[ 140.5s] BAL   a=  -212 ad=  -870 duty=  -117 adc=2025 enc= -206 fr=36444 lk=1 en=1 brk=0 key=1 wd=0
+[ 140.7s] BAL   a=   -25 ad= -1719 duty=  -422 adc=2066 enc= -202 fr=46944 lk=1 en=1 brk=0 key=1 wd=0
+[ 140.9s] BAL   a=  1056 ad=   724 duty=   476 adc=2055 enc= -204 fr=57444 lk=1 en=1 brk=0 key=1 wd=0
+[ 141.1s] BAL   a=  -285 ad= -5381 duty=  -639 adc=2021 enc= -204 fr= 2408 lk=1 en=1 brk=0 key=1 wd=0
+[ 141.3s] BAL   a=   -74 ad=    62 duty=  -407 adc=2042 enc= -201 fr=12907 lk=1 en=1 brk=0 key=1 wd=0
+[ 141.5s] BAL   a=   -98 ad=   206 duty=  -407 adc=2051 enc= -198 fr=23407 lk=1 en=1 brk=0 key=1 wd=0
+[ 141.8s] BAL   a=   211 ad=   -24 duty=  -245 adc=2073 enc= -194 fr=33907 lk=1 en=1 brk=0 key=1 wd=0
+[ 142.0s] BAL   a=  -261 ad= -4026 duty=  -935 adc=2029 enc= -199 fr=44407 lk=1 en=1 brk=0 key=1 wd=0
+[ 142.2s] BAL   a=   430 ad=  6529 duty=   888 adc=2189 enc= -197 fr=54907 lk=1 en=1 brk=0 key=1 wd=0
+[ 142.4s] BAL   a=  -114 ad= -3939 duty= -2134 adc=2043 enc= -206 fr=65407 lk=1 en=1 brk=0 key=1 wd=0
+[ 142.6s] STOP  a=  -171 ad=   591 duty=     0 adc=2050 enc= -213 fr=10370 lk=1 en=0 brk=1 key=0 wd=0
+[ 142.8s] PUMP  a= -6358 ad=-24770 duty=     0 adc=1258 enc= -268 fr=20870 lk=1 en=1 brk=1 key=1 wd=0
+[ 143.0s] PUMP  a=-16724 ad= -2543 duty=     0 adc=2379 enc= -268 fr=31370 lk=1 en=1 brk=1 key=1 wd=0
+[ 143.2s] PUMP  a=-16594 ad=-24630 duty=  6000 adc=   1 enc= -264 fr=41870 lk=1 en=1 brk=0 key=1 wd=0
+[ 143.4s] PUMP  a=-16724 ad=  -318 duty= -6000 adc=3094 enc= -303 fr=52370 lk=1 en=1 brk=0 key=1 wd=0
+[ 143.6s] JUDGE a= 16072 ad= 15176 duty=     0 adc= 399 enc= -277 fr=62870 lk=1 en=1 brk=1 key=1 wd=0
+[ 143.9s] JUDGE a=-14634 ad=-24660 duty=     0 adc= 247 enc= -258 fr= 7834 lk=1 en=1 brk=1 key=1 wd=0
+[ 144.1s] JUDGE a=-16724 ad=  -592 duty=     0 adc=3674 enc= -260 fr=18333 lk=1 en=1 brk=1 key=1 wd=0
+[ 144.3s] JUDGE a= 16186 ad=  2423 duty=     0 adc= 183 enc= -267 fr=28833 lk=1 en=1 brk=1 key=1 wd=0
+[ 144.5s] JUDGE a=-16724 ad=-14757 duty=     0 adc=   0 enc= -263 fr=39333 lk=1 en=1 brk=1 key=1 wd=0
+[ 144.7s] JUDGE a=-16724 ad=   -59 duty=     0 adc=4040 enc= -267 fr=49833 lk=1 en=1 brk=1 key=1 wd=0
+[ 144.9s] JUDGE a= 16178 ad=   196 duty=     0 adc=   1 enc= -267 fr=60333 lk=1 en=1 brk=1 key=1 wd=0
+[ 145.1s] JUDGE a=-16724 ad=  -462 duty=     0 adc=   0 enc= -266 fr= 5297 lk=1 en=1 brk=1 key=1 wd=0
+[ 145.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=15797 lk=1 en=1 brk=1 key=1 wd=0
+[ 145.5s] JUDGE a=-16716 ad=    19 duty=     0 adc=   0 enc= -266 fr=26296 lk=1 en=1 brk=1 key=1 wd=0
+[ 145.7s] JUDGE a=-16724 ad=    -8 duty=     0 adc=   0 enc= -266 fr=36796 lk=1 en=1 brk=1 key=1 wd=0
+[ 146.0s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=47296 lk=1 en=1 brk=1 key=1 wd=0
+[ 146.2s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=57796 lk=1 en=1 brk=1 key=1 wd=0
+[ 146.4s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr= 2760 lk=1 en=1 brk=1 key=1 wd=0
+[ 146.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=13260 lk=1 en=1 brk=1 key=1 wd=0
+[ 146.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=23760 lk=1 en=1 brk=1 key=1 wd=0
+[ 147.0s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=34259 lk=1 en=1 brk=1 key=1 wd=0
+[ 147.2s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=44759 lk=1 en=1 brk=1 key=1 wd=0
+[ 147.4s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=55259 lk=1 en=1 brk=1 key=1 wd=0
+[ 147.6s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=  223 lk=1 en=1 brk=1 key=1 wd=0
+[ 147.8s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=10723 lk=1 en=1 brk=1 key=1 wd=0
+[ 148.1s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=21223 lk=1 en=1 brk=1 key=1 wd=0
+[ 148.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=31722 lk=1 en=1 brk=1 key=1 wd=0
+[ 148.5s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=42222 lk=1 en=1 brk=1 key=1 wd=0
+[ 148.7s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=52722 lk=1 en=1 brk=1 key=1 wd=0
+[ 148.9s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=63222 lk=1 en=1 brk=1 key=1 wd=0
+[ 149.1s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr= 8186 lk=1 en=1 brk=1 key=1 wd=0
+[ 149.3s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=18686 lk=1 en=1 brk=1 key=1 wd=0
+[ 149.5s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=29186 lk=1 en=1 brk=1 key=1 wd=0
+[ 149.7s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=39685 lk=1 en=1 brk=1 key=1 wd=0
+[ 149.9s] JUDGE a=-16724 ad=    -7 duty=     0 adc=   0 enc= -266 fr=50185 lk=1 en=1 brk=1 key=1 wd=0
+SUMMARY: frames=7143 seq_breaks=0 elapsed=150.1s last_data=150.00985119998222 tail_silence=0.1s status=completed

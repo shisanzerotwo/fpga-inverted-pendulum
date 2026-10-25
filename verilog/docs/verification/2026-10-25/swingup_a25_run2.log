@@ -1,0 +1,574 @@
+monitoring COM9 @ 115200 for 120s -> ..\docs\verification\2026-10-25\swingup_a25_run2.bin
+KEY1按一次启动，再按一次停止；松开不会停止。采集只读串口。
+[   0.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4206 lk=1 en=0 brk=1 key=1 wd=0
+[   0.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14706 lk=1 en=0 brk=1 key=1 wd=0
+[   0.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25206 lk=1 en=0 brk=1 key=1 wd=0
+[   0.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35706 lk=1 en=0 brk=1 key=1 wd=0
+[   1.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46206 lk=1 en=0 brk=1 key=1 wd=0
+[   1.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56706 lk=1 en=0 brk=1 key=1 wd=0
+[   1.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1670 lk=1 en=0 brk=1 key=1 wd=0
+[   1.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12169 lk=1 en=0 brk=1 key=1 wd=0
+[   1.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22669 lk=1 en=0 brk=1 key=1 wd=0
+[   2.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33169 lk=1 en=0 brk=1 key=1 wd=0
+[   2.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43669 lk=1 en=0 brk=1 key=1 wd=0
+[   2.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54169 lk=1 en=0 brk=1 key=1 wd=0
+[   2.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64669 lk=1 en=0 brk=1 key=1 wd=0
+[   2.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9633 lk=1 en=0 brk=1 key=1 wd=0
+[   3.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20132 lk=1 en=0 brk=1 key=1 wd=0
+[   3.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30632 lk=1 en=0 brk=1 key=1 wd=0
+[   3.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41132 lk=1 en=0 brk=1 key=1 wd=0
+[   3.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51632 lk=1 en=0 brk=1 key=1 wd=0
+[   4.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62132 lk=1 en=0 brk=1 key=1 wd=0
+[   4.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7096 lk=1 en=0 brk=1 key=1 wd=0
+[   4.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17596 lk=1 en=0 brk=1 key=1 wd=0
+[   4.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28095 lk=1 en=0 brk=1 key=1 wd=0
+[   4.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38595 lk=1 en=0 brk=1 key=1 wd=0
+[   5.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49095 lk=1 en=0 brk=1 key=1 wd=0
+[   5.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59595 lk=1 en=0 brk=1 key=1 wd=0
+[   5.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4559 lk=1 en=0 brk=1 key=1 wd=0
+[   5.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15059 lk=1 en=0 brk=1 key=1 wd=0
+[   5.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25558 lk=1 en=0 brk=1 key=1 wd=0
+[   6.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36058 lk=1 en=0 brk=1 key=1 wd=0
+[   6.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46558 lk=1 en=0 brk=1 key=1 wd=0
+[   6.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57058 lk=1 en=0 brk=1 key=1 wd=0
+[   6.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2022 lk=1 en=0 brk=1 key=1 wd=0
+[   6.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12522 lk=1 en=0 brk=1 key=1 wd=0
+[   7.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23022 lk=1 en=0 brk=1 key=1 wd=0
+[   7.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33521 lk=1 en=0 brk=1 key=1 wd=0
+[   7.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44021 lk=1 en=0 brk=1 key=1 wd=0
+[   7.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54521 lk=1 en=0 brk=1 key=1 wd=0
+[   8.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=65021 lk=1 en=0 brk=1 key=1 wd=0
+[   8.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9985 lk=1 en=0 brk=1 key=1 wd=0
+[   8.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20485 lk=1 en=0 brk=1 key=1 wd=0
+[   8.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30985 lk=1 en=0 brk=1 key=1 wd=0
+[   8.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41484 lk=1 en=0 brk=1 key=1 wd=0
+[   9.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51984 lk=1 en=0 brk=1 key=1 wd=0
+[   9.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62484 lk=1 en=0 brk=1 key=1 wd=0
+[   9.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7448 lk=1 en=0 brk=1 key=1 wd=0
+[   9.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17948 lk=1 en=0 brk=1 key=1 wd=0
+[   9.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28448 lk=1 en=0 brk=1 key=1 wd=0
+[  10.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38948 lk=1 en=0 brk=1 key=1 wd=0
+[  10.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49447 lk=1 en=0 brk=1 key=1 wd=0
+[  10.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59947 lk=1 en=0 brk=1 key=1 wd=0
+[  10.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4911 lk=1 en=0 brk=1 key=1 wd=0
+[  10.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15411 lk=1 en=0 brk=1 key=1 wd=0
+[  11.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25911 lk=1 en=0 brk=1 key=1 wd=0
+[  11.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36411 lk=1 en=0 brk=1 key=1 wd=0
+[  11.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46911 lk=1 en=0 brk=1 key=1 wd=0
+[  11.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57410 lk=1 en=0 brk=1 key=1 wd=0
+[  12.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2374 lk=1 en=0 brk=1 key=1 wd=0
+[  12.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12874 lk=1 en=0 brk=1 key=1 wd=0
+[  12.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23374 lk=1 en=0 brk=1 key=1 wd=0
+[  12.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33874 lk=1 en=0 brk=1 key=1 wd=0
+[  12.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44374 lk=1 en=0 brk=1 key=1 wd=0
+[  13.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54873 lk=1 en=0 brk=1 key=1 wd=0
+[  13.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=65373 lk=1 en=0 brk=1 key=1 wd=0
+[  13.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10337 lk=1 en=0 brk=1 key=1 wd=0
+[  13.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20837 lk=1 en=0 brk=1 key=1 wd=0
+[  13.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31337 lk=1 en=0 brk=1 key=1 wd=0
+[  14.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41837 lk=1 en=0 brk=1 key=1 wd=0
+[  14.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52337 lk=1 en=0 brk=1 key=1 wd=0
+[  14.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62836 lk=1 en=0 brk=1 key=1 wd=0
+[  14.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7800 lk=1 en=0 brk=1 key=1 wd=0
+[  14.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18300 lk=1 en=0 brk=1 key=1 wd=0
+[  15.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28800 lk=1 en=0 brk=1 key=1 wd=0
+[  15.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39300 lk=1 en=0 brk=1 key=1 wd=0
+[  15.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49800 lk=1 en=0 brk=1 key=1 wd=0
+[  15.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60300 lk=1 en=0 brk=1 key=1 wd=0
+[  16.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5263 lk=1 en=0 brk=1 key=1 wd=0
+[  16.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15763 lk=1 en=0 brk=1 key=1 wd=0
+[  16.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26263 lk=1 en=0 brk=1 key=1 wd=0
+[  16.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36763 lk=1 en=0 brk=1 key=1 wd=0
+[  16.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47263 lk=1 en=0 brk=1 key=1 wd=0
+[  17.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57763 lk=1 en=0 brk=1 key=1 wd=0
+[  17.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2727 lk=1 en=0 brk=1 key=1 wd=0
+[  17.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13226 lk=1 en=0 brk=1 key=1 wd=0
+[  17.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23726 lk=1 en=0 brk=1 key=1 wd=0
+[  17.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34226 lk=1 en=0 brk=1 key=1 wd=0
+[  18.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44726 lk=1 en=0 brk=1 key=1 wd=0
+[  18.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55226 lk=1 en=0 brk=1 key=1 wd=0
+[  18.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  190 lk=1 en=0 brk=1 key=1 wd=0
+[  18.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10689 lk=1 en=0 brk=1 key=1 wd=0
+[  18.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21189 lk=1 en=0 brk=1 key=1 wd=0
+[  19.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31689 lk=1 en=0 brk=1 key=1 wd=0
+[  19.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42189 lk=1 en=0 brk=1 key=1 wd=0
+[  19.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52689 lk=1 en=0 brk=1 key=1 wd=0
+[  19.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63189 lk=1 en=0 brk=1 key=1 wd=0
+[  20.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8153 lk=1 en=0 brk=1 key=1 wd=0
+[  20.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18652 lk=1 en=0 brk=1 key=1 wd=0
+[  20.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29152 lk=1 en=0 brk=1 key=1 wd=0
+[  20.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39652 lk=1 en=0 brk=1 key=1 wd=0
+[  20.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50152 lk=1 en=0 brk=1 key=1 wd=0
+[  21.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60652 lk=1 en=0 brk=1 key=1 wd=0
+[  21.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5616 lk=1 en=0 brk=1 key=1 wd=0
+[  21.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16116 lk=1 en=0 brk=1 key=1 wd=0
+[  21.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26615 lk=1 en=0 brk=1 key=1 wd=0
+[  21.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37115 lk=1 en=0 brk=1 key=1 wd=0
+[  22.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47615 lk=1 en=0 brk=1 key=1 wd=0
+[  22.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58115 lk=1 en=0 brk=1 key=1 wd=0
+[  22.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3079 lk=1 en=0 brk=1 key=1 wd=0
+[  22.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13579 lk=1 en=0 brk=1 key=1 wd=0
+[  22.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24079 lk=1 en=0 brk=1 key=1 wd=0
+[  23.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34578 lk=1 en=0 brk=1 key=1 wd=0
+[  23.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45078 lk=1 en=0 brk=1 key=1 wd=0
+[  23.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55578 lk=1 en=0 brk=1 key=1 wd=0
+[  23.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  542 lk=1 en=0 brk=1 key=1 wd=0
+[  23.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11042 lk=1 en=0 brk=1 key=1 wd=0
+[  24.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21542 lk=1 en=0 brk=1 key=1 wd=0
+[  24.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32041 lk=1 en=0 brk=1 key=1 wd=0
+[  24.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42541 lk=1 en=0 brk=1 key=1 wd=0
+[  24.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53041 lk=1 en=0 brk=1 key=1 wd=0
+[  25.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63541 lk=1 en=0 brk=1 key=1 wd=0
+[  25.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8505 lk=1 en=0 brk=1 key=1 wd=0
+[  25.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19005 lk=1 en=0 brk=1 key=1 wd=0
+[  25.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29505 lk=1 en=0 brk=1 key=1 wd=0
+[  25.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40004 lk=1 en=0 brk=1 key=1 wd=0
+[  26.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50504 lk=1 en=0 brk=1 key=1 wd=0
+[  26.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61004 lk=1 en=0 brk=1 key=1 wd=0
+[  26.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5968 lk=1 en=0 brk=1 key=1 wd=0
+[  26.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16468 lk=1 en=0 brk=1 key=1 wd=0
+[  26.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26968 lk=1 en=0 brk=1 key=1 wd=0
+[  27.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37468 lk=1 en=0 brk=1 key=1 wd=0
+[  27.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47967 lk=1 en=0 brk=1 key=1 wd=0
+[  27.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58467 lk=1 en=0 brk=1 key=1 wd=0
+[  27.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3431 lk=1 en=0 brk=1 key=1 wd=0
+[  27.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13931 lk=1 en=0 brk=1 key=1 wd=0
+[  28.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24431 lk=1 en=0 brk=1 key=1 wd=0
+[  28.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34931 lk=1 en=0 brk=1 key=1 wd=0
+[  28.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45431 lk=1 en=0 brk=1 key=1 wd=0
+[  28.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55930 lk=1 en=0 brk=1 key=1 wd=0
+[  29.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  894 lk=1 en=0 brk=1 key=1 wd=0
+[  29.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11394 lk=1 en=0 brk=1 key=1 wd=0
+[  29.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21894 lk=1 en=0 brk=1 key=1 wd=0
+[  29.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32394 lk=1 en=0 brk=1 key=1 wd=0
+[  29.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42894 lk=1 en=0 brk=1 key=1 wd=0
+[  30.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53393 lk=1 en=0 brk=1 key=1 wd=0
+[  30.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63893 lk=1 en=0 brk=1 key=1 wd=0
+[  30.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8857 lk=1 en=0 brk=1 key=1 wd=0
+[  30.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19357 lk=1 en=0 brk=1 key=1 wd=0
+[  30.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29857 lk=1 en=0 brk=1 key=1 wd=0
+[  31.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40357 lk=1 en=0 brk=1 key=1 wd=0
+[  31.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50857 lk=1 en=0 brk=1 key=1 wd=0
+[  31.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61356 lk=1 en=0 brk=1 key=1 wd=0
+[  31.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6320 lk=1 en=0 brk=1 key=1 wd=0
+[  31.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16820 lk=1 en=0 brk=1 key=1 wd=0
+[  32.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27320 lk=1 en=0 brk=1 key=1 wd=0
+[  32.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37820 lk=1 en=0 brk=1 key=1 wd=0
+[  32.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48320 lk=1 en=0 brk=1 key=1 wd=0
+[  32.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58820 lk=1 en=0 brk=1 key=1 wd=0
+[  33.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3783 lk=1 en=0 brk=1 key=1 wd=0
+[  33.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14283 lk=1 en=0 brk=1 key=1 wd=0
+[  33.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24783 lk=1 en=0 brk=1 key=1 wd=0
+[  33.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35283 lk=1 en=0 brk=1 key=1 wd=0
+[  33.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45783 lk=1 en=0 brk=1 key=1 wd=0
+[  34.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56283 lk=1 en=0 brk=1 key=1 wd=0
+[  34.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1247 lk=1 en=0 brk=1 key=1 wd=0
+[  34.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11746 lk=1 en=0 brk=1 key=1 wd=0
+[  34.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22246 lk=1 en=0 brk=1 key=1 wd=0
+[  34.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32746 lk=1 en=0 brk=1 key=1 wd=0
+[  35.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43246 lk=1 en=0 brk=1 key=1 wd=0
+[  35.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53746 lk=1 en=0 brk=1 key=1 wd=0
+[  35.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64246 lk=1 en=0 brk=1 key=1 wd=0
+[  35.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9209 lk=1 en=0 brk=1 key=1 wd=0
+[  35.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19709 lk=1 en=0 brk=1 key=1 wd=0
+[  36.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30209 lk=1 en=0 brk=1 key=1 wd=0
+[  36.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40709 lk=1 en=0 brk=1 key=1 wd=0
+[  36.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51209 lk=1 en=0 brk=1 key=1 wd=0
+[  36.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61709 lk=1 en=0 brk=1 key=1 wd=0
+[  37.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6673 lk=1 en=0 brk=1 key=1 wd=0
+[  37.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17172 lk=1 en=0 brk=1 key=1 wd=0
+[  37.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27672 lk=1 en=0 brk=1 key=1 wd=0
+[  37.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38172 lk=1 en=0 brk=1 key=1 wd=0
+[  37.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48672 lk=1 en=0 brk=1 key=1 wd=0
+[  38.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59172 lk=1 en=0 brk=1 key=1 wd=0
+[  38.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4136 lk=1 en=0 brk=1 key=1 wd=0
+[  38.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14636 lk=1 en=0 brk=1 key=1 wd=0
+[  38.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25135 lk=1 en=0 brk=1 key=1 wd=0
+[  38.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35635 lk=1 en=0 brk=1 key=1 wd=0
+[  39.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46135 lk=1 en=0 brk=1 key=1 wd=0
+[  39.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56635 lk=1 en=0 brk=1 key=1 wd=0
+[  39.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1599 lk=1 en=0 brk=1 key=1 wd=0
+[  39.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12099 lk=1 en=0 brk=1 key=1 wd=0
+[  39.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22599 lk=1 en=0 brk=1 key=1 wd=0
+[  40.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33098 lk=1 en=0 brk=1 key=1 wd=0
+[  40.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43598 lk=1 en=0 brk=1 key=1 wd=0
+[  40.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54098 lk=1 en=0 brk=1 key=1 wd=0
+[  40.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64598 lk=1 en=0 brk=1 key=1 wd=0
+[  41.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9562 lk=1 en=0 brk=1 key=1 wd=0
+[  41.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20062 lk=1 en=0 brk=1 key=1 wd=0
+[  41.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30562 lk=1 en=0 brk=1 key=1 wd=0
+[  41.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41061 lk=1 en=0 brk=1 key=1 wd=0
+[  41.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51561 lk=1 en=0 brk=1 key=1 wd=0
+[  42.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62061 lk=1 en=0 brk=1 key=1 wd=0
+[  42.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7025 lk=1 en=0 brk=1 key=1 wd=0
+[  42.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17525 lk=1 en=0 brk=1 key=1 wd=0
+[  42.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28025 lk=1 en=0 brk=1 key=1 wd=0
+[  42.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38524 lk=1 en=0 brk=1 key=1 wd=0
+[  43.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49024 lk=1 en=0 brk=1 key=1 wd=0
+[  43.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59524 lk=1 en=0 brk=1 key=1 wd=0
+[  43.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4488 lk=1 en=0 brk=1 key=1 wd=0
+[  43.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14988 lk=1 en=0 brk=1 key=1 wd=0
+[  43.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25488 lk=1 en=0 brk=1 key=1 wd=0
+[  44.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35988 lk=1 en=0 brk=1 key=1 wd=0
+[  44.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46487 lk=1 en=0 brk=1 key=1 wd=0
+[  44.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56987 lk=1 en=0 brk=1 key=1 wd=0
+[  44.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1951 lk=1 en=0 brk=1 key=1 wd=0
+[  44.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12451 lk=1 en=0 brk=1 key=1 wd=0
+[  45.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22951 lk=1 en=0 brk=1 key=1 wd=0
+[  45.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33451 lk=1 en=0 brk=1 key=1 wd=0
+[  45.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43951 lk=1 en=0 brk=1 key=1 wd=0
+[  45.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54450 lk=1 en=0 brk=1 key=1 wd=0
+[  46.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64950 lk=1 en=0 brk=1 key=1 wd=0
+[  46.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9914 lk=1 en=0 brk=1 key=1 wd=0
+[  46.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20414 lk=1 en=0 brk=1 key=1 wd=0
+[  46.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30914 lk=1 en=0 brk=1 key=1 wd=0
+[  46.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41414 lk=1 en=0 brk=1 key=1 wd=0
+[  47.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51914 lk=1 en=0 brk=1 key=1 wd=0
+[  47.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62413 lk=1 en=0 brk=1 key=1 wd=0
+[  47.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7377 lk=1 en=0 brk=1 key=1 wd=0
+[  47.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17877 lk=1 en=0 brk=1 key=1 wd=0
+[  47.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28377 lk=1 en=0 brk=1 key=1 wd=0
+[  48.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38877 lk=1 en=0 brk=1 key=1 wd=0
+[  48.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49377 lk=1 en=0 brk=1 key=1 wd=0
+[  48.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59876 lk=1 en=0 brk=1 key=1 wd=0
+[  48.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4840 lk=1 en=0 brk=1 key=1 wd=0
+[  48.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15340 lk=1 en=0 brk=1 key=1 wd=0
+[  49.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25840 lk=1 en=0 brk=1 key=1 wd=0
+[  49.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36340 lk=1 en=0 brk=1 key=1 wd=0
+[  49.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46840 lk=1 en=0 brk=1 key=1 wd=0
+[  49.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57340 lk=1 en=0 brk=1 key=1 wd=0
+[  50.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2303 lk=1 en=0 brk=1 key=1 wd=0
+[  50.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12803 lk=1 en=0 brk=1 key=1 wd=0
+[  50.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23303 lk=1 en=0 brk=1 key=1 wd=0
+[  50.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33803 lk=1 en=0 brk=1 key=1 wd=0
+[  50.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44303 lk=1 en=0 brk=1 key=1 wd=0
+[  51.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54803 lk=1 en=0 brk=1 key=1 wd=0
+[  51.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=65303 lk=1 en=0 brk=1 key=1 wd=0
+[  51.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10266 lk=1 en=0 brk=1 key=1 wd=0
+[  51.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20766 lk=1 en=0 brk=1 key=1 wd=0
+[  51.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31266 lk=1 en=0 brk=1 key=1 wd=0
+[  52.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41766 lk=1 en=0 brk=1 key=1 wd=0
+[  52.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52266 lk=1 en=0 brk=1 key=1 wd=0
+[  52.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62766 lk=1 en=0 brk=1 key=1 wd=0
+[  52.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7730 lk=1 en=0 brk=1 key=1 wd=0
+[  52.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18229 lk=1 en=0 brk=1 key=1 wd=0
+[  53.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28729 lk=1 en=0 brk=1 key=1 wd=0
+[  53.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39229 lk=1 en=0 brk=1 key=1 wd=0
+[  53.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49729 lk=1 en=0 brk=1 key=1 wd=0
+[  53.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60229 lk=1 en=0 brk=1 key=1 wd=0
+[  54.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5193 lk=1 en=0 brk=1 key=1 wd=0
+[  54.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15692 lk=1 en=0 brk=1 key=1 wd=0
+[  54.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26192 lk=1 en=0 brk=1 key=1 wd=0
+[  54.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36692 lk=1 en=0 brk=1 key=1 wd=0
+[  54.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47192 lk=1 en=0 brk=1 key=1 wd=0
+[  55.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57692 lk=1 en=0 brk=1 key=1 wd=0
+[  55.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2656 lk=1 en=0 brk=1 key=1 wd=0
+[  55.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13156 lk=1 en=0 brk=1 key=1 wd=0
+[  55.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23655 lk=1 en=0 brk=1 key=1 wd=0
+[  55.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34155 lk=1 en=0 brk=1 key=1 wd=0
+[  56.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44655 lk=1 en=0 brk=1 key=1 wd=0
+[  56.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55155 lk=1 en=0 brk=1 key=1 wd=0
+[  56.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  119 lk=1 en=0 brk=1 key=1 wd=0
+[  56.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10619 lk=1 en=0 brk=1 key=1 wd=0
+[  56.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21119 lk=1 en=0 brk=1 key=1 wd=0
+[  57.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31618 lk=1 en=0 brk=1 key=1 wd=0
+[  57.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42118 lk=1 en=0 brk=1 key=1 wd=0
+[  57.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52618 lk=1 en=0 brk=1 key=1 wd=0
+[  57.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63118 lk=1 en=0 brk=1 key=1 wd=0
+[  58.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8082 lk=1 en=0 brk=1 key=1 wd=0
+[  58.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18582 lk=1 en=0 brk=1 key=1 wd=0
+[  58.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29082 lk=1 en=0 brk=1 key=1 wd=0
+[  58.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39581 lk=1 en=0 brk=1 key=1 wd=0
+[  58.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50081 lk=1 en=0 brk=1 key=1 wd=0
+[  59.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60581 lk=1 en=0 brk=1 key=1 wd=0
+[  59.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5545 lk=1 en=0 brk=1 key=1 wd=0
+[  59.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16045 lk=1 en=0 brk=1 key=1 wd=0
+[  59.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26545 lk=1 en=0 brk=1 key=1 wd=0
+[  59.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37045 lk=1 en=0 brk=1 key=1 wd=0
+[  60.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47544 lk=1 en=0 brk=1 key=1 wd=0
+[  60.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58044 lk=1 en=0 brk=1 key=1 wd=0
+[  60.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3008 lk=1 en=0 brk=1 key=1 wd=0
+[  60.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13508 lk=1 en=0 brk=1 key=1 wd=0
+[  60.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24008 lk=1 en=0 brk=1 key=1 wd=0
+[  61.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34508 lk=1 en=0 brk=1 key=1 wd=0
+[  61.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45007 lk=1 en=0 brk=1 key=1 wd=0
+[  61.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55507 lk=1 en=0 brk=1 key=1 wd=0
+[  61.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  471 lk=1 en=0 brk=1 key=1 wd=0
+[  62.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10971 lk=1 en=0 brk=1 key=1 wd=0
+[  62.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21471 lk=1 en=0 brk=1 key=1 wd=0
+[  62.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31971 lk=1 en=0 brk=1 key=1 wd=0
+[  62.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42471 lk=1 en=0 brk=1 key=1 wd=0
+[  62.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52970 lk=1 en=0 brk=1 key=1 wd=0
+[  63.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63470 lk=1 en=0 brk=1 key=1 wd=0
+[  63.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8434 lk=1 en=0 brk=1 key=1 wd=0
+[  63.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18934 lk=1 en=0 brk=1 key=1 wd=0
+[  63.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29434 lk=1 en=0 brk=1 key=1 wd=0
+[  63.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39934 lk=1 en=0 brk=1 key=1 wd=0
+[  64.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50434 lk=1 en=0 brk=1 key=1 wd=0
+[  64.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60933 lk=1 en=0 brk=1 key=1 wd=0
+[  64.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5897 lk=1 en=0 brk=1 key=1 wd=0
+[  64.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16397 lk=1 en=0 brk=1 key=1 wd=0
+[  64.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26897 lk=1 en=0 brk=1 key=1 wd=0
+[  65.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37397 lk=1 en=0 brk=1 key=1 wd=0
+[  65.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47897 lk=1 en=0 brk=1 key=1 wd=0
+[  65.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58397 lk=1 en=0 brk=1 key=1 wd=0
+[  65.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3360 lk=1 en=0 brk=1 key=1 wd=0
+[  65.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13860 lk=1 en=0 brk=1 key=1 wd=0
+[  66.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24360 lk=1 en=0 brk=1 key=1 wd=0
+[  66.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34860 lk=1 en=0 brk=1 key=1 wd=0
+[  66.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45360 lk=1 en=0 brk=1 key=1 wd=0
+[  66.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55860 lk=1 en=0 brk=1 key=1 wd=0
+[  67.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  823 lk=1 en=0 brk=1 key=1 wd=0
+[  67.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11323 lk=1 en=0 brk=1 key=1 wd=0
+[  67.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21823 lk=1 en=0 brk=1 key=1 wd=0
+[  67.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32323 lk=1 en=0 brk=1 key=1 wd=0
+[  67.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42823 lk=1 en=0 brk=1 key=1 wd=0
+[  68.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53323 lk=1 en=0 brk=1 key=1 wd=0
+[  68.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63823 lk=1 en=0 brk=1 key=1 wd=0
+[  68.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8786 lk=1 en=0 brk=1 key=1 wd=0
+[  68.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19286 lk=1 en=0 brk=1 key=1 wd=0
+[  68.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29786 lk=1 en=0 brk=1 key=1 wd=0
+[  69.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40286 lk=1 en=0 brk=1 key=1 wd=0
+[  69.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50786 lk=1 en=0 brk=1 key=1 wd=0
+[  69.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61286 lk=1 en=0 brk=1 key=1 wd=0
+[  69.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6250 lk=1 en=0 brk=1 key=1 wd=0
+[  69.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16749 lk=1 en=0 brk=1 key=1 wd=0
+[  70.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27249 lk=1 en=0 brk=1 key=1 wd=0
+[  70.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37749 lk=1 en=0 brk=1 key=1 wd=0
+[  70.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48249 lk=1 en=0 brk=1 key=1 wd=0
+[  70.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58749 lk=1 en=0 brk=1 key=1 wd=0
+[  71.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3713 lk=1 en=0 brk=1 key=1 wd=0
+[  71.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14213 lk=1 en=0 brk=1 key=1 wd=0
+[  71.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24712 lk=1 en=0 brk=1 key=1 wd=0
+[  71.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35212 lk=1 en=0 brk=1 key=1 wd=0
+[  71.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45712 lk=1 en=0 brk=1 key=1 wd=0
+[  72.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56212 lk=1 en=0 brk=1 key=1 wd=0
+[  72.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1176 lk=1 en=0 brk=1 key=1 wd=0
+[  72.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11676 lk=1 en=0 brk=1 key=1 wd=0
+[  72.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22175 lk=1 en=0 brk=1 key=1 wd=0
+[  72.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32675 lk=1 en=0 brk=1 key=1 wd=0
+[  73.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43175 lk=1 en=0 brk=1 key=1 wd=0
+[  73.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53675 lk=1 en=0 brk=1 key=1 wd=0
+[  73.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64175 lk=1 en=0 brk=1 key=1 wd=0
+[  73.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9139 lk=1 en=0 brk=1 key=1 wd=0
+[  73.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19639 lk=1 en=0 brk=1 key=1 wd=0
+[  74.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30138 lk=1 en=0 brk=1 key=1 wd=0
+[  74.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40638 lk=1 en=0 brk=1 key=1 wd=0
+[  74.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51138 lk=1 en=0 brk=1 key=1 wd=0
+[  74.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61638 lk=1 en=0 brk=1 key=1 wd=0
+[  75.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6602 lk=1 en=0 brk=1 key=1 wd=0
+[  75.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17102 lk=1 en=0 brk=1 key=1 wd=0
+[  75.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27602 lk=1 en=0 brk=1 key=1 wd=0
+[  75.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38101 lk=1 en=0 brk=1 key=1 wd=0
+[  75.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48601 lk=1 en=0 brk=1 key=1 wd=0
+[  76.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59101 lk=1 en=0 brk=1 key=1 wd=0
+[  76.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4065 lk=1 en=0 brk=1 key=1 wd=0
+[  76.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14565 lk=1 en=0 brk=1 key=1 wd=0
+[  76.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25065 lk=1 en=0 brk=1 key=1 wd=0
+[  76.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35565 lk=1 en=0 brk=1 key=1 wd=0
+[  77.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46064 lk=1 en=0 brk=1 key=1 wd=0
+[  77.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56564 lk=1 en=0 brk=1 key=1 wd=0
+[  77.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1528 lk=1 en=0 brk=1 key=1 wd=0
+[  77.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12028 lk=1 en=0 brk=1 key=1 wd=0
+[  77.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22528 lk=1 en=0 brk=1 key=1 wd=0
+[  78.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33028 lk=1 en=0 brk=1 key=1 wd=0
+[  78.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43528 lk=1 en=0 brk=1 key=1 wd=0
+[  78.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54027 lk=1 en=0 brk=1 key=1 wd=0
+[  78.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64527 lk=1 en=0 brk=1 key=1 wd=0
+[  79.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9491 lk=1 en=0 brk=1 key=1 wd=0
+[  79.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19991 lk=1 en=0 brk=1 key=1 wd=0
+[  79.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30491 lk=1 en=0 brk=1 key=1 wd=0
+[  79.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40991 lk=1 en=0 brk=1 key=1 wd=0
+[  79.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51490 lk=1 en=0 brk=1 key=1 wd=0
+[  80.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61990 lk=1 en=0 brk=1 key=1 wd=0
+[  80.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6954 lk=1 en=0 brk=1 key=1 wd=0
+[  80.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17454 lk=1 en=0 brk=1 key=1 wd=0
+[  80.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27954 lk=1 en=0 brk=1 key=1 wd=0
+[  80.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38454 lk=1 en=0 brk=1 key=1 wd=0
+[  81.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48954 lk=1 en=0 brk=1 key=1 wd=0
+[  81.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59453 lk=1 en=0 brk=1 key=1 wd=0
+[  81.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4417 lk=1 en=0 brk=1 key=1 wd=0
+[  81.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14917 lk=1 en=0 brk=1 key=1 wd=0
+[  81.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25417 lk=1 en=0 brk=1 key=1 wd=0
+[  82.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35917 lk=1 en=0 brk=1 key=1 wd=0
+[  82.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46417 lk=1 en=0 brk=1 key=1 wd=0
+[  82.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56917 lk=1 en=0 brk=1 key=1 wd=0
+[  82.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1880 lk=1 en=0 brk=1 key=1 wd=0
+[  83.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12380 lk=1 en=0 brk=1 key=1 wd=0
+[  83.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22880 lk=1 en=0 brk=1 key=1 wd=0
+[  83.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33380 lk=1 en=0 brk=1 key=1 wd=0
+[  83.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43880 lk=1 en=0 brk=1 key=1 wd=0
+[  83.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54380 lk=1 en=0 brk=1 key=1 wd=0
+[  84.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64880 lk=1 en=0 brk=1 key=1 wd=0
+[  84.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9843 lk=1 en=0 brk=1 key=1 wd=0
+[  84.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20343 lk=1 en=0 brk=1 key=1 wd=0
+[  84.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30843 lk=1 en=0 brk=1 key=1 wd=0
+[  84.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41343 lk=1 en=0 brk=1 key=1 wd=0
+[  85.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51843 lk=1 en=0 brk=1 key=1 wd=0
+[  85.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62343 lk=1 en=0 brk=1 key=1 wd=0
+[  85.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7306 lk=1 en=0 brk=1 key=1 wd=0
+[  85.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17806 lk=1 en=0 brk=1 key=1 wd=0
+[  85.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28306 lk=1 en=0 brk=1 key=1 wd=0
+[  86.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38806 lk=1 en=0 brk=1 key=1 wd=0
+[  86.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49306 lk=1 en=0 brk=1 key=1 wd=0
+[  86.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59806 lk=1 en=0 brk=1 key=1 wd=0
+[  86.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4770 lk=1 en=0 brk=1 key=1 wd=0
+[  86.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15269 lk=1 en=0 brk=1 key=1 wd=0
+[  87.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25769 lk=1 en=0 brk=1 key=1 wd=0
+[  87.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36269 lk=1 en=0 brk=1 key=1 wd=0
+[  87.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=46769 lk=1 en=0 brk=1 key=1 wd=0
+[  87.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57269 lk=1 en=0 brk=1 key=1 wd=0
+[  88.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2233 lk=1 en=0 brk=1 key=1 wd=0
+[  88.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=12733 lk=1 en=0 brk=1 key=1 wd=0
+[  88.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23232 lk=1 en=0 brk=1 key=1 wd=0
+[  88.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=33732 lk=1 en=0 brk=1 key=1 wd=0
+[  88.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44232 lk=1 en=0 brk=1 key=1 wd=0
+[  89.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=54732 lk=1 en=0 brk=1 key=1 wd=0
+[  89.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=65232 lk=1 en=0 brk=1 key=1 wd=0
+[  89.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10196 lk=1 en=0 brk=1 key=1 wd=0
+[  89.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=20696 lk=1 en=0 brk=1 key=1 wd=0
+[  89.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31195 lk=1 en=0 brk=1 key=1 wd=0
+[  90.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=41695 lk=1 en=0 brk=1 key=1 wd=0
+[  90.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52195 lk=1 en=0 brk=1 key=1 wd=0
+[  90.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=62695 lk=1 en=0 brk=1 key=1 wd=0
+[  90.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 7659 lk=1 en=0 brk=1 key=1 wd=0
+[  90.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18159 lk=1 en=0 brk=1 key=1 wd=0
+[  91.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=28659 lk=1 en=0 brk=1 key=1 wd=0
+[  91.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39158 lk=1 en=0 brk=1 key=1 wd=0
+[  91.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=49658 lk=1 en=0 brk=1 key=1 wd=0
+[  91.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60158 lk=1 en=0 brk=1 key=1 wd=0
+[  92.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5122 lk=1 en=0 brk=1 key=1 wd=0
+[  92.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15622 lk=1 en=0 brk=1 key=1 wd=0
+[  92.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26122 lk=1 en=0 brk=1 key=1 wd=0
+[  92.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36621 lk=1 en=0 brk=1 key=1 wd=0
+[  92.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47121 lk=1 en=0 brk=1 key=1 wd=0
+[  93.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57621 lk=1 en=0 brk=1 key=1 wd=0
+[  93.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2585 lk=1 en=0 brk=1 key=1 wd=0
+[  93.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13085 lk=1 en=0 brk=1 key=1 wd=0
+[  93.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23585 lk=1 en=0 brk=1 key=1 wd=0
+[  93.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34085 lk=1 en=0 brk=1 key=1 wd=0
+[  94.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44584 lk=1 en=0 brk=1 key=1 wd=0
+[  94.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55084 lk=1 en=0 brk=1 key=1 wd=0
+[  94.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=   48 lk=1 en=0 brk=1 key=1 wd=0
+[  94.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10548 lk=1 en=0 brk=1 key=1 wd=0
+[  94.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21048 lk=1 en=0 brk=1 key=1 wd=0
+[  95.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31548 lk=1 en=0 brk=1 key=1 wd=0
+[  95.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42048 lk=1 en=0 brk=1 key=1 wd=0
+[  95.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52547 lk=1 en=0 brk=1 key=1 wd=0
+[  95.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63047 lk=1 en=0 brk=1 key=1 wd=0
+[  96.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8011 lk=1 en=0 brk=1 key=1 wd=0
+[  96.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18511 lk=1 en=0 brk=1 key=1 wd=0
+[  96.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29011 lk=1 en=0 brk=1 key=1 wd=0
+[  96.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39511 lk=1 en=0 brk=1 key=1 wd=0
+[  96.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50011 lk=1 en=0 brk=1 key=1 wd=0
+[  97.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60510 lk=1 en=0 brk=1 key=1 wd=0
+[  97.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5474 lk=1 en=0 brk=1 key=1 wd=0
+[  97.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=15974 lk=1 en=0 brk=1 key=1 wd=0
+[  97.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26474 lk=1 en=0 brk=1 key=1 wd=0
+[  97.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=36974 lk=1 en=0 brk=1 key=1 wd=0
+[  98.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47474 lk=1 en=0 brk=1 key=1 wd=0
+[  98.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=57973 lk=1 en=0 brk=1 key=1 wd=0
+[  98.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 2937 lk=1 en=0 brk=1 key=1 wd=0
+[  98.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13437 lk=1 en=0 brk=1 key=1 wd=0
+[  98.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=23937 lk=1 en=0 brk=1 key=1 wd=0
+[  99.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34437 lk=1 en=0 brk=1 key=1 wd=0
+[  99.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=44937 lk=1 en=0 brk=1 key=1 wd=0
+[  99.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55437 lk=1 en=0 brk=1 key=1 wd=0
+[  99.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  400 lk=1 en=0 brk=1 key=1 wd=0
+[ 100.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=10900 lk=1 en=0 brk=1 key=1 wd=0
+[ 100.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21400 lk=1 en=0 brk=1 key=1 wd=0
+[ 100.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=31900 lk=1 en=0 brk=1 key=1 wd=0
+[ 100.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42400 lk=1 en=0 brk=1 key=1 wd=0
+[ 100.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=52900 lk=1 en=0 brk=1 key=1 wd=0
+[ 101.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63400 lk=1 en=0 brk=1 key=1 wd=0
+[ 101.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8363 lk=1 en=0 brk=1 key=1 wd=0
+[ 101.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=18863 lk=1 en=0 brk=1 key=1 wd=0
+[ 101.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29363 lk=1 en=0 brk=1 key=1 wd=0
+[ 101.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=39863 lk=1 en=0 brk=1 key=1 wd=0
+[ 102.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50363 lk=1 en=0 brk=1 key=1 wd=0
+[ 102.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=60863 lk=1 en=0 brk=1 key=1 wd=0
+[ 102.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 5827 lk=1 en=0 brk=1 key=1 wd=0
+[ 102.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16326 lk=1 en=0 brk=1 key=1 wd=0
+[ 102.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=26826 lk=1 en=0 brk=1 key=1 wd=0
+[ 103.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37326 lk=1 en=0 brk=1 key=1 wd=0
+[ 103.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=47826 lk=1 en=0 brk=1 key=1 wd=0
+[ 103.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58326 lk=1 en=0 brk=1 key=1 wd=0
+[ 103.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3290 lk=1 en=0 brk=1 key=1 wd=0
+[ 104.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=13790 lk=1 en=0 brk=1 key=1 wd=0
+[ 104.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24289 lk=1 en=0 brk=1 key=1 wd=0
+[ 104.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=34789 lk=1 en=0 brk=1 key=1 wd=0
+[ 104.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45289 lk=1 en=0 brk=1 key=1 wd=0
+[ 104.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=55789 lk=1 en=0 brk=1 key=1 wd=0
+[ 105.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=  753 lk=1 en=0 brk=1 key=1 wd=0
+[ 105.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11253 lk=1 en=0 brk=1 key=1 wd=0
+[ 105.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=21752 lk=1 en=0 brk=1 key=1 wd=0
+[ 105.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32252 lk=1 en=0 brk=1 key=1 wd=0
+[ 105.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=42752 lk=1 en=0 brk=1 key=1 wd=0
+[ 106.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53252 lk=1 en=0 brk=1 key=1 wd=0
+[ 106.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=63752 lk=1 en=0 brk=1 key=1 wd=0
+[ 106.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 8716 lk=1 en=0 brk=1 key=1 wd=0
+[ 106.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19216 lk=1 en=0 brk=1 key=1 wd=0
+[ 106.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=29715 lk=1 en=0 brk=1 key=1 wd=0
+[ 107.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40215 lk=1 en=0 brk=1 key=1 wd=0
+[ 107.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=50715 lk=1 en=0 brk=1 key=1 wd=0
+[ 107.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61215 lk=1 en=0 brk=1 key=1 wd=0
+[ 107.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6179 lk=1 en=0 brk=1 key=1 wd=0
+[ 107.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=16679 lk=1 en=0 brk=1 key=1 wd=0
+[ 108.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27179 lk=1 en=0 brk=1 key=1 wd=0
+[ 108.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=37678 lk=1 en=0 brk=1 key=1 wd=0
+[ 108.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48178 lk=1 en=0 brk=1 key=1 wd=0
+[ 108.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=58678 lk=1 en=0 brk=1 key=1 wd=0
+[ 109.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3642 lk=1 en=0 brk=1 key=1 wd=0
+[ 109.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14142 lk=1 en=0 brk=1 key=1 wd=0
+[ 109.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24642 lk=1 en=0 brk=1 key=1 wd=0
+[ 109.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35142 lk=1 en=0 brk=1 key=1 wd=0
+[ 109.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45641 lk=1 en=0 brk=1 key=1 wd=0
+[ 110.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56141 lk=1 en=0 brk=1 key=1 wd=0
+[ 110.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1105 lk=1 en=0 brk=1 key=1 wd=0
+[ 110.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11605 lk=1 en=0 brk=1 key=1 wd=0
+[ 110.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22105 lk=1 en=0 brk=1 key=1 wd=0
+[ 110.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32605 lk=1 en=0 brk=1 key=1 wd=0
+[ 111.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43104 lk=1 en=0 brk=1 key=1 wd=0
+[ 111.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53604 lk=1 en=0 brk=1 key=1 wd=0
+[ 111.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64104 lk=1 en=0 brk=1 key=1 wd=0
+[ 111.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9068 lk=1 en=0 brk=1 key=1 wd=0
+[ 111.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19568 lk=1 en=0 brk=1 key=1 wd=0
+[ 112.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30068 lk=1 en=0 brk=1 key=1 wd=0
+[ 112.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40568 lk=1 en=0 brk=1 key=1 wd=0
+[ 112.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51067 lk=1 en=0 brk=1 key=1 wd=0
+[ 112.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61567 lk=1 en=0 brk=1 key=1 wd=0
+[ 113.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6531 lk=1 en=0 brk=1 key=1 wd=0
+[ 113.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17031 lk=1 en=0 brk=1 key=1 wd=0
+[ 113.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27531 lk=1 en=0 brk=1 key=1 wd=0
+[ 113.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38031 lk=1 en=0 brk=1 key=1 wd=0
+[ 113.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48531 lk=1 en=0 brk=1 key=1 wd=0
+[ 114.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59030 lk=1 en=0 brk=1 key=1 wd=0
+[ 114.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 3994 lk=1 en=0 brk=1 key=1 wd=0
+[ 114.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14494 lk=1 en=0 brk=1 key=1 wd=0
+[ 114.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=24994 lk=1 en=0 brk=1 key=1 wd=0
+[ 114.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=35494 lk=1 en=0 brk=1 key=1 wd=0
+[ 115.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=45994 lk=1 en=0 brk=1 key=1 wd=0
+[ 115.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=56494 lk=1 en=0 brk=1 key=1 wd=0
+[ 115.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 1457 lk=1 en=0 brk=1 key=1 wd=0
+[ 115.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=11957 lk=1 en=0 brk=1 key=1 wd=0
+[ 115.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=22457 lk=1 en=0 brk=1 key=1 wd=0
+[ 116.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=32957 lk=1 en=0 brk=1 key=1 wd=0
+[ 116.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=43457 lk=1 en=0 brk=1 key=1 wd=0
+[ 116.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=53957 lk=1 en=0 brk=1 key=1 wd=0
+[ 116.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=64456 lk=1 en=0 brk=1 key=1 wd=0
+[ 117.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 9420 lk=1 en=0 brk=1 key=1 wd=0
+[ 117.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=19920 lk=1 en=0 brk=1 key=1 wd=0
+[ 117.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=30420 lk=1 en=0 brk=1 key=1 wd=0
+[ 117.6s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=40920 lk=1 en=0 brk=1 key=1 wd=0
+[ 117.8s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=51420 lk=1 en=0 brk=1 key=1 wd=0
+[ 118.0s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=61920 lk=1 en=0 brk=1 key=1 wd=0
+[ 118.2s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 6883 lk=1 en=0 brk=1 key=1 wd=0
+[ 118.4s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=17383 lk=1 en=0 brk=1 key=1 wd=0
+[ 118.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=27883 lk=1 en=0 brk=1 key=1 wd=0
+[ 118.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=38383 lk=1 en=0 brk=1 key=1 wd=0
+[ 119.1s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=48883 lk=1 en=0 brk=1 key=1 wd=0
+[ 119.3s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=59383 lk=1 en=0 brk=1 key=1 wd=0
+[ 119.5s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr= 4347 lk=1 en=0 brk=1 key=1 wd=0
+[ 119.7s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=14846 lk=1 en=0 brk=1 key=1 wd=0
+[ 119.9s] STOP  a=-16724 ad=    -7 duty=     0 adc=   0 enc= -119 fr=25346 lk=1 en=0 brk=1 key=1 wd=0
+SUMMARY: frames=5715 seq_breaks=0 elapsed=120.1s last_data=120.02002339996397 tail_silence=0.1s status=completed

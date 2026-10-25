@@ -1,0 +1,10 @@
+VCD info: dumpfile motor_tb.vcd opened for output.
+  ok  N1=IN2=1, mag=0)
+  ok  0, AIN1=1/AIN2=0
+  ok  0, AIN1=0/AIN2=1
+  ok  ed to +150 drive
+  ok  ed to -150 drive
+  ok  0 -> short brake
+  ok  eadband -> drive
+PASS: motor_driver verified
+sim/motor_tb.v:86: $finish called at 211000 (1ps)
