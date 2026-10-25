@@ -309,12 +309,15 @@ module top (
 
     // motor front-end: signed duty -> TB6612 (brake-aware, min-drive)
     motor_driver #(
-        .DEADBAND (80)          // 0.8 % min-drive lift (JiangXie "PWM offset").
-                                // 2026-10-25 bench: 150 (1.5 %) left a 0.18 s
-                                // period high-frequency wobble (JiangXie pid-3:
-                                // "offset too LARGE -> high-frequency wobble");
-                                // halve the over-zero torque step.  Was 150 as
-                                // a pure deadband-to-brake before the rework.
+        .DEADBAND (150)         // 1.5 % min-drive lift (JiangXie "PWM offset",
+                                // factory range 0~5).  Bench 10-25 U-curve,
+                                // dropout-free BAL segments: offset 80 -> std
+                                // ~220 cdeg / 0.23 s wobble, 150 -> ~190 /
+                                // 0.18 s (BEST), 300 -> ~300 / 0.29 s.  150
+                                // sits at the bottom of the curve; larger and
+                                // smaller both wobble more (matches the
+                                // factory table: too small = slow wobble, too
+                                // large = fast wobble).
     ) u_motor (
         .clk      (sys_clk),
         .rst_n    (rst_n),
