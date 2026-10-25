@@ -206,6 +206,42 @@ module top (
 
     wire signed [31:0] loc_target;
     wire               loc_moving;
+
+    // ---- position demo sequencer (option B, 2026-10-26) -----------------
+    // The kit K1/K2 buttons are NOT wired to G1 yet (N10/M11 proposed only),
+    // so until option A lands this walks the position target by itself:
+    // in BALANCE, settle 5 s, then +1 rev -- hold -- -1 rev -- hold, loop.
+    // It injects pulses into the SAME strobes K1/K2 use, so loc_target_gen
+    // is untouched; set POS_DEMO=0 when the wires arrive.
+    localparam POS_DEMO = 1;
+    reg [19:0] demo_ms;         // ms inside BALANCE (saturating)
+    reg        demo_up_s, demo_dn_s;
+    wire       bal_active = (ctrl_mode == 3'd3);
+    always @(posedge sys_clk or negedge rst_n) begin
+        if (!rst_n) begin
+            demo_ms <= 20'd0; demo_up_s <= 1'b0; demo_dn_s <= 1'b0;
+        end
+        else begin
+            demo_up_s <= 1'b0;
+            demo_dn_s <= 1'b0;
+            if (tick) begin
+                if (!bal_active) begin
+                    demo_ms <= 20'd0;
+                end
+                else begin
+                    if (demo_ms != 20'hFFFFF) demo_ms <= demo_ms + 20'd1;
+                    if (POS_DEMO) begin
+                        if (demo_ms == 20'd5000)  demo_up_s <= 1'b1;  // +1 rev
+                        if (demo_ms == 20'd9000)  demo_dn_s <= 1'b1;  // back
+                        if (demo_ms == 20'd13000) demo_ms   <= 20'd0; // loop
+                    end
+                end
+            end
+        end
+    end
+    wire kb_up_s_all = kb_up_s | demo_up_s;
+    wire kb_dn_s_all = kb_dn_s | demo_dn_s;
+
     loc_target_gen #(
         .STEP_HZ   (2),         // 2 revolutions/s while ramping
         .REV_COUNT (408),
@@ -214,8 +250,8 @@ module top (
         .clk      (sys_clk),
         .rst_n    (rst_n),
         .tick_1k  (tick),
-        .btn_up   (kb_up_s),
-        .btn_down (kb_dn_s),
+        .btn_up   (kb_up_s_all),
+        .btn_down (kb_dn_s_all),
         .run      (ctrl_en),
         .target   (loc_target),
         .moving   (loc_moving)

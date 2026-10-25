@@ -1,0 +1,9 @@
+DBG cmd=816 target=0 moving=0
+  ok   ramp before run: 0
+  ok  et 408 at 0.75 s: 408
+  ok  et 816 at 1.25 s: 816
+  ok  clamped at +4080: 4080
+  ok  aused with run=0: 4080
+  ok  down ramp moving: 1
+PASS: loc_target_gen verified
+sim/loc_target_tb.v:88: $finish called at 715779991000 (1ps)
