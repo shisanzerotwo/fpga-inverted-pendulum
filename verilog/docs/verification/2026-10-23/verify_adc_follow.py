@@ -19,13 +19,21 @@ def summarize(path):
     raw = path.read_bytes()
     frames, meta = parse_capture(raw)
     adc = [frame["adc"] for frame in frames]
+    metadata_path = Path(str(path) + ".meta.json")
+    capture_metadata = json.loads(metadata_path.read_text(encoding="utf-8")) if metadata_path.exists() else {}
+    contiguous = all(b["offset"] == a["offset"] + 15 for a, b in zip(frames, frames[1:]))
     return frames, dict(meta, file=path.name, sha256=hashlib.sha256(raw).hexdigest(),
         sequence_breaks=sum(b["seq"] != (a["seq"] + 1) % 256 for a, b in zip(frames, frames[1:])),
         stop_safe=bool(frames) and all(f["mode"] == 0 and f["duty"] == 0 and
-            f["enable"] == 0 and f["braking"] == 1 for f in frames),
+            f["enable"] == 0 and f["braking"] == 1 and f["key"] == 1 for f in frames),
+        key_released=bool(frames) and all(f["key"] == 1 for f in frames),
+        contiguous_frames=contiguous,
+        capture_completed=capture_metadata.get("status") == "completed",
+        metadata_frame_count_matches=capture_metadata.get("valid_frames") == len(frames),
         link_good=bool(frames) and all(f["link"] == 1 for f in frames),
         adc_min=min(adc) if adc else None, adc_max=max(adc) if adc else None,
-        adc_median=statistics.median(adc) if adc else None)
+        adc_median=statistics.median(adc) if adc else None,
+        capture_metadata=capture_metadata)
 
 
 def main():
@@ -35,10 +43,16 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
+    output_paths = [args.output / "adc_follow.json", args.output / "adc_follow.png"]
+    existing = [str(path) for path in output_paths if path.exists()]
+    if existing:
+        raise SystemExit("Refusing to overwrite evidence: " + ", ".join(existing))
     groups = [summarize(args.hanging), summarize(args.upright)]
     summaries = [meta for _, meta in groups]
     usable = all(s["valid_frames"] >= 100 and s["sequence_breaks"] == 0 and
-                 s["stop_safe"] and s["link_good"] for s in summaries)
+                 s["rejected_candidates"] == 0 and s["contiguous_frames"] and
+                 s["capture_completed"] and s["metadata_frame_count_matches"] and
+                 s["stop_safe"] and s["key_released"] and s["link_good"] for s in summaries)
     delta = abs(summaries[1]["adc_median"] - summaries[0]["adc_median"]) if usable else None
     noise = max(s["adc_max"] - s["adc_min"] for s in summaries) if usable else None
     # Diagnostic gate only; this is not an angle or offset calibration.
@@ -58,7 +72,7 @@ def main():
         axes[0].plot(values, label=f"{label}：中位数 {meta['adc_median']:g}", alpha=.85, linewidth=1)
         axes[1].scatter([label] * len(values), values, alpha=.1, s=14)
         axes[1].scatter(label, meta["adc_median"], color="black", marker="_", s=400)
-    axes[0].set(xlabel="有效帧样本序号（非时间）", ylabel="ADC 原始计数", title="180° 人工激励前后，ADC 仍处于同一噪声带")
+    axes[0].set(xlabel="有效帧样本序号（非时间）", ylabel="ADC 原始计数", title="自然下垂与竖直朝上姿态的 ADC 样本")
     axes[0].legend(loc="lower right")
     axes[1].set(ylabel="ADC 原始计数", title=f"中位差 {delta:g}；组内跨度 {noise:g}" if usable else "采集不可用于比较")
     for ax in axes:
