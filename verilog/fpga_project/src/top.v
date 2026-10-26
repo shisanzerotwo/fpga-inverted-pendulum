@@ -186,7 +186,12 @@ module top (
     // Cascade control: swing-up pump + balance PID + same-cycle interlock
     // ------------------------------------------------------------------
     // position target buttons: kit K1/K2, active low, bank 2 = 2.5V LVCMOS25
-    // edge-detect to single-clock strobes for loc_target_gen
+    // STROBE WIDTH FIX 2026-10-26: these strobes must span a 1 kHz tick.
+    // A raw edge detector gives a 20 ns pulse, while loc_target_gen samples
+    // btn_up ONLY on the tick edge -- a 20 ns pulse lands on a tick-high
+    // cycle with probability 1/50000 and is otherwise invisible (the same
+    // one-clock-pulse trap the pend_ctrl header documents for run_rise).
+    // Holding the strobe until the NEXT tick guarantees the consumer sees it.
     reg [1:0] kbtn_d;
     reg       kb_up_s, kb_dn_s;
     always @(posedge sys_clk or negedge rst_n) begin
@@ -196,9 +201,13 @@ module top (
             kb_dn_s <= 1'b0;
         end
         else begin
-            kbtn_d  <= kbtn;
-            kb_up_s <= 1'b0;
-            kb_dn_s <= 1'b0;
+            kbtn_d <= kbtn;
+            if (tick) begin           // cleared by a tick AFTER being sampled
+                kb_up_s <= 1'b0;
+                kb_dn_s <= 1'b0;
+            end
+            // (set wins over clear: both are non-blocking, later assignment
+            //  keeps the strobe alive into the next tick window)
             if (kbtn_d[0] && !kbtn[0]) kb_up_s <= 1'b1;   // K1 fell
             if (kbtn_d[1] && !kbtn[1]) kb_dn_s <= 1'b1;   // K2 fell
         end
@@ -206,6 +215,21 @@ module top (
 
     wire signed [31:0] loc_target;
     wire               loc_moving;
+
+    // Control-signal declarations are HOISTED above every consumer.  Gowin
+    // silently tolerates use-before-declaration (it binds an undriven 1-bit
+    // implicit net); Icarus rejects it.  The 2026-10-26 demo sequencer first
+    // shipped with `ctrl_mode` used 44 lines before this point and the build
+    // was warning-free, yet bal_active was constant 0 and the demo never
+    // fired -- the same trap the pend_ctrl header documents for tick_200.
+    wire signed [15:0] duty;         // -10000..10000
+    wire signed [15:0] alpha;        // centideg, 0 = rod up (debug)
+    wire signed [15:0] adot_dbg;     // centideg/s (telemetry)
+    wire [2:0]         ctrl_mode;    // 0 STOP, 1 JUDGE, 2 PUMP, 3 BAL (debug)
+    wire               ctrl_en;      // 0 = interlocked
+    wire               ctrl_wdog;    // 1 = saturation watchdog release window
+    wire [13:0]        duty_mag;     // 0..10000 after motor front-end
+    wire               braking;      // 1 = short brake held
 
     // ---- position demo sequencer (option B, 2026-10-26) -----------------
     // The kit K1/K2 buttons are NOT wired to G1 yet (N10/M11 proposed only),
@@ -221,20 +245,20 @@ module top (
         if (!rst_n) begin
             demo_ms <= 20'd0; demo_up_s <= 1'b0; demo_dn_s <= 1'b0;
         end
-        else begin
+        else if (tick) begin
+            // strobes are held a full tick (see the K1/K2 note above); they
+            // are cleared HERE, at the tick AFTER the one that sampled them
             demo_up_s <= 1'b0;
             demo_dn_s <= 1'b0;
-            if (tick) begin
-                if (!bal_active) begin
-                    demo_ms <= 20'd0;
-                end
-                else begin
-                    if (demo_ms != 20'hFFFFF) demo_ms <= demo_ms + 20'd1;
-                    if (POS_DEMO) begin
-                        if (demo_ms == 20'd5000)  demo_up_s <= 1'b1;  // +1 rev
-                        if (demo_ms == 20'd9000)  demo_dn_s <= 1'b1;  // back
-                        if (demo_ms == 20'd13000) demo_ms   <= 20'd0; // loop
-                    end
+            if (!bal_active) begin
+                demo_ms <= 20'd0;
+            end
+            else begin
+                if (demo_ms != 20'hFFFFF) demo_ms <= demo_ms + 20'd1;
+                if (POS_DEMO) begin
+                    if (demo_ms == 20'd5000)  demo_up_s <= 1'b1;  // +1 rev
+                    if (demo_ms == 20'd9000)  demo_dn_s <= 1'b1;  // back
+                    if (demo_ms == 20'd13000) demo_ms   <= 20'd0; // loop
                 end
             end
         end
@@ -243,7 +267,15 @@ module top (
     wire kb_dn_s_all = kb_dn_s | demo_dn_s;
 
     loc_target_gen #(
-        .STEP_HZ   (2),         // 2 revolutions/s while ramping
+        .STEP_HZ   (1),         // 1 revolution/s while ramping.  Was 2 rev/s
+                                // (the reference contract): bench 2026-10-26
+                                // posdemo_run3 -- the first demo move tilted
+                                // the light rod to -15.6 deg and it diverged
+                                // to the fall window (-86 deg, run killed),
+                                // while all 7 later moves survived with peaks
+                                // at 12~18 deg.  Halving the ramp velocity
+                                // halves the arm acceleration the position
+                                // loop has to buy with rod tilt.
         .REV_COUNT (408),
         .LIMIT     (4080)
     ) u_ltg (
@@ -256,15 +288,6 @@ module top (
         .target   (loc_target),
         .moving   (loc_moving)
     );
-
-    wire signed [15:0] duty;         // -10000..10000
-    wire signed [15:0] alpha;        // centideg, 0 = rod up (debug)
-    wire signed [15:0] adot_dbg;     // centideg/s (telemetry)
-    wire [2:0]         ctrl_mode;    // 0 STOP, 1 JUDGE, 2 PUMP, 3 BAL (debug)
-    wire               ctrl_en;      // 0 = interlocked
-    wire               ctrl_wdog;    // 1 = saturation watchdog release window
-    wire [13:0]        duty_mag;     // 0..10000 after motor front-end
-    wire               braking;      // 1 = short brake held
 
     pendulum_ctrl #(
         .ANG_OFFSET (2057),     // 2026-10-24 new-board 3-pose calib: upright median 2057
