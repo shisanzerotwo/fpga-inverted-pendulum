@@ -267,17 +267,15 @@ module top (
     wire kb_dn_s_all = kb_dn_s | demo_dn_s;
 
     loc_target_gen #(
-        .STEP_HZ   (1),         // 1 revolution/s while ramping.  Was 2 rev/s
-                                // (the reference contract): bench 2026-10-26
-                                // posdemo_run3 -- the first demo move tilted
-                                // the light rod to -15.6 deg and it diverged
-                                // to the fall window (-86 deg, run killed),
-                                // while all 7 later moves survived with peaks
-                                // at 12~18 deg.  Halving the ramp velocity
-                                // halves the arm acceleration the position
-                                // loop has to buy with rod tilt.
-        .REV_COUNT (408),
-        .LIMIT     (4080)
+        .STEP_HZ   (1),         // one ramp step per 1 s
+        .REV_COUNT (408),       // button step contract stays one revolution
+        .LIMIT     (4080),
+        // 2026-10-26: half-rev ramp steps -> 0.5 rev/s setpoint.  Full-rev
+        // steps at 1 rev/s still tilted the rod p90 = 12 deg during a move
+        // and left it swinging at the stop; the position loop only has to
+        // buy acceleration through rod tilt, so halving the step halves the
+        // tilt and the residual swing at every stop.
+        .RAMP_STEP (204)
     ) u_ltg (
         .clk      (sys_clk),
         .rst_n    (rst_n),
@@ -313,16 +311,13 @@ module top (
                                 // 4x150 ms (600 ms) locked the rod in a
                                 // -65..-99 deg limit ring for 88 s -- the same
                                 // over-long-cycle failure mode, confirmed.
-        .POS_TRIM   (1000),     // was 2000: tlm_run3's 6.9 s BALANCE died of
-                                // POSITION-LOOP SATURATION -- enc drifted
-                                // -452 counts while the loop clamp pinned
-                                // ang_sp at -20 deg, so the rod balanced at
-                                // +35 deg instead of vertical; a full-output
-                                // swing then pushed it past +68 deg and out.
-                                // Halving the clamp lets the angle loop hold
-                                // the rod near vertical; the position loop
-                                // stays a slow outer trim.  (RTL default
-                                // still 2000, ctrl_tb context untouched.)
+        .POS_TRIM   (800),      // 8 deg cap on the position loop's angle
+                                // request.  Was 1000 (10 deg).  During a demo
+                                // move the rod leans THIS much by design --
+                                // the tilt is the drive -- so the cap is also
+                                // the visual "how far it swings out" knob.
+                                // (History: 2000 -> 1000 on 10-07 when the
+                                // outer loop saturated at +35 deg.)
         .DUTY_LIM   (10000),    // back to full authority (2026-10-07): the
                                 // 3000 cap was a band-aid for the ground-bounce
                                 // alpha corruption, which the alpha slew limiter
@@ -346,9 +341,23 @@ module top (
         //   position: cdeg/count  = counts_per_count * 8.12988
         .KP_ANG     (32'sd201528),   // 3.075  = 0.25  PWM/cnt  (was 1.85)
         .KI_ANG     (32'sd7255),     // 0.1107 = 0.009 PWM/cnt  (was 0.0615)
-        .KD_ANG     (32'sd330506),   // 5.043  = 0.41  PWM/cnt  (was 18 = 3.6x)
+        .KD_ANG     (32'sd330506),   // 5.043  = 0.41  PWM/cnt (factory).
+                                     // Bench 2026-10-26: 7.507 with the D
+                                     // filter measured the SAME static wobble
+                                     // (HF residual 201 cdeg) -- the +/-2 deg
+                                     // floor is mechanical (hub play, pot
+                                     // coupling, gear backlash, stiction),
+                                     // so no reason to run above factory.
         .KP_POS     (32'sd277056),   // 4.228 cdeg/cnt = 0.52   (was 40 = 9.5x)
-        .KD_POS     (32'sd2429568)   // 37.07 cdeg/cnt = 4.56   (was 400 = 10.8x)
+        .KD_POS     (32'sd2429568),  // 37.07 cdeg/cnt = 4.56   (was 400 = 10.8x)
+        // ---- 2026-10-26 jitter / levelling ----
+        .KI_POS     (32'sd5328),     // 0.0813 cdeg/cnt = 0.01 factory unit:
+                                     // position droop -> 0, so the rod sits
+                                     // truly vertical after each move.
+        .POS_I_BAND (100),           // only trim the last 100 counts
+        .D_SHIFT_ANG(1)              // 10 ms D smoothing: the 0.18 s limit
+                                     // cycle was quantisation noise through the
+                                     // raw D term (1 LSB = 8.13 cdeg)
     ) u_ctrl (
         .clk      (sys_clk),
         .rst_n    (rst_n),

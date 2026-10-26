@@ -15,7 +15,13 @@
 module loc_target_gen #(
     parameter integer STEP_HZ   = 2,        // ramp: revolutions per second
     parameter integer REV_COUNT = 408,      // counts per arm revolution
-    parameter integer LIMIT     = 4080      // +/- target clamp (10 revolutions)
+    parameter integer LIMIT     = 4080,     // +/- target clamp (10 revolutions)
+    // 2026-10-26: the ramp step used to equal REV_COUNT (a full revolution per
+    // DIV ms).  On this light rod a full-rev step tilts the pendulum ~12 deg
+    // (p90) during the move and leaves it swinging at the stop moment.  A
+    // separate (smaller) RAMP_STEP with the SAME DIV gives the position loop a
+    // gentler setpoint -- half-rev steps at STEP_HZ=1 = 0.5 rev/s.
+    parameter integer RAMP_STEP = 408
 ) (
     input  wire        clk,
     input  wire        rst_n,
@@ -26,8 +32,9 @@ module loc_target_gen #(
     output reg  signed [31:0] target,
     output reg         moving               // 1 while ramping (debug)
 );
-    localparam signed [31:0] REV_S = REV_COUNT;
-    localparam signed [31:0] LIM_S = LIMIT;
+    localparam signed [31:0] REV_S  = REV_COUNT;
+    localparam signed [31:0] STEP_S = RAMP_STEP;
+    localparam signed [31:0] LIM_S  = LIMIT;
     parameter integer DIV = 1000 / STEP_HZ; // ms per one-revolution step
     localparam [8:0] DIV_W = DIV;           // equal-width relay (trap 9).  9
                                             // bits: DIV=500 overflowed the old
@@ -58,9 +65,9 @@ module loc_target_gen #(
                 moving <= 1'b1;
                 if (ramp_div >= DIV_W - 9'd1) begin
                     ramp_div <= 9'd0;
-                    if (cmd - target >= REV_S)      target <= target + REV_S;
-                    else if (target - cmd >= REV_S) target <= target - REV_S;
-                    else                            target <= cmd;
+                    if (cmd - target >= STEP_S)      target <= target + STEP_S;
+                    else if (target - cmd >= STEP_S) target <= target - STEP_S;
+                    else                             target <= cmd;
                 end
                 else ramp_div <= ramp_div + 9'd1;
             end

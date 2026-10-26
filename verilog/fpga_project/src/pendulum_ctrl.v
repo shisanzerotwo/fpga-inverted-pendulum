@@ -181,7 +181,31 @@ module pendulum_ctrl #(
                                                     // return swing overshoot
                                                     // (bench 10-07 round 13)
     parameter signed [31:0] KP_POS = 32'sd2621440,  // 0.40*100      = 40 /cnt
-    parameter signed [31:0] KD_POS = 32'sd26214400  // 4.00*100       = 400 /cnt
+    parameter signed [31:0] KD_POS = 32'sd26214400, // 4.00*100       = 400 /cnt
+    // ---- 2026-10-26 jitter / levelling (see pid.v D_SHIFT, I_BAND) ----
+    parameter signed [31:0] KI_POS     = 32'sd0,    // position integral,
+                                                    // cdeg/cnt per 50 ms tick.
+                                                    // 江协 V1.1 factory: 0.01
+                                                    // PWM/cnt -> x8.12988 =
+                                                    // 0.0813 -> Q16.16 5328.
+                                                    // Removes the PD droop
+                                                    // that left the rod a fixed
+                                                    // ~1 deg off vertical after
+                                                    // every position move.
+    parameter integer POS_I_BAND  = 100,   // integral separation, counts
+                                           // (江协 position loop threshold):
+                                           // ramping/moving errors are large
+                                           // and must NOT wind the integral;
+                                           // only the last <100 counts trim.
+    parameter integer D_SHIFT_ANG = 0,     // angle-loop D smoothing (ticks,
+                                           // 200 Hz -> 2^N*5 ms).  1 = 10 ms
+                                           // tau: removes the ADC-quantisation
+                                           // noise path that pumps the 0.18 s
+                                           // limit cycle, 18 deg lag at 5.5 Hz.
+    parameter integer D_SHIFT_POS = 0      // position-loop D smoothing.  Keep
+                                           // 0: its D term is the ramp damper
+                                           // (KD_POS 37 at 20 Hz), and a 100 ms
+                                           // tau would let the move overshoot.
 ) (
     input  wire        clk,
     input  wire        rst_n,
@@ -610,8 +634,19 @@ module pendulum_ctrl #(
     // ------------------------------------------------------- loop enables --
     // Both PIDs run ONLY in BALANCE; a one-clock wipe on entry clears stale
     // integrators (the reference zeroes ErrorInt on center entry too).
-    wire bal_en  = (mode_r == M_BAL);
-    wire bal_clr = bal_en && (mode_d != M_BAL);
+    //
+    // 2026-10-26: a glitch FREEZE must also freeze the loops.  While the
+    // limiter holds alpha (jumped but not yet timed out) the held value is
+    // the last true angle, NOT the current one -- running the PID on it made
+    // a dropout look like a sudden 15-25 deg error and slammed duty to
+    // +/-10000 for the whole freeze (bench kd775e: both BAL segments died
+    // exactly this way -- alpha jumped and froze at +1528 / -2431, duty went
+    // to full authority, rod thrown out).  Freezing the loops keeps the last
+    // good output instead; if the dropout outlasts DEAD_MS the run stops
+    // clean, and if it ends earlier the loops resume on real samples.
+    wire glitch_hold = jumped && !follow;
+    wire bal_en  = (mode_r == M_BAL) && !glitch_hold;
+    wire bal_clr = (mode_r == M_BAL) && (mode_d != M_BAL);
 
     // D-term seed: one 5 ms tick worth of error-rate at capture.
     //   err = -alpha (+ slow pos trim);  d(err)/dt = -adot
@@ -622,8 +657,12 @@ module pendulum_ctrl #(
     // ------------------------------------------------------- position loop --
     wire signed [15:0] pos_pid_out;
     pid #(
-        .KP (KP_POS), .KI (32'sd0), .KD (KD_POS),
-        .OUT_MIN (-POS_TRIM_S), .OUT_MAX ( POS_TRIM_S)
+        .KP (KP_POS), .KI (KI_POS), .KD (KD_POS),
+        .OUT_MIN (-POS_TRIM_S), .OUT_MAX ( POS_TRIM_S),
+        // the integrator shares the trim clamp: it must never wind past the
+        // authority the position loop actually has
+        .I_MIN (-POS_TRIM_S), .I_MAX ( POS_TRIM_S),
+        .D_SHIFT (D_SHIFT_POS), .I_BAND (POS_I_BAND)
     ) u_pos_pid (
         .clk (clk), .rst_n (rst_n), .tick (tick_20),
         .en  (bal_en), .clr (bal_clr),
@@ -651,7 +690,8 @@ module pendulum_ctrl #(
     pid #(
         .KP (KP_ANG), .KI (KI_ANG), .KD (KD_ANG),
         .OUT_MIN (-DUTY_LIM_S), .OUT_MAX ( DUTY_LIM_S),
-        .I_MIN (-32'sd3000), .I_MAX (32'sd3000)
+        .I_MIN (-32'sd3000), .I_MAX (32'sd3000),
+        .D_SHIFT (D_SHIFT_ANG), .I_BAND (0)
     ) u_ang_pid (
         .clk (clk), .rst_n (rst_n), .tick (tick_200),
         .en  (bal_en), .clr (bal_clr),
@@ -683,7 +723,9 @@ module pendulum_ctrl #(
     wire      bal_soft = bal_en && (bal_ms < 9'd100);
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)                  bal_ms <= 9'd0;
-        else if (tick_1k && bal_en) begin
+        // counted while IN BALANCE (not on bal_en: a glitch freeze must not
+        // re-arm soft-start every time the slip ring drops out)
+        else if (tick_1k && (mode_r == M_BAL)) begin
             // Saturate after the initial 100 ms.  A 9-bit free-running
             // counter wrapped every 512 ms and re-entered soft-start during
             // a long BAL run, periodically halving the control authority.
