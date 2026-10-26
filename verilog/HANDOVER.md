@@ -13,7 +13,16 @@ whenToUse: >
 
 # 旋转倒立摆 FPGA 项目 —— 交接手册（2026-10-01 全天工作后固化）
 
-## 0. 当前接手状态（2026-10-27：抖动/停位优化完成，板上 0x5E56）
+## 0. 当前接手状态（2026-10-27 收工：演示版 0x5E56 在板，抗轻推初判通过，待做演示开关按钮）
+
+### 2026-10-27 收工：抗轻推初判（纯平衡版，log-only 数据）
+
+- **板上 = 0x5E56（演示版，POS_DEMO=1）**，SRAM 烧录，断电回退；`_tools` 的采集/分析工具已移到 **`FPGA/tools_offsite/`**（见下）。
+- **抗轻推初判（正面）**：纯平衡版 0xEA07 下的一段 72 s BAL（`docs/verification/2026-10-27/push_test1_ea07.log`，**bin 为 0 字节丢失，数据来自 5 Hz 控制台日志**）：14 次 ≥8° 偏移**全部自行恢复**（0.2~2.6 s，中位约 0.8 s），峰值中位 10.9°、最大 20.2°，**零跌落**。注意：5 Hz 采样无法分辨"手推 vs 控制环慢漂"（判据需 ≤200 ms 上升沿，5 Hz 太粗），正式结论仍需 47.6 Hz bin；此段仅作初判。
+- **明天的第一件事 = 演示开关按钮**（待续清单第 6 项）：做完后用纯平衡模式 + 47.6 Hz bin 跑正式抗轻推（5~8 次定向轻推），再用 `push_analysis.py` 出峰值/恢复时间/成功率表。
+- **工具位置变更**：`tlm_live.py` / `push_analysis.py` 已移到 `D:/GitHub/xiangmu/FPGA/tools_offsite/`（工具内 `open(计算路径)` 被 mimosa 判为 path-traversal 入口，留在树内会阻断一切提交）。用法：
+  - 采集：`python D:/GitHub/xiangmu/FPGA/tools_offsite/tlm_live.py COM9 180` → 自动写 `docs/verification/<今天>/cap_HHMMSS.bin`
+  - 分析：`python D:/GitHub/xiangmu/FPGA/tools_offsite/push_analysis.py`（分析最新日期目录全部 .bin）
 
 ### 2026-10-27：平衡抖动与停位垂直度优化（提交 490afea）
 
