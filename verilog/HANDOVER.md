@@ -24,6 +24,7 @@ whenToUse: >
   - **为什么不用 KEY1 长按/双击**：KEY1 按下沿已承担 run 开/关，且这颗开关按下后约 150 ms 掉一次接触（`KEY_LOCK_MS` 为它而设）；任何"松开沿/按住时长"判定都会让幻影边沿把活着的运行停掉。复位时刻什么都没跑，采样最安全。
   - 验收：`demo_sel_tb` 4/4 PASS、全工程 iverilog lint 0 错、ctrl/loc_target/motor/pid/telemetry tb 全 PASS、综合告警 9 条无新增、烧录 UserCode `0x0000A0BA`。
 - **0x5E56（演示版）240 s 复盘要点**：5 次启动 → 6 次捕获、其中 2 段长 BAL（35.0 s / 30.8 s），**纯自摆 2/5 = 40%**（与 10-26 的 55% 同量级）；静态抖动 std 1.8~2.5°（机械地板，无恶化）；演示停位 alpha 中位约 -0.5°、全部 ±4.4° 内；唯一一次抗扰事件（234.3 s，60 ms 内 19°，≈320 °/s）自行回正。
+- **0xA0BA 已上板试跑**（cap_143604.bin）：2 次启动 / 1 次捕获、BAL 20.6 s、演示移动按 13 s 循环正常（默认演示开路径确认）；末尾杆摆到 +68.7° 触发出窗保护停机；段内多次 40~60 ms 内 5~10° 的快过程（adot 60~160 °/s）= 手碰。**采集在 132.6 s 因 USB 断开中断**（`ClearCommError PermissionError(13)`，随后 COM9 与 JTAG 都无器件）→ **主板已断开，SRAM 位流丢失；重新连接后必须重烧 0xA0BA**（flash 内是旧版）。
 - **下一步**：正式抗轻推复测——先做演示关手势（led2 停止闪烁即确认），再纯自摆/手扶进 BAL，47.6 Hz bin 采 5~8 次定向轻推（左右各 3，逐次加力，间隔 3~5 s），用 `python D:/GitHub/xiangmu/FPGA/tools_offsite/push_analysis.py` 出峰值/恢复时间/成功率。
 - **新增工具**：`FPGA/tools_offsite/run_analysis.py <bin>`（段级：运行启动/捕获计数、BAL 分段统计、演示 move/stop 与停位角度）。
 

@@ -1,0 +1,18 @@
+{
+  "port": "COM9",
+  "started_at": "2026-10-28T14:36:04.952332+08:00",
+  "ended_at": "2026-10-28T15:59:00.166363+08:00",
+  "requested_s": 300.0,
+  "elapsed_s": 4975.3726499,
+  "status": "failed",
+  "error": "SerialException: ClearCommError failed (PermissionError(13, '拒绝访问。', None, 5))",
+  "bytes": 94606,
+  "valid_frames": 6307,
+  "sequence_breaks": 1,
+  "rejected_candidates": 0,
+  "buffered_tail_bytes": 1,
+  "last_data_s": 132.65462840000146,
+  "trailing_silence_s": 4842.718021499999,
+  "max_silence_s": 4842.718021499999,
+  "host_average_hz": 1.2676437412435355
+}
