@@ -1,0 +1,6 @@
+  ok  idle at reset -> demo ON
+  ok  held through reset -> demo OFF
+  ok  30 ms bounce -> demo ON
+  ok  late hold does not change the mode
+PASS: demo_sel verified
+demo_sel_tb.v:79: $finish called at 17399991000 (1ps)

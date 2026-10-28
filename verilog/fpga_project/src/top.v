@@ -7,7 +7,9 @@
 //
 //   On-board indicators:
 //       led   R9 : 1 Hz heartbeat                           -> FPGA alive
-//       led2  N6 : lit 0.25 s after any encoder movement    -> turn the arm
+//       led2  N6 : blinks ~1.5 Hz = auto-demo ON;
+//                  with demo OFF: lit 0.25 s after any encoder movement
+//       demo mode: chosen at reset -- hold KEY1 while KEY0 releases = OFF
 //       seg  7-seg (1 digit, common anode), DECIMAL:
 //                  link_ok = 0  ->  "-"                     -> ADC UART link dead
 //                  link_ok = 1  ->  0..9 = pendulum angle zone (33 deg each)
@@ -102,6 +104,21 @@ module top (
     end
 
     // ------------------------------------------------------------------
+    // Boot-time demo selector (placed here: both the position sequencer and
+    // the led2 mode indicator consume demo_on, and Gowin silently binds an
+    // undriven 1-bit net when a signal is used above its declaration).
+    // Gesture: hold KEY1 while KEY0 (rst_n) releases = demo OFF.
+    // ------------------------------------------------------------------
+    wire demo_on;               // 1 = auto-demo enabled (see demo_sel.v)
+    demo_sel u_dsel (
+        .clk     (sys_clk),
+        .rst_n   (rst_n),
+        .tick_1k (tick),
+        .key_n   (key1),
+        .demo_on (demo_on)
+    );
+
+    // ------------------------------------------------------------------
     // Encoder: 4x quadrature decode, position + per-tick delta
     // ------------------------------------------------------------------
     wire signed [31:0] enc_pos;
@@ -143,7 +160,18 @@ module top (
         else if (hold != 24'd0) hold <= hold - 24'd1;
     end
 
-    assign led2 = (hold == 24'd0);       // active low: lit while hold != 0
+    // Demo-state indicator (2026-10-28): a boot-selectable demo mode that the
+    // bench cannot see is a trap, so with auto-demo ON led2 blinks ~1.5 Hz.
+    // With demo OFF it keeps its encoder-movement role (lit 0.25 s after the
+    // arm moves), which is the cue the anti-push test wants.
+    reg [24:0] demo_blink;
+
+    always @(posedge sys_clk or negedge rst_n) begin
+        if (!rst_n) demo_blink <= 25'd0;
+        else        demo_blink <= demo_blink + 25'd1;
+    end
+
+    assign led2 = demo_on ? demo_blink[24] : (hold == 24'd0);
 
     // ------------------------------------------------------------------
     // Angle sensor: the GD32 on this board is our remote ADC.
@@ -236,8 +264,13 @@ module top (
     // so until option A lands this walks the position target by itself:
     // in BALANCE, settle 5 s, then +1 rev -- hold -- -1 rev -- hold, loop.
     // It injects pulses into the SAME strobes K1/K2 use, so loc_target_gen
-    // is untouched; set POS_DEMO=0 when the wires arrive.
-    localparam POS_DEMO = 1;
+    // is untouched.
+    //
+    // 2026-10-28: on/off used to be the compile-time POS_DEMO, so the
+    // anti-push test (auto-rotation is indistinguishable from a nudge in
+    // telemetry) needed its own build + reflash.  It is now read from
+    // demo_on, chosen at reset by holding KEY1 while KEY0 releases; that
+    // selector lives up near the tick generator so led2 can use it too.
     reg [19:0] demo_ms;         // ms inside BALANCE (saturating)
     reg        demo_up_s, demo_dn_s;
     wire       bal_active = (ctrl_mode == 3'd3);
@@ -255,7 +288,7 @@ module top (
             end
             else begin
                 if (demo_ms != 20'hFFFFF) demo_ms <= demo_ms + 20'd1;
-                if (POS_DEMO) begin
+                if (demo_on) begin
                     if (demo_ms == 20'd5000)  demo_up_s <= 1'b1;  // +1 rev
                     if (demo_ms == 20'd9000)  demo_dn_s <= 1'b1;  // back
                     if (demo_ms == 20'd13000) demo_ms   <= 20'd0; // loop

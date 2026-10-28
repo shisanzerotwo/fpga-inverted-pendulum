@@ -1,0 +1,27 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW2A-18C" pn="GW2A-LV18PG256C8/I7">gw2a18c-011</Device>
+    <FileList>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
+        <File path="src/pwm_gen.v" type="file.verilog" enable="1"/>
+        <File path="src/enc_decoder.v" type="file.verilog" enable="1"/>
+        <File path="src/arm_adc_link.v" type="file.verilog" enable="1"/>
+        <File path="src/uart_rx.v" type="file.verilog" enable="1"/>
+        <File path="src/arm_adc_uart.v" type="file.verilog" enable="1"/>
+        <File path="src/pid.v" type="file.verilog" enable="1"/>
+        <File path="src/pendulum_ctrl.v" type="file.verilog" enable="1"/>
+        <File path="src/motor_driver.v" type="file.verilog" enable="1"/>
+        <File path="src/enc_zone.v" type="file.verilog" enable="1"/>
+        <File path="src/t_measure.v" type="file.verilog" enable="1"/>
+        <File path="src/alpha_dot.v" type="file.verilog" enable="1"/>
+        <File path="src/loc_target_gen.v" type="file.verilog" enable="1"/>
+        <File path="src/uart_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/telemetry.v" type="file.verilog" enable="1"/>
+        <File path="src/demo_sel.v" type="file.verilog" enable="1"/>
+        <File path="src/yingjiao.cst" type="file.cst" enable="1"/>
+        <File path="src/fpga_project.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>
