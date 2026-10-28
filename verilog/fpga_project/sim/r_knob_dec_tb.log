@@ -5,5 +5,6 @@
   ok  bounced press -> one toggle
   ok  press inside lock -> still one toggle
   ok  press after lock -> second toggle
+  ok  noise burst -> one pulse from two fast detents
 PASS: knob_dec verified
-knob_dec_tb.v:146: $finish called at 15219990000 (1ps)
+knob_dec_tb.v:168: $finish called at 18359990000 (1ps)

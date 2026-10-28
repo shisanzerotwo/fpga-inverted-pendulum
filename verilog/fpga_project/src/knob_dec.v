@@ -22,6 +22,16 @@ module knob_dec #(
     parameter integer DEB_MS           = 3,    // phase / button stable time
     parameter integer PHASE_PER_DETENT = 4,    // quadrature transitions per click
     parameter integer SW_LOCK_MS       = 50,   // one toggle per press
+    parameter integer DET_MIN_MS       = 20,   // minimum spacing between
+                                                // accepted detents.  2026-10-28
+                                                // bench: while the motor was
+                                                // driving, PWM/hall coupling on
+                                                // the long knob leads produced a
+                                                // stream of phantom detents and
+                                                // the target ran to the +/-4080
+                                                // clamp.  A hand cannot exceed
+                                                // ~30 detents/s, so anything
+                                                // faster than 50/s is noise.
     parameter         INVERT           = 1'b0  // 1 = flip the counting direction
 ) (
     input  wire clk,
@@ -34,9 +44,10 @@ module knob_dec #(
     output reg  step_down,      // one detent, counting down
     output reg  sw_toggle       // one debounced press (1 ms wide)
 );
-    localparam [3:0] DEB_W  = DEB_MS;
-    localparam [3:0] PH_W   = PHASE_PER_DETENT;
-    localparam [5:0] LOCK_W = SW_LOCK_MS;
+    localparam [3:0] DEB_W   = DEB_MS;
+    localparam [3:0] PH_W    = PHASE_PER_DETENT;
+    localparam [5:0] LOCK_W  = SW_LOCK_MS;
+    localparam [5:0] DETMIN_W = DET_MIN_MS;
 
     wire [1:0] q_now = {a, b};
 
@@ -46,6 +57,7 @@ module knob_dec #(
     reg [3:0] sw_deb;           // ms the sampled button has disagreed
     reg       sw_stable;        // debounced button (1 = released)
     reg [5:0] lock_cnt;         // ms of toggle lock remaining
+    reg [5:0] det_gap;          // ms since the last accepted detent
     reg       primed;           // first tick: adopt the pins, decode nothing
 
     // one accepted transition = 1 only for adjacent states; e_up says which
@@ -72,6 +84,7 @@ module knob_dec #(
             sw_deb    <= 4'd0;
             sw_stable <= 1'b1;
             lock_cnt  <= 6'd0;
+            det_gap   <= DETMIN_W;
             primed    <= 1'b0;
             step_up   <= 1'b0;
             step_down <= 1'b0;
@@ -83,6 +96,7 @@ module knob_dec #(
             step_down <= 1'b0;
             sw_toggle <= 1'b0;
             if (lock_cnt != 6'd0) lock_cnt <= lock_cnt - 6'd1;
+            if (det_gap  != 6'h3F) det_gap  <= det_gap + 6'd1;
 
             if (!primed) begin
                 primed    <= 1'b1;
@@ -102,15 +116,23 @@ module knob_dec #(
                     if (e_valid) begin
                         if (e_up_eff) begin
                             if (phase >= PH_W - 4'd1) begin
-                                step_up <= 1'b1;
-                                phase   <= 4'd0;
+                                phase <= 4'd0;
+                                // rate limit: a hand cannot dial faster than
+                                // 50 detents/s, so a burst is coupling noise
+                                if (det_gap >= DETMIN_W) begin
+                                    step_up <= 1'b1;
+                                    det_gap <= 6'd0;
+                                end
                             end
                             else phase <= phase + 4'd1;
                         end
                         else begin
                             if (phase == 4'd0) begin
-                                step_down <= 1'b1;
-                                phase     <= PH_W - 4'd1;
+                                phase <= PH_W - 4'd1;
+                                if (det_gap >= DETMIN_W) begin
+                                    step_down <= 1'b1;
+                                    det_gap   <= 6'd0;
+                                end
                             end
                             else phase <= phase - 4'd1;
                         end

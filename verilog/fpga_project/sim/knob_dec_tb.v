@@ -21,9 +21,10 @@ module knob_dec_tb;
     integer k;
 
     knob_dec #(
-        .DEB_MS           (3),
+        .DEB_MS           (2),
         .PHASE_PER_DETENT (4),
         .SW_LOCK_MS       (50),
+        .DET_MIN_MS       (20),     // one detent per 20 ms at most
         .INVERT           (1'b0)
     ) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),
@@ -74,18 +75,27 @@ module knob_dec_tb;
 
     // one full clockwise detent: 00->01->11->10->00, 5 ms per quadrant
     task detent_up(input integer glitch);
-        qhold(1'b0, 1'b1, 5, glitch);       // 00 -> 01
-        qhold(1'b1, 1'b1, 5, glitch);       // 01 -> 11
-        qhold(1'b1, 1'b0, 5, glitch);       // 11 -> 10
-        qhold(1'b0, 1'b0, 5, glitch);       // 10 -> 00
+        qhold(1'b0, 1'b1, 6, glitch);       // 00 -> 01
+        qhold(1'b1, 1'b1, 6, glitch);       // 01 -> 11
+        qhold(1'b1, 1'b0, 6, glitch);       // 11 -> 10
+        qhold(1'b0, 1'b0, 6, glitch);       // 10 -> 00
     endtask
 
     // one full counter-clockwise detent: 00->10->11->01->00
     task detent_dn;
-        qhold(1'b1, 1'b0, 5, 0);            // 00 -> 10
-        qhold(1'b1, 1'b1, 5, 0);            // 10 -> 11
-        qhold(1'b0, 1'b1, 5, 0);            // 11 -> 01
-        qhold(1'b0, 1'b0, 5, 0);            // 01 -> 00
+        qhold(1'b1, 1'b0, 6, 0);            // 00 -> 10
+        qhold(1'b1, 1'b1, 6, 0);            // 10 -> 11
+        qhold(1'b0, 1'b1, 6, 0);            // 11 -> 01
+        qhold(1'b0, 1'b0, 6, 0);            // 01 -> 00
+    endtask
+
+    // one detent at an implausible speed (4 ms per quadrant = 16 ms period):
+    // this is what coupling noise looks like, and it must be rate-limited
+    task detent_fast;
+        qhold(1'b0, 1'b1, 4, 0);
+        qhold(1'b1, 1'b1, 4, 0);
+        qhold(1'b1, 1'b0, 4, 0);
+        qhold(1'b0, 1'b0, 4, 0);
     endtask
 
     task press(input integer ms);
@@ -111,7 +121,9 @@ module knob_dec_tb;
         check("bounced detent -> exactly one more step_up",
               (up_cnt === 2) && (dn_cnt === 0));
 
-        // ---- 3. reverse ----
+        // ---- 3. reverse (wait out DET_MIN_MS first: the rate limiter would
+        //         otherwise drop a detent that follows immediately) ----
+        repeat (25) @(posedge tick_1k);
         detent_dn;
         repeat (6) @(posedge tick_1k);
         check("reverse detent -> one step_down",
@@ -140,6 +152,16 @@ module knob_dec_tb;
         repeat (60) @(posedge tick_1k);     // let the lock expire
         press(80);                          // after the lock
         check("press after lock -> second toggle", sw_cnt === 2);
+
+        // ---- 6. rate limit: a burst faster than DET_MIN_MS is coupling noise
+        //         (bench 2026-10-28: with the motor driving, phantom detents
+        //         ran the target to the clamp).  Two back-to-back 16 ms
+        //         detents must yield only ONE pulse.
+        detent_fast;
+        detent_fast;
+        repeat (8) @(posedge tick_1k);
+        check("noise burst -> one pulse from two fast detents",
+              up_cnt === 23);
 
         if (errors == 0) $display("PASS: knob_dec verified");
         else             $display("FAIL: %0d check(s) failed", errors);

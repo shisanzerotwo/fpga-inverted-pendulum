@@ -133,14 +133,26 @@ module top (
         .decided (dsel_decided)
     );
 
-    // ---- rotary knob front end (3 ms debounce, 50 ms button lock) ----
+    // ---- rotary knob front end ----
+    // 2026-10-28 bench history for these three numbers:
+    //   DEB_MS 3 -> hand clicks were lost (a quadrature state only lasts
+    //               1~2 ms at normal dial speed);
+    //   DEB_MS 1 -> hand counting exact (5 clicks = +5), but with the MOTOR
+    //               driving the same build produced phantom detents: the
+    //               target ran to the +/-4080 clamp and dragged the arm, i.e.
+    //               PWM/hall coupling on the long knob leads.  2 ms rejects
+    //               the noise and still passes hand turns.
+    //   DET_MIN_MS 25 -> a hand cannot exceed ~40 detents/s, so the rate
+    //               limit bounds any remaining noise to a crawl.
+    // INVERT=1 matches the module as wired (right turn -> positive target).
     wire knob_up_s, knob_dn_s, knob_sw_s;
 
     knob_dec #(
-        .DEB_MS           (3),
+        .DEB_MS           (2),
         .PHASE_PER_DETENT (4),      // standard KY-040: 4 phases per click
         .SW_LOCK_MS       (50),
-        .INVERT           (1'b0)    // 1 = swap the dial direction
+        .DET_MIN_MS       (25),     // max 40 detents/s
+        .INVERT           (1'b1)    // 1 = swap the dial direction
     ) u_knob (
         .clk      (sys_clk),
         .rst_n    (rst_n),
@@ -349,26 +361,34 @@ module top (
     end
 
     // ---- position steps: AUTO = one revolution, MANUAL knob = one detent ---
-    // The two sources are mutually exclusive by construction (the knob is
-    // gated to MANUAL + BALANCE, the sequencer to AUTO), so one step bus is
+    // The two sources are mutually exclusive by construction (the knob only
+    // counts in MANUAL, the sequencer only in AUTO), so one step bus is
     // enough; the mux only picks the width that belongs to the live strobe.
+    //
+    // 2026-10-28 bench feedback: the knob used to count only while BALANCE was
+    // active, so turning it during swing-up (or after a failed launch) did
+    // nothing and read as "the knob is dead".  MANUAL now accepts it in every
+    // phase: the target simply waits until the position loop runs.  AUTO still
+    // ignores it, because there the demo owns the target.
     localparam [15:0] STEP_DEMO = 16'd408;   // one arm revolution
     localparam [15:0] STEP_KNOB = 16'd20;    // 20 detents = 408 counts
-    wire knob_live = (!mode_auto) && bal_active;
+    wire knob_live = !mode_auto;
 
     wire        tgt_up_s = demo_up_s | (knob_up_s & knob_live);
     wire        tgt_dn_s = demo_dn_s | (knob_dn_s & knob_live);
     wire [15:0] tgt_step_up = (demo_up_s | demo_dn_s) ? STEP_DEMO : STEP_KNOB;
     wire [15:0] tgt_step_dn = tgt_step_up;
 
-    // BAL entry: drop cmd and target with enc_base (pendulum_ctrl zeroes its
-    // own base on the same edge) so a re-captured rod never inherits a target.
+    // BAL entry in AUTO: drop cmd and target with enc_base (pendulum_ctrl
+    // zeroes its own base on the same edge) so the 13 s demo always starts
+    // from the entry position.  In MANUAL the operator owns the target, so it
+    // survives a re-capture instead of being silently thrown away.
     reg bal_active_d;
     always @(posedge sys_clk or negedge rst_n) begin
         if (!rst_n) bal_active_d <= 1'b0;
         else        bal_active_d <= bal_active;
     end
-    wire tgt_clear = bal_active && !bal_active_d;
+    wire tgt_clear = bal_active && !bal_active_d && mode_auto;
 
     loc_target_gen #(
         .STEP_HZ   (1),         // one ramp step per 1 s
