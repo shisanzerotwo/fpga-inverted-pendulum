@@ -1,0 +1,5 @@
+VCD info: dumpfile telemetry_tb.vcd opened for output.
+frame1 seq=0
+frame2 seq=1
+PASS: telemetry frame verified end-to-end
+telemetry_tb.v:154: $finish called at 4497970000 (1ps)

@@ -1,0 +1,9 @@
+VCD info: dumpfile loc_target_tb.vcd opened for output.
+DBG cmd=816 target=0 moving=0
+  ok   ramp before run: 0
+  ok   816 after 0.5 s: 816
+  ok  clamped at +4080: 4080
+  ok  aused with run=0: 4080
+  ok  down ramp moving: 1
+PASS: loc_target_gen verified
+loc_target_tb.v:80: $finish called at 700779991000 (1ps)

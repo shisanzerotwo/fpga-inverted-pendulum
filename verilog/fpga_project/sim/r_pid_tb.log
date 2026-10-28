@@ -1,0 +1,9 @@
+VCD info: dumpfile pid_tb.vcd opened for output.
+  ok  o in -> zero out: 0
+  ok  tick1 = P+D kick: 3548
+  ok  ck2-tick1 = -D+I: -1950
+  ok  tick2 = +I creep: 49
+  ok  clamp at OUT_MAX: 10000
+  ok  clamp at OUT_MIN: -10000
+PASS: pid verified
+pid_tb.v:72: $finish called at 2749991000 (1ps)

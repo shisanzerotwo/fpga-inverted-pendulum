@@ -1,0 +1,8 @@
+VCD info: dumpfile arm_adc_link_tb.vcd opened for output.
+  ok  link up after 1140 clocks, frame=291
+  ok  adc read back = 12'h123
+  ok  adc followed the model to 12'h456
+  ok  stalled counter detected, link_ok dropped
+  ok  link recovered
+PASS: arm_adc_link verified
+arm_adc_link_tb.v:140: $finish called at 77720000 (1ps)

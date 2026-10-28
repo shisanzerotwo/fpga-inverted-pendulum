@@ -1,0 +1,4 @@
+VCD info: dumpfile pid_pipe_tb.vcd opened for output.
+checks=4021 errors=0 clr_skips=42
+PASS: pipelined pid is bit-identical to the single-cycle reference (1 clock later)
+pid_pipe_tb.v:112: $finish called at 80610000 (1ps)

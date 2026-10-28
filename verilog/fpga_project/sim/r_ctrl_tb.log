@@ -1,0 +1,22 @@
+VCD info: dumpfile ctrl_tb.vcd opened for output.
+  ok   -> STOP, duty 0
+  ok  pump pulse +4500
+  ok  end of +pulse
+  ok  n +wait (duty 0)
+  ok  hen -pulse -4500
+  ok  n -wait (duty 0)
+  ok  GE or direct BAL
+  ok  entry -> BALANCE
+  ok  live (duty != 0)
+  ok  ce duty in range
+  ok  ase window seen)
+  ok  g release window
+  ok  re/after release
+  ok  stent saturation
+  ok  d release window
+  ok  when unsaturated
+  ok   -> STOP, duty 0
+  ok  restarted pump
+  ok  y 0 (same cycle)
+PASS: pendulum_ctrl verified
+ctrl_tb.v:193: $finish called at 46759991000 (1ps)

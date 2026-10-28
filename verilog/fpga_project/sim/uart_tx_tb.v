@@ -1,0 +1,137 @@
+`timescale 1ns/1ps
+// uart_tx_tb -- port-level testbench: observes only tx/ready; the expected
+// waveforms are hand-written from the UART 8N1 protocol.
+//
+// Ported 2026-10-05 together with src/uart_tx.v (hardware-proven on COM9).
+module uart_tx_tb;
+    reg        clk = 0;
+    reg        rst_n = 0;
+    reg  [7:0] data = 0;
+    reg        valid = 0;
+    wire       ready;
+    wire       tx;
+    integer    errors = 0;
+
+    uart_tx dut (.clk(clk), .rst_n(rst_n), .data(data), .valid(valid), .ready(ready), .tx(tx));
+
+    always #10 clk = ~clk;   // 50 MHz
+
+    task check(input cond, input [8*64-1:0] msg);
+        if (!cond) begin
+            errors = errors + 1;
+            $display("FAIL: %0s", msg);
+        end
+    endtask
+
+    localparam BIT_CLKS = 434;                 // 50e6/115200, truncated
+    // Time order: [0] = start bit, [1..8] = D0..D7, [9] = stop bit (literal)
+    localparam [0:9] EXP_55 = 10'b0_10101010_1;
+    localparam [0:9] EXP_A5 = 10'b0_10100101_1;   // 0xA5 = 1010_0101, LSB first -> 1,0,1,0,0,1,0,1
+    localparam [0:9] EXP_3C = 10'b0_00111100_1;   // 0x3C = 0011_1100, LSB first -> 0,0,1,1,1,1,0,0
+    localparam [0:9] EXP_00 = 10'b0_00000000_1;
+    localparam [0:9] EXP_FF = 10'b0_11111111_1;
+
+    task send_byte(input [7:0] b);
+        begin
+            @(posedge clk);
+            data  <= b;
+            valid <= 1'b1;
+            @(posedge clk);
+            valid <= 1'b0;
+        end
+    endtask
+
+    // From the falling edge of tx (start bit), sample at the centre of each bit
+    task check_frame(input [0:9] exp, input [8*64-1:0] msg);
+        integer i;
+        begin
+            @(negedge tx);
+            #((BIT_CLKS / 2) * 20);
+            for (i = 0; i < 10; i = i + 1) begin
+                if (tx !== exp[i]) begin
+                    errors = errors + 1;
+                    $display("FAIL: %0s bit %0d got %b want %b", msg, i, tx, exp[i]);
+                end
+                #(BIT_CLKS * 20);
+            end
+        end
+    endtask
+
+    initial begin
+        #5_000_000 $display("FAIL: watchdog timeout");
+        $finish;
+    end
+
+    initial begin
+        $dumpfile("uart_tx_tb.vcd");
+        $dumpvars(0, uart_tx_tb);
+
+        // slice 6: ready low during reset (upstream must not think the byte
+        // was taken), and a valid asserted during reset starts no frame
+        repeat (2) @(posedge clk);
+        #1;
+        check(ready === 1'b0, "slice6: ready low during reset");
+        data  = 8'h00;
+        valid = 1'b1;
+        repeat (2) @(posedge clk);
+        valid = 1'b0;
+        #1;
+        check(tx === 1'b1, "slice6: no frame started during reset");
+
+        // slice 1: after reset tx high, ready high
+        repeat (2) @(posedge clk);
+        rst_n = 1;
+        repeat (BIT_CLKS) @(posedge clk);                     // one bit time after release: still idle
+        check(tx === 1'b1, "slice6: tx idle after reset release (reset-time valid dropped)");
+        repeat (2) @(posedge clk);
+        #1;
+        check(tx === 1'b1,    "slice1: tx idle high after reset");
+        check(ready === 1'b1, "slice1: ready high after reset");
+
+        // slice 2: send 0x55 -- start 0 + data LSB first + stop 1, 434 clocks per bit
+        send_byte(8'h55);
+        check_frame(EXP_55, "slice2: 0x55 frame");
+
+        // slice 3: ready low while sending; a valid in that window is ignored
+        send_byte(8'h55);
+        fork
+            check_frame(EXP_55, "slice3: 0x55 frame unaffected by mid-frame valid");
+            begin
+                #((BIT_CLKS * 3 + BIT_CLKS / 2) * 20);       // near centre of bit 3
+                check(ready === 1'b0, "slice3: ready low mid-frame");
+                send_byte(8'h00);
+                #((BIT_CLKS * 6) * 20);                        // near centre of stop bit
+                check(ready === 1'b0, "slice3: ready low during stop bit");
+            end
+        join
+        #(2 * BIT_CLKS * 20);                                  // 2 bit times later: no second frame
+        check(tx === 1'b1,    "slice3: tx high after frame (no second frame)");
+        check(ready === 1'b1, "slice3: ready high after frame");
+
+        // slice 4: two back-to-back bytes (3C offered as soon as ready rises after A5)
+        send_byte(8'hA5);
+        fork
+            check_frame(EXP_A5, "slice4: first frame 0xA5");
+            begin
+                wait (ready === 1'b0);
+                wait (ready === 1'b1);
+                send_byte(8'h3C);
+                check_frame(EXP_3C, "slice4: second frame 0x3C");
+            end
+        join
+        #(2 * BIT_CLKS * 20);
+
+        // slice 5: boundary data 0x00 / 0xFF
+        send_byte(8'h00);
+        check_frame(EXP_00, "slice5: 0x00 frame");
+        send_byte(8'hFF);
+        check_frame(EXP_FF, "slice5: 0xFF frame");
+        #(2 * BIT_CLKS * 20);
+        check(tx === 1'b1,    "slice5: tx idle high at end");
+        check(ready === 1'b1, "slice5: ready high at end");
+
+        if (errors == 0) $display("PASS: all slices");
+        else             $display("RESULT: %0d failure(s)", errors);
+        $finish;
+    end
+endmodule

@@ -1,0 +1,2 @@
+pwm_gen_tb.v:41: error: parameter `DUTY_PCT` not found in `pwm_gen_tb.dut`.
+2 error(s) during elaboration.
