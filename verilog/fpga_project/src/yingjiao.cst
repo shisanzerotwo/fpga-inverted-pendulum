@@ -124,34 +124,16 @@ IO_LOC  "seg[7]"  L14;
 IO_PORT "seg[7]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
 
 // =====================================================================
-// Rotary knob module (KY-040 class), added 2026-10-28
-// ---------------------------------------------------------------------
-// On 排针2 / H6, whose bank 1 is 3.3 V.  Module power comes from that
-// header's own 3V3 (H6-38) -- never H6-40 (5V), which would drive 5 V into
-// a 3.3 V bank.  PULL_MODE=UP is kept ON even though the module carries its
-// own 10 k pull-ups: until the wires are in, the three pins must read a
-// stable idle level (a floating knob_sw would toggle the mode at random).
-// An internal pull-up in parallel with the module's 10 k changes nothing
-// when the contacts close to ground.
-//   CLK (A) -> H6-27 K14 | DT (B) -> H6-28 K15 | SW -> H6-29 K13
-// =====================================================================
-IO_LOC  "knob_a"  K14;               // H6-27  module CLK (A phase)
-IO_PORT "knob_a"  IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
-IO_LOC  "knob_b"  K15;               // H6-28  module DT  (B phase)
-IO_PORT "knob_b"  IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
-IO_LOC  "knob_sw" K13;               // H6-29  module SW  (push, active low)
-IO_PORT "knob_sw" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
-
-// =====================================================================
 // NOT in this revision
 // ---------------------------------------------------------------------
-// K1/K2 (optional kit buttons, N10 / M11) were REMOVED on 2026-10-28: the
-// ports are gone from top.v, and with them the only target path that had no
-// rate limit.  On the bench the arm crept continuously while the knob was
-// silent and its detent counter frozen -- this pin pair (never wired, bank 2
-// with an unresolved VCCIO) was the remaining suspect.
-// Bank 2 voltage is still not settled by the repo: the vendor .cst calls the
-// HDMI bank 2.5 V, while the schematic wires VCCIO2 to +3.3 V.  Do not put a
-// 3.3 V module on N10/M11/P11/T11 before measuring that rail.
+// K1..K4 (optional kit buttons) were proposed on N10 / M11 / P11 / T11.
+IO_LOC  "kbtn[0]" N10;               // kit K1 (bank 2 = 2.5V!)
+IO_PORT "kbtn[0]" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
+IO_LOC  "kbtn[1]" M11;               // kit K2 (bank 2 = 2.5V!)
+IO_PORT "kbtn[1]" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
+// Those four are BANK 2 -- the HDMI bank at 2.5 V, so they must be
+//   IO_TYPE=LVCMOS25 BANK_VCCIO=2.5, not LVCMOS33.
+// The rotary knob (K14/K15/K13) is not in this revision: its RTL was rolled
+// back together with the 0x9F9C..0x2664 line.
 // The IOL / bank 7 pins are intentionally left unconstrained for stage 5.
 // =====================================================================

@@ -23,8 +23,11 @@ whenToUse: >
 | 仓库 | `master` = 本文件所在提交（今天全部修复与证据已提交；`pre-rollback-20261028` 标签保留修复线；`0x3D88` 源码在 `7adfcfd`） |
 | 自摆 | **能到顶**（JUDGE 超时补泵修好后不再卡死） |
 | 平衡 | **接不住 / 站不住**——今天最后的未解问题，代码侧已排除三项，明天从"捕获门"单变量试起 |
-| 旋钮 | 硬件与固件链路**已全部打通**（SW 切模式、A/B 计数、方向正确）；"20 格 = 400 counts" 验收欠着，需要一个能站稳的平衡 |
+| 旋钮 | RTL **已随回滚撤除**（可用源码在 `3de3722`/`7adfcfd`，接线/操作说明 `docs/knob_control.md`） |
 | 采集/分析 | `python D:/GitHub/xiangmu/FPGA/tools_offsite/tlm_live.py COM9 <秒>`；`run_analysis.py <bin>`（段级）、`push_analysis.py`（抗推） |
+
+**⚠️ 2026-10-28 20:15 回滚（本提交）**：按用户要求，RTL 回到 **0xA0BA**（`e2fd186`，10-28 14:37）。恢复 `top.v`/`pendulum_ctrl.v`/`loc_target_gen.v`/`demo_sel.v`/`loc_target_tb.v`/`fpga_project.gprj`，删除 `knob_dec.v`/`mode_ctl.v` 及三个 tb，cst 去掉旋钮 K14/K15/K13、恢复 K1/K2（N10/M11）约束。验收：iverilog 全工程 lint 0 错、15 个 tb 全 PASS、云源综合/布线完成，新位流 `fpga_project/impl/pnr/fpga_project.fs`（sha256 `fc61d45f…`，UserCode 烧录后读）。
+本版**没有 `JUDGE_MS` 超时**，杆完全静止悬垂时可能卡 JUDGE；若卡住，单独摘 `4257885` 的 `pendulum_ctrl` 补丁（不碰平衡环）。下面「明天第一件事」的 CAPT_NEAR/DEADBAND/KD 属于 0x2664 线的调参计划，回滚后先按 0xA0BA 基线复测，不要叠加改参。若 0xA0BA 仍站不住，下一档更老的已验证版本 = `8ed0325`（0xCDAA，130.5 s 连续平衡 / 9 循环零跌落）。
 
 ### 二、明天第一件事（按顺序，每次只改一个参数）
 

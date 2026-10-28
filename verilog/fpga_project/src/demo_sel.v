@@ -32,10 +32,7 @@ module demo_sel #(
     input  wire rst_n,
     input  wire tick_1k,        // 1 kHz strobe
     input  wire key_n,          // KEY1 raw, active low (0 = pressed)
-    output reg  demo_on,        // 1 = auto-demo enabled (default)
-    output wire decided         // 1 once the boot sample is latched; from then
-                                // on the mode belongs to the runtime control
-                                // (top.v hands it to the knob's push button)
+    output reg  demo_on         // 1 = auto-demo enabled (default)
 );
     localparam [7:0] WIN_W = WIN_MS;   // equal-width relays (trap 9: a
     localparam [7:0] LOW_W = LOW_MS;   // narrower compare operand wraps)
@@ -43,8 +40,6 @@ module demo_sel #(
     reg [7:0] win_ms;                  // window progress, saturating
     reg [7:0] low_ms;                  // ms the key was low in the window
     reg       locked;                  // decision taken; KEY1 is hands-off
-
-    assign decided = locked;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin

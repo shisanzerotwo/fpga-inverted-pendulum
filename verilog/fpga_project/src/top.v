@@ -7,14 +7,9 @@
 //
 //   On-board indicators:
 //       led   R9 : 1 Hz heartbeat                           -> FPGA alive
-//       led2  N6 : blinks ~1.5 Hz = AUTO mode (13 s demo cycle);
-//                  in MANUAL mode: lit 0.25 s after any encoder movement
-//       seg  7-seg DP: lit = MANUAL mode, off = AUTO
-//       modes: the knob's push button toggles AUTO <-> MANUAL at runtime;
-//              holding KEY1 while KEY0 (reset) releases boots into MANUAL.
-//              MANUAL = no auto motion (push the rod to test resistance) and
-//              the knob dials the position target, 20 counts per detent.
-//       knob wiring: CLK=H6-27/DT=H6-28/SW=H6-29, VCC=H6-38(3V3), GND=H6-37
+//       led2  N6 : blinks ~1.5 Hz = auto-demo ON;
+//                  with demo OFF: lit 0.25 s after any encoder movement
+//       demo mode: chosen at reset -- hold KEY1 while KEY0 releases = OFF
 //       seg  7-seg (1 digit, common anode), DECIMAL:
 //                  link_ok = 0  ->  "-"                     -> ADC UART link dead
 //                  link_ok = 1  ->  0..9 = pendulum angle zone (33 deg each)
@@ -36,10 +31,7 @@ module top (
     input  wire sys_clk,        // T7   50 MHz
     input  wire rst_n,          // D11  KEY0, active low
     input  wire key1,           // F10  KEY1, active low = press toggles run
-    // ---- rotary knob module (KY-040 class), 3.3 V from H6-38 ----
-    input  wire knob_a,         // H6-27 K14  module CLK (A phase)
-    input  wire knob_b,         // H6-28 K15  module DT  (B phase)
-    input  wire knob_sw,        // H6-29 K13  module SW  (push), active low
+    input  wire [1:0] kbtn,     // kit K1/K2 (N10/M11, bank 2 = 2.5V): position +/-
     // ---- on-board UART debug link (F12 / F13) ----
     input  wire uart_rxd,
     output wire uart_txd,
@@ -112,72 +104,18 @@ module top (
     end
 
     // ------------------------------------------------------------------
-    // Mode control (2026-10-28).  Two states:
-    //   AUTO   : the 13 s position-demo cycle runs inside BALANCE
-    //   MANUAL : no auto motion (a hand push on the rod is the resistance
-    //            test) and the rotary knob dials the position target
-    // The boot gesture (hold KEY1 while KEY0 releases) picks the STARTING
-    // state; after demo_sel latches its decision (decided=1) the knob's push
-    // button owns the state, one toggle per press (50 ms lock in knob_dec).
+    // Boot-time demo selector (placed here: both the position sequencer and
+    // the led2 mode indicator consume demo_on, and Gowin silently binds an
+    // undriven 1-bit net when a signal is used above its declaration).
+    // Gesture: hold KEY1 while KEY0 (rst_n) releases = demo OFF.
     // ------------------------------------------------------------------
-    wire demo_on;               // boot default: 1 = AUTO
-    wire dsel_decided;
-
+    wire demo_on;               // 1 = auto-demo enabled (see demo_sel.v)
     demo_sel u_dsel (
         .clk     (sys_clk),
         .rst_n   (rst_n),
         .tick_1k (tick),
         .key_n   (key1),
-        .demo_on (demo_on),
-        .decided (dsel_decided)
-    );
-
-    // ---- rotary knob front end ----
-    // 2026-10-28 bench history for these three numbers:
-    //   DEB_MS 3 -> hand clicks were lost (a quadrature state only lasts
-    //               1~2 ms at normal dial speed);
-    //   DEB_MS 1 -> hand counting exact (5 clicks = +5), but with the MOTOR
-    //               driving the same build produced phantom detents: the
-    //               target ran to the +/-4080 clamp and dragged the arm, i.e.
-    //               PWM/hall coupling on the long knob leads.  2 ms rejects
-    //               the noise and still passes hand turns.
-    //   DET_MIN_MS 25 -> a hand cannot exceed ~40 detents/s, so the rate
-    //               limit bounds any remaining noise to a crawl.
-    // INVERT=1 matches the module as wired (right turn -> positive target).
-    wire knob_up_s, knob_dn_s, knob_sw_s;
-
-    knob_dec #(
-        .DEB_MS           (2),
-        .PHASE_PER_DETENT (4),      // standard KY-040: 4 phases per click
-        .SW_LOCK_MS       (50),
-        .DET_MIN_MS       (25),     // max 40 detents/s
-        .INVERT           (1'b1)    // 1 = swap the dial direction
-    ) u_knob (
-        .clk      (sys_clk),
-        .rst_n    (rst_n),
-        .tick_1k  (tick),
-        .a        (knob_a),
-        .b        (knob_b),
-        .sw_n     (knob_sw),
-        .step_up  (knob_up_s),
-        .step_down(knob_dn_s),
-        .sw_toggle(knob_sw_s)
-    );
-
-    // One toggle per press: knob_dec's strobe is 1 ms WIDE, and a
-    // level-sensitive toggle in this 50 MHz realm flips every clock of the
-    // pulse -- 1000 flips (even) lands back where it started, which is exactly
-    // the bench symptom "pressing the knob does nothing" on build 0x9F9C.
-    // mode_ctl edge-detects it and owns the boot-default handover.
-    wire mode_auto;             // 1 = AUTO demo, 0 = MANUAL
-
-    mode_ctl u_mode (
-        .clk           (sys_clk),
-        .rst_n         (rst_n),
-        .boot_mode     (demo_on),
-        .boot_decided  (dsel_decided),
-        .sw_toggle     (knob_sw_s),
-        .mode_auto     (mode_auto)
+        .demo_on (demo_on)
     );
 
     // ------------------------------------------------------------------
@@ -222,9 +160,10 @@ module top (
         else if (hold != 24'd0) hold <= hold - 24'd1;
     end
 
-    // Mode indicator: blinks in AUTO (13 s demo cycle live), and falls back to
-    // the encoder-movement cue in MANUAL -- which is the cue the resistance
-    // test wants, since there is no other visual difference between the two.
+    // Demo-state indicator (2026-10-28): a boot-selectable demo mode that the
+    // bench cannot see is a trap, so with auto-demo ON led2 blinks ~1.5 Hz.
+    // With demo OFF it keeps its encoder-movement role (lit 0.25 s after the
+    // arm moves), which is the cue the anti-push test wants.
     reg [24:0] demo_blink;
 
     always @(posedge sys_clk or negedge rst_n) begin
@@ -232,7 +171,7 @@ module top (
         else        demo_blink <= demo_blink + 25'd1;
     end
 
-    assign led2 = mode_auto ? demo_blink[24] : (hold == 24'd0);
+    assign led2 = demo_on ? demo_blink[24] : (hold == 24'd0);
 
     // ------------------------------------------------------------------
     // Angle sensor: the GD32 on this board is our remote ADC.
@@ -274,14 +213,33 @@ module top (
     // ------------------------------------------------------------------
     // Cascade control: swing-up pump + balance PID + same-cycle interlock
     // ------------------------------------------------------------------
-    // K1/K2 (kit buttons, N10/M11 on bank 2) were dropped on 2026-10-28.
-    // They were never wired, and this path was the only target source without
-    // a rate limit: bench day showed the arm creeping continuously with the
-    // knob silent and its detent counter frozen, i.e. the aim was being pushed
-    // by these pins (bank 2's VCCIO is still unresolved -- see the cst header).
-    // The knob replaced them (option A retired), so the port and the edge
-    // detector are gone entirely; re-adding them means adding a rate limit of
-    // their own AND settling the bank-2 voltage question first.
+    // position target buttons: kit K1/K2, active low, bank 2 = 2.5V LVCMOS25
+    // STROBE WIDTH FIX 2026-10-26: these strobes must span a 1 kHz tick.
+    // A raw edge detector gives a 20 ns pulse, while loc_target_gen samples
+    // btn_up ONLY on the tick edge -- a 20 ns pulse lands on a tick-high
+    // cycle with probability 1/50000 and is otherwise invisible (the same
+    // one-clock-pulse trap the pend_ctrl header documents for run_rise).
+    // Holding the strobe until the NEXT tick guarantees the consumer sees it.
+    reg [1:0] kbtn_d;
+    reg       kb_up_s, kb_dn_s;
+    always @(posedge sys_clk or negedge rst_n) begin
+        if (!rst_n) begin
+            kbtn_d  <= 2'b11;
+            kb_up_s <= 1'b0;
+            kb_dn_s <= 1'b0;
+        end
+        else begin
+            kbtn_d <= kbtn;
+            if (tick) begin           // cleared by a tick AFTER being sampled
+                kb_up_s <= 1'b0;
+                kb_dn_s <= 1'b0;
+            end
+            // (set wins over clear: both are non-blocking, later assignment
+            //  keeps the strobe alive into the next tick window)
+            if (kbtn_d[0] && !kbtn[0]) kb_up_s <= 1'b1;   // K1 fell
+            if (kbtn_d[1] && !kbtn[1]) kb_dn_s <= 1'b1;   // K2 fell
+        end
+    end
 
     wire signed [31:0] loc_target;
     wire               loc_moving;
@@ -302,17 +260,17 @@ module top (
     wire               braking;      // 1 = short brake held
 
     // ---- position demo sequencer (option B, 2026-10-26) -----------------
-    // In BALANCE, settle 5 s, then +1 rev -- hold -- -1 rev -- hold, loop.
-    // It injects pulses into the same strobe port the knob uses, so
-    // loc_target_gen is untouched apart from the step-width port.
+    // The kit K1/K2 buttons are NOT wired to G1 yet (N10/M11 proposed only),
+    // so until option A lands this walks the position target by itself:
+    // in BALANCE, settle 5 s, then +1 rev -- hold -- -1 rev -- hold, loop.
+    // It injects pulses into the SAME strobes K1/K2 use, so loc_target_gen
+    // is untouched.
     //
     // 2026-10-28: on/off used to be the compile-time POS_DEMO, so the
     // anti-push test (auto-rotation is indistinguishable from a nudge in
-    // telemetry) needed its own build + reflash.  It now follows mode_auto:
-    // boot default from demo_sel, runtime toggle from the knob button.  The
-    // counter is cleared whenever AUTO is (re-)entered, so the judge always
-    // sees the "5 s then move" pattern from the entry moment, never a cycle
-    // resumed mid-way.
+    // telemetry) needed its own build + reflash.  It is now read from
+    // demo_on, chosen at reset by holding KEY1 while KEY0 releases; that
+    // selector lives up near the tick generator so led2 can use it too.
     reg [19:0] demo_ms;         // ms inside BALANCE (saturating)
     reg        demo_up_s, demo_dn_s;
     wire       bal_active = (ctrl_mode == 3'd3);
@@ -328,53 +286,22 @@ module top (
             if (!bal_active) begin
                 demo_ms <= 20'd0;
             end
-            else if (!mode_auto) begin
-                demo_ms <= 20'd0;       // manual mode: cycle parked at zero
-            end
             else begin
                 if (demo_ms != 20'hFFFFF) demo_ms <= demo_ms + 20'd1;
-                if (demo_ms == 20'd5000)  demo_up_s <= 1'b1;  // +1 rev
-                if (demo_ms == 20'd9000)  demo_dn_s <= 1'b1;  // back
-                if (demo_ms == 20'd13000) demo_ms   <= 20'd0; // loop
+                if (demo_on) begin
+                    if (demo_ms == 20'd5000)  demo_up_s <= 1'b1;  // +1 rev
+                    if (demo_ms == 20'd9000)  demo_dn_s <= 1'b1;  // back
+                    if (demo_ms == 20'd13000) demo_ms   <= 20'd0; // loop
+                end
             end
         end
     end
-
-    // ---- position steps: AUTO = one revolution, MANUAL knob = one detent ---
-    // The two sources are mutually exclusive by construction (the knob only
-    // counts in MANUAL, the sequencer only in AUTO), so one step bus is
-    // enough; the mux only picks the width that belongs to the live strobe.
-    //
-    // 2026-10-28 bench feedback: the knob used to count only while BALANCE was
-    // active, so turning it during swing-up (or after a failed launch) did
-    // nothing and read as "the knob is dead".  MANUAL now accepts it in every
-    // phase: the target simply waits until the position loop runs.  AUTO still
-    // ignores it, because there the demo owns the target.
-    localparam [15:0] STEP_DEMO = 16'd408;   // one arm revolution
-    localparam [15:0] STEP_KNOB = 16'd20;    // 20 detents = 408 counts
-    wire knob_live = !mode_auto;
-
-    wire        tgt_up_s = demo_up_s | (knob_up_s & knob_live);
-    wire        tgt_dn_s = demo_dn_s | (knob_dn_s & knob_live);
-    wire [15:0] tgt_step_up = (demo_up_s | demo_dn_s) ? STEP_DEMO : STEP_KNOB;
-    wire [15:0] tgt_step_dn = tgt_step_up;
-
-    // BAL entry: drop cmd and target with enc_base (pendulum_ctrl zeroes its
-    // own base on the same edge), in BOTH modes.
-    // 2026-10-28 bench: keeping the MANUAL target across a re-capture looked
-    // convenient ("dial first, launch later") but it puts the position loop
-    // 8 deg (POS_TRIM) off centre on EVERY capture, and the catch died in
-    // 1.8 s with the rod going -9.6 -> -48 deg.  A fresh capture must start
-    // with a zero target; the knob is dialled while balancing.
-    reg bal_active_d;
-    always @(posedge sys_clk or negedge rst_n) begin
-        if (!rst_n) bal_active_d <= 1'b0;
-        else        bal_active_d <= bal_active;
-    end
-    wire tgt_clear = bal_active && !bal_active_d;
+    wire kb_up_s_all = kb_up_s | demo_up_s;
+    wire kb_dn_s_all = kb_dn_s | demo_dn_s;
 
     loc_target_gen #(
         .STEP_HZ   (1),         // one ramp step per 1 s
+        .REV_COUNT (408),       // button step contract stays one revolution
         .LIMIT     (4080),
         // 2026-10-26: half-rev ramp steps -> 0.5 rev/s setpoint.  Full-rev
         // steps at 1 rev/s still tilted the rod p90 = 12 deg during a move
@@ -383,17 +310,14 @@ module top (
         // tilt and the residual swing at every stop.
         .RAMP_STEP (204)
     ) u_ltg (
-        .clk       (sys_clk),
-        .rst_n     (rst_n),
-        .tick_1k   (tick),
-        .btn_up    (tgt_up_s),
-        .btn_down  (tgt_dn_s),
-        .step_up   (tgt_step_up),
-        .step_down (tgt_step_dn),
-        .clear     (tgt_clear),
-        .run       (ctrl_en),
-        .target    (loc_target),
-        .moving    (loc_moving)
+        .clk      (sys_clk),
+        .rst_n    (rst_n),
+        .tick_1k  (tick),
+        .btn_up   (kb_up_s_all),
+        .btn_down (kb_dn_s_all),
+        .run      (ctrl_en),
+        .target   (loc_target),
+        .moving   (loc_moving)
     );
 
     pendulum_ctrl #(
@@ -420,18 +344,7 @@ module top (
                                 // 4x150 ms (600 ms) locked the rod in a
                                 // -65..-99 deg limit ring for 88 s -- the same
                                 // over-long-cycle failure mode, confirmed.
-        .POS_TRIM   (800),      // 2026-10-28 attempt at 3 deg reverted:
-                                // the demo needs this much authority to
-                                // accelerate the arm for a 408-count move.
-                                // (was 3 deg, see git history)
-                                // 4.228/cnt the outer loop saturated at a mere
-                                // 190-count error; saturated, it hands the angle
-                                // loop a constant 8 deg bias and the arm just
-                                // accelerates (bench: -0.9 rev in 11 s, then the
-                                // rod is dragged out).  3 deg keeps the authority
-                                // for the 204-count/s demo ramp without turning a
-                                // small drift into a runaway.
-                                // (was: 8 deg cap on the position loop's angle
+        .POS_TRIM   (800),      // 8 deg cap on the position loop's angle
                                 // request.  Was 1000 (10 deg).  During a demo
                                 // move the rod leans THIS much by design --
                                 // the tilt is the drive -- so the cap is also
@@ -596,10 +509,7 @@ module top (
             seg_r[7]   = 1'b1;                  // DP off
         end
         else if (SHOW_ENC != 0) begin
-            // 2026-10-28: DP now flags MANUAL mode (lit) vs AUTO (off).  The
-            // digit still shows the encoder zone, so the knob front end can be
-            // told apart from the demo without a PC.
-            seg_r[7] = mode_auto ? 1'b1 : 1'b0;
+            seg_r[7] = 1'b0;                    // DP LIT: encoder zone
             case (ezone_disp)
                 4'd0: seg_r[6:0] = 7'b100_0000;
                 4'd1: seg_r[6:0] = 7'b100_1111;
