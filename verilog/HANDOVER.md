@@ -29,6 +29,8 @@ whenToUse: >
 **⚠️ 2026-10-28 20:15 回滚（本提交）**：按用户要求，RTL 回到 **0xA0BA**（`e2fd186`，10-28 14:37）。恢复 `top.v`/`pendulum_ctrl.v`/`loc_target_gen.v`/`demo_sel.v`/`loc_target_tb.v`/`fpga_project.gprj`，删除 `knob_dec.v`/`mode_ctl.v` 及三个 tb，cst 去掉旋钮 K14/K15/K13、恢复 K1/K2（N10/M11）约束。验收：iverilog 全工程 lint 0 错、15 个 tb 全 PASS、云源综合/布线完成，重建位流 `fpga_project/impl/pnr/fpga_project.fs`（sha256 `fc61d45f…`）**已烧入 SRAM，UserCode `0x0000A0BA` 与原版一致**（`--run 0` 已核，Status `0x6020` 待机）。
 本版**没有 `JUDGE_MS` 超时**，杆完全静止悬垂时可能卡 JUDGE；若卡住，单独摘 `4257885` 的 `pendulum_ctrl` 补丁（不碰平衡环）。下面「明天第一件事」的 CAPT_NEAR/DEADBAND/KD 属于 0x2664 线的调参计划，回滚后先按 0xA0BA 基线复测，不要叠加改参。若 0xA0BA 仍站不住，下一档更老的已验证版本 = `8ed0325`（0xCDAA，130.5 s 连续平衡 / 9 循环零跌落）。
 
+**✅ 2026-10-28 深夜修复（位流 `0x7E62`，已烧入 SRAM）**：回滚撤掉的两项起摆逻辑已恢复——① `JUDGE_MS=1200` 超时补泵（`4257885`，杆垂静止每 1.2 s 补一次泵）；② BAL 进场清目标 `tgt_clear` + `loc_target_gen.clear`（`3de3722`，两种模式都清，防捕获时继承旧目标叠 ±8° 偏置）。验收：`judge_tmo_tb`/`loc_target_tb`（含 clear 用例）/`ctrl_tb`/`demo_sel`/`motor`/`pid`/`telemetry`/`alpha_dot` 全 PASS、lint 0 错、综合 0 warning；上板 `cap_225732.bin` 实测 72.8 s 内 **最长 JUDGE 段 1.20 s、26 次泵**（修复前同场景 85.7 s 单段 JUDGE、0 泵）——卡死已消除。旧 0xA0BA 位流备份：`C:\Users\22421\.claude\jobs\db0e2cdc\tmp\fs_0xA0BA_backup.fs`。**未解决阻塞 = 角度信号断路**：横臂转动时 `adc` 基本恒 0、偶发 4000（`cap_202818.bin` 手转整圈段），`alpha` 冻结、杆不响应泵送；跳变率从 16:57 的 0.7% 涨到 18:48 后 18~34%（横臂静止时 0.1%），与用户当日修「电机↔横臂输出轴」时间吻合，须查滑环/电位器线/插头。
+
 ### 二、明天第一件事（按顺序，每次只改一个参数）
 
 1. **`CAPT_NEAR` 1200 → 800**（`top.v` 的 `pendulum_ctrl` 实例）：只允许杆在 **±8°** 内被捕获。今天大量失效案例是 10~20° 带偏角进场，一进平衡就被自己的 P/D 推倒。

@@ -299,6 +299,18 @@ module top (
     wire kb_up_s_all = kb_up_s | demo_up_s;
     wire kb_dn_s_all = kb_dn_s | demo_dn_s;
 
+    // 2026-10-28: drop command AND target on EVERY BAL entry (both the demo
+    // and any manual strobe).  Keeping a stale target across a re-capture
+    // hands the outer loop a constant angle bias on the first balance tick
+    // (bench: rod went -9.6 deg -> -48 deg in 1.8 s).  Fired on the same edge
+    // pendulum_ctrl re-zeroes enc_base, so the loops start from zero.
+    reg bal_active_d;
+    always @(posedge sys_clk or negedge rst_n) begin
+        if (!rst_n) bal_active_d <= 1'b0;
+        else        bal_active_d <= bal_active;
+    end
+    wire tgt_clear = bal_active && !bal_active_d;
+
     loc_target_gen #(
         .STEP_HZ   (1),         // one ramp step per 1 s
         .REV_COUNT (408),       // button step contract stays one revolution
@@ -315,6 +327,7 @@ module top (
         .tick_1k  (tick),
         .btn_up   (kb_up_s_all),
         .btn_down (kb_dn_s_all),
+        .clear    (tgt_clear),
         .run      (ctrl_en),
         .target   (loc_target),
         .moving   (loc_moving)

@@ -6,7 +6,7 @@
 //   4. ramp pauses when run drops
 module loc_target_tb;
     reg clk = 1'b0, rst_n = 1'b0, tick_1k = 1'b0;
-    reg btn_up = 1'b0, btn_down = 1'b0, run = 1'b0;
+    reg btn_up = 1'b0, btn_down = 1'b0, run = 1'b0, clear = 1'b0;
     wire signed [31:0] target;
     wire moving;
     integer errors = 0;
@@ -14,7 +14,7 @@ module loc_target_tb;
 
     loc_target_gen #(.STEP_HZ(2), .REV_COUNT(408), .LIMIT(4080)) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),
-        .btn_up (btn_up), .btn_down (btn_down), .run (run),
+        .btn_up (btn_up), .btn_down (btn_down), .clear (clear), .run (run),
         .target (target), .moving (moving)
     );
 
@@ -82,6 +82,15 @@ module loc_target_tb;
         pulse(0);
         repeat (9000) @(posedge tick_1k); #1;  // 9 s at 2 rev/s
         check("down ramp moving", target < 32'sd4080, 1, 0);
+
+        // ---- 5. clear drops command AND target (2026-10-28 BAL entry) ----
+        // The old target must not survive a re-capture: the outer loop adds
+        // it as an angle bias on the first balance tick.
+        clear = 1'b1;
+        repeat (1200) @(posedge clk); #1;
+        clear = 1'b0;
+        check("clear zeroes target", target, 0, 0);
+        check("clear zeroes cmd", dut.cmd, 0, 0);
 
         if (errors == 0) $display("PASS: loc_target_gen verified");
         else             $display("FAIL: %0d check(s) failed", errors);

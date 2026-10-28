@@ -28,6 +28,13 @@ module loc_target_gen #(
     input  wire        tick_1k,
     input  wire        btn_up,       // 1-clock strobe: target += 1 revolution
     input  wire        btn_down,     // 1-clock strobe: target -= 1 revolution
+    input  wire        clear,        // synchronous: cmd = target = 0
+                                     // 2026-10-28: fired on the BAL entry edge
+                                     // (top.v) so a re-captured rod never
+                                     // inherits an old target.  Without it the
+                                     // outer loop adds the stale target as an
+                                     // angle bias on EVERY capture (bench:
+                                     // -9.6 deg -> -48 deg in 1.8 s).
     input  wire        run,          // machine running (ramp only while run)
     output reg  signed [31:0] target,
     output reg         moving               // 1 while ramping (debug)
@@ -59,9 +66,14 @@ module loc_target_gen #(
             // ---- button steps (single-shot strobes) ----
             if (btn_up)   cmd <= (cmd + REV_S >  LIM_S) ?  LIM_S : cmd + REV_S;
             if (btn_down) cmd <= (cmd - REV_S < -LIM_S) ? -LIM_S : cmd - REV_S;
+            // clear wins over a simultaneous strobe (placed last on purpose)
+            if (clear) begin
+                cmd    <= 32'sd0;
+                target <= 32'sd0;
+            end
 
             // ---- ramp toward cmd, one revolution per DIV ms ----
-            if (run && (target != cmd)) begin
+            if (run && (target != cmd) && !clear) begin
                 moving <= 1'b1;
                 if (ramp_div >= DIV_W - 9'd1) begin
                     ramp_div <= 9'd0;
