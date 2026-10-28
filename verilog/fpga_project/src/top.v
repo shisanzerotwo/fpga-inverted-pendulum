@@ -36,7 +36,6 @@ module top (
     input  wire sys_clk,        // T7   50 MHz
     input  wire rst_n,          // D11  KEY0, active low
     input  wire key1,           // F10  KEY1, active low = press toggles run
-    input  wire [1:0] kbtn,     // kit K1/K2 (N10/M11, bank 2 = 2.5V): position +/-
     // ---- rotary knob module (KY-040 class), 3.3 V from H6-38 ----
     input  wire knob_a,         // H6-27 K14  module CLK (A phase)
     input  wire knob_b,         // H6-28 K15  module DT  (B phase)
@@ -275,33 +274,14 @@ module top (
     // ------------------------------------------------------------------
     // Cascade control: swing-up pump + balance PID + same-cycle interlock
     // ------------------------------------------------------------------
-    // position target buttons: kit K1/K2, active low, bank 2 = 2.5V LVCMOS25
-    // STROBE WIDTH FIX 2026-10-26: these strobes must span a 1 kHz tick.
-    // A raw edge detector gives a 20 ns pulse, while loc_target_gen samples
-    // btn_up ONLY on the tick edge -- a 20 ns pulse lands on a tick-high
-    // cycle with probability 1/50000 and is otherwise invisible (the same
-    // one-clock-pulse trap the pend_ctrl header documents for run_rise).
-    // Holding the strobe until the NEXT tick guarantees the consumer sees it.
-    reg [1:0] kbtn_d;
-    reg       kb_up_s, kb_dn_s;
-    always @(posedge sys_clk or negedge rst_n) begin
-        if (!rst_n) begin
-            kbtn_d  <= 2'b11;
-            kb_up_s <= 1'b0;
-            kb_dn_s <= 1'b0;
-        end
-        else begin
-            kbtn_d <= kbtn;
-            if (tick) begin           // cleared by a tick AFTER being sampled
-                kb_up_s <= 1'b0;
-                kb_dn_s <= 1'b0;
-            end
-            // (set wins over clear: both are non-blocking, later assignment
-            //  keeps the strobe alive into the next tick window)
-            if (kbtn_d[0] && !kbtn[0]) kb_up_s <= 1'b1;   // K1 fell
-            if (kbtn_d[1] && !kbtn[1]) kb_dn_s <= 1'b1;   // K2 fell
-        end
-    end
+    // K1/K2 (kit buttons, N10/M11 on bank 2) were dropped on 2026-10-28.
+    // They were never wired, and this path was the only target source without
+    // a rate limit: bench day showed the arm creeping continuously with the
+    // knob silent and its detent counter frozen, i.e. the aim was being pushed
+    // by these pins (bank 2's VCCIO is still unresolved -- see the cst header).
+    // The knob replaced them (option A retired), so the port and the edge
+    // detector are gone entirely; re-adding them means adding a rate limit of
+    // their own AND settling the bank-2 voltage question first.
 
     wire signed [31:0] loc_target;
     wire               loc_moving;
@@ -403,8 +383,8 @@ module top (
         .clk       (sys_clk),
         .rst_n     (rst_n),
         .tick_1k   (tick),
-        .btn_up    (tgt_up_s | kb_up_s),
-        .btn_down  (tgt_dn_s | kb_dn_s),
+        .btn_up    (tgt_up_s),
+        .btn_down  (tgt_dn_s),
         .step_up   (tgt_step_up),
         .step_down (tgt_step_dn),
         .clear     (tgt_clear),

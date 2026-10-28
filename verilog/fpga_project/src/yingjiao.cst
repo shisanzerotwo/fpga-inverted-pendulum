@@ -145,12 +145,13 @@ IO_PORT "knob_sw" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 // =====================================================================
 // NOT in this revision
 // ---------------------------------------------------------------------
-// K1..K4 (optional kit buttons) were proposed on N10 / M11 / P11 / T11.
-IO_LOC  "kbtn[0]" N10;               // kit K1 (bank 2 = 2.5V!)
-IO_PORT "kbtn[0]" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
-IO_LOC  "kbtn[1]" M11;               // kit K2 (bank 2 = 2.5V!)
-IO_PORT "kbtn[1]" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
-// Those four are BANK 2 -- the HDMI bank at 2.5 V, so they must be
-//   IO_TYPE=LVCMOS25 BANK_VCCIO=2.5, not LVCMOS33.
+// K1/K2 (optional kit buttons, N10 / M11) were REMOVED on 2026-10-28: the
+// ports are gone from top.v, and with them the only target path that had no
+// rate limit.  On the bench the arm crept continuously while the knob was
+// silent and its detent counter frozen -- this pin pair (never wired, bank 2
+// with an unresolved VCCIO) was the remaining suspect.
+// Bank 2 voltage is still not settled by the repo: the vendor .cst calls the
+// HDMI bank 2.5 V, while the schematic wires VCCIO2 to +3.3 V.  Do not put a
+// 3.3 V module on N10/M11/P11/T11 before measuring that rail.
 // The IOL / bank 7 pins are intentionally left unconstrained for stage 5.
 // =====================================================================
