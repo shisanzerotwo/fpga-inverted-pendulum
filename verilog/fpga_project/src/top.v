@@ -338,6 +338,13 @@ module top (
                                 // (hanging = 0 = travel end-stop, upright span 37)
         .ANG_INVERT (1'b0),     // bench: invert=1 breaks swing-up entirely, so 0 is right
         .CENTER_WIN (4100),     // +/-40.6 deg = reference CENTER_RANGE 500 cnt
+        .CAPT_NEAR  (800),      // 2026-10-28 bench (cap_232325): the 1200 gate
+                                // let a rod falling through at -42 deg / -118
+                                // deg/s be "captured"; the loop could only
+                                // pull -5000 and it was out of the fall
+                                // window 0.06 s later.  800 = +/-8 deg: only
+                                // a rod that has actually arrived at the top
+                                // may enter BALANCE.
         .PUMP_DUTY  (6000),     // 60 % judge pump.  Bench 10-07: at 45 % the
                                 // envelope stalled at 158 deg (injection ==
                                 // dissipation); raise per-run energy.
