@@ -134,6 +134,17 @@ module pendulum_ctrl #(
                                               // out of the fall window --
                                               // this gate stops first, so it
                                               // is kept BELOW GLITCH_HOLD_MS.
+    parameter integer JUDGE_MS     = 1200,    // 2026-10-28: JUDGE used to have
+                                              // exactly two exits -- a detected
+                                              // peak or a capture.  A rod
+                                              // hanging dead still never flips
+                                              // adot's sign, so no peak ever
+                                              // fires and the FSM sat in JUDGE
+                                              // for seconds with the rod down
+                                              // (bench: 4~10 s JUDGE stretches,
+                                              // swing-up dead).  After this long
+                                              // without a peak, fire a retry
+                                              // pump on the side the rod hangs.
     parameter integer CAPT_NEAR    = 1200,    // cdeg: with the rod INSIDE this
                                               // offset of vertical, any legal
                                               // capture may proceed.  Beyond
@@ -386,6 +397,7 @@ module pendulum_ctrl #(
     // run (clean stop; the next KEY1 press starts fresh).
     wire sig_dead = (mode_r == M_BAL) && (dead_ms >= DEAD_W);
     localparam [9:0] KEY_LOCK_W = KEY_LOCK_MS;   // equal-width relay (trap 9)
+    localparam [15:0] JUDGE_W = JUDGE_MS;         // equal-width relay
 
     reg [9:0] key_lock;              // ms of key-lock remaining after a toggle
 
@@ -469,6 +481,7 @@ module pendulum_ctrl #(
     reg [1:0]  pump_ph;                  // 0:+pulse 1:+wait 2:-pulse 3:-wait
     reg [15:0] ms_cnt;                   // pulse/wait countdown
     reg [5:0]  judge_cnt;                // 40 ms judge divider
+    reg [15:0] judge_ms;                 // ms spent in JUDGE without a peak
     reg signed [15:0] a0, a1, a2;        // angle history, 40 ms apart
     reg        a1_in_r;                  // previous judge sample inside win
     reg        peak_r;                   // rod peaked on the + side
@@ -510,6 +523,7 @@ module pendulum_ctrl #(
             pump_big  <= 1'b0;
             ms_cnt    <= 16'd0;
             judge_cnt <= 6'd0;
+            judge_ms  <= 16'd0;
             a0 <= 16'sd0; a1 <= 16'sd0; a2 <= 16'sd0;
             a1_in_r      <= 1'b0;
             adot_prev_v  <= 16'sd0;
@@ -587,6 +601,20 @@ module pendulum_ctrl #(
                         // past alpha_locked during slip-ring dropout bounce.
                         mode_r <= M_BAL;
                     end
+                    else if (judge_ms >= JUDGE_W) begin
+                        // retry pump: nothing peaked for JUDGE_MS while the
+                        // rod sat outside the window (a dead-still hang never
+                        // flips adot's sign).  Pump toward the side it hangs
+                        // on, exactly like a peak would.
+                        mode_r   <= M_PUMP;
+                        pump_big <= 1'b0;
+                        ms_cnt   <= PULSE_MS[15:0];
+                        judge_ms <= 16'd0;
+                        if (alpha > 16'sd0) pump_ph <= 2'd2;   // + side: -duty
+                        else                pump_ph <= 2'd0;   // - side: +duty
+                    end
+                    else if (judge_ms != 16'hFFFF)
+                        judge_ms <= judge_ms + 16'd1;
                 end
                 M_PUMP: begin
                     if (ms_cnt != 16'd0) ms_cnt <= ms_cnt - 16'd1;
@@ -595,6 +623,7 @@ module pendulum_ctrl #(
                         if (pump_ph == 2'd3) begin
                             mode_r    <= M_JUDGE;
                             judge_cnt <= 6'd0;
+                            judge_ms  <= 16'd0;
                             pump_big  <= 1'b0;
                         end
                         else begin

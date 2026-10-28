@@ -359,16 +359,19 @@ module top (
     wire [15:0] tgt_step_up = (demo_up_s | demo_dn_s) ? STEP_DEMO : STEP_KNOB;
     wire [15:0] tgt_step_dn = tgt_step_up;
 
-    // BAL entry in AUTO: drop cmd and target with enc_base (pendulum_ctrl
-    // zeroes its own base on the same edge) so the 13 s demo always starts
-    // from the entry position.  In MANUAL the operator owns the target, so it
-    // survives a re-capture instead of being silently thrown away.
+    // BAL entry: drop cmd and target with enc_base (pendulum_ctrl zeroes its
+    // own base on the same edge), in BOTH modes.
+    // 2026-10-28 bench: keeping the MANUAL target across a re-capture looked
+    // convenient ("dial first, launch later") but it puts the position loop
+    // 8 deg (POS_TRIM) off centre on EVERY capture, and the catch died in
+    // 1.8 s with the rod going -9.6 -> -48 deg.  A fresh capture must start
+    // with a zero target; the knob is dialled while balancing.
     reg bal_active_d;
     always @(posedge sys_clk or negedge rst_n) begin
         if (!rst_n) bal_active_d <= 1'b0;
         else        bal_active_d <= bal_active;
     end
-    wire tgt_clear = bal_active && !bal_active_d && mode_auto;
+    wire tgt_clear = bal_active && !bal_active_d;
 
     loc_target_gen #(
         .STEP_HZ   (1),         // one ramp step per 1 s
@@ -417,7 +420,18 @@ module top (
                                 // 4x150 ms (600 ms) locked the rod in a
                                 // -65..-99 deg limit ring for 88 s -- the same
                                 // over-long-cycle failure mode, confirmed.
-        .POS_TRIM   (800),      // 8 deg cap on the position loop's angle
+        .POS_TRIM   (800),      // 2026-10-28 attempt at 3 deg reverted:
+                                // the demo needs this much authority to
+                                // accelerate the arm for a 408-count move.
+                                // (was 3 deg, see git history)
+                                // 4.228/cnt the outer loop saturated at a mere
+                                // 190-count error; saturated, it hands the angle
+                                // loop a constant 8 deg bias and the arm just
+                                // accelerates (bench: -0.9 rev in 11 s, then the
+                                // rod is dragged out).  3 deg keeps the authority
+                                // for the 204-count/s demo ramp without turning a
+                                // small drift into a runaway.
+                                // (was: 8 deg cap on the position loop's angle
                                 // request.  Was 1000 (10 deg).  During a demo
                                 // move the rod leans THIS much by design --
                                 // the tilt is the drive -- so the cap is also
