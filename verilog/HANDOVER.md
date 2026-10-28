@@ -13,7 +13,17 @@ whenToUse: >
 
 # 旋转倒立摆 FPGA 项目 —— 交接手册（2026-10-01 全天工作后固化）
 
-## 0. 当前接手状态（2026-10-28：新位流 0xA0BA 在板——演示开关改为复位时选择，演示默认开）
+## 0. 当前接手状态（2026-10-28 晚：旋钮手动控制已做完并构建——AUTO/MANUAL 两态 + 20 counts/格）
+
+### 2026-10-28 晚：旋钮（360 度旋转编码器模块）手动控制
+
+- **需求**（用户 2026-10-28 提出，grilling 两轮把决策定完）：一个旋钮做人工控制——切换"自动移动 / 手动"两种模式；手动态在保持摆杆平衡的前提下用旋钮设定目标位置，电机平滑移动并保持静止。
+- **接线**（详见 [docs/knob_control.md](docs/knob_control.md)）：全部走**排针 2（H6）**——`GND→H6-37`、`+→H6-38(3V3，绝不能接 H6-40 的 5V)`、`SW→H6-29(K13)`、`DT→H6-28(K15)`、`CLK→H6-27(K14)`；cst 写 `LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3`。**放弃"PULL_MODE=NONE"**：未接线时三个脚悬空会让 `knob_sw` 随机切模式，内部上拉与模块自带 10 k 并联无害。
+- **模式**：`mode_auto` 寄存器。上电初值来自 `demo_sel`（按住 KEY1 松 KEY0 = 手动上电），之后**旋钮按键短按切换**（`knob_dec` 内 50 ms 锁）。AUTO = 原 13 s 演示循环；MANUAL = 不自动走 + 旋钮改目标。**方案 A（K1/K2 接 N10/M11）正式废止**（bank 2 电平有争议，且旋钮已取代）。
+- **步长契约**：`loc_target_gen` 的步进从固定 `REV_COUNT` 改为端口 `step_up/step_down`——自动演示喂 **408**（一圈），旋钮喂 **20**（一格，20 格≈408 counts）；斜坡 204 counts/s（0.5 圈/s）与 ±4080 限幅不变；新增 `clear`，在 **BAL 进场沿**与 `enc_base` 同时清零（重摆不继承旧目标）。
+- **旋钮前端** `src/knob_dec.v`：4× 正交状态机，每个相位需稳定 **3 ms** 才计数（电机编码器那条 80 ns 滤波不适合机械触点）；`PHASE_PER_DETENT=4`、`INVERT` 可翻向；输出沿用"保持到下一个 1 kHz tick"的脉冲契约。
+- **指示**：数码管 **DP 亮 = MANUAL**（灭 = AUTO）；`led2` 1.5 Hz 闪 = AUTO，MANUAL 时回到"臂动过亮 0.25 s"。旋钮只在 **BAL + MANUAL** 时生效，其余阶段转动不累计。
+- **验收（tb）**：`knob_dec_tb` 7/7（含 1 ms 抖动不重复计数、按键 50 ms 锁）、`loc_target_tb` 10/10（含 20 格=400 counts、clear 归零）、ctrl/motor/pid/telemetry/demo_sel 全 PASS、全工程 iverilog lint 0 错。
 
 ### 2026-10-28：演示开关改复位时选择（0xA0BA）+ 0x5E56 的 240 s 复盘
 

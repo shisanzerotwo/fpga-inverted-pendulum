@@ -4,17 +4,22 @@
 //   2. target ramps toward cmd at STEP_HZ revolutions/s while run
 //   3. btn_down mirrors, clamped at -4080
 //   4. ramp pauses when run drops
+//   5. 2026-10-28: step size comes from step_up/step_down (knob = 20 counts),
+//      and `clear` drops cmd AND target to zero (BAL re-entry contract)
 module loc_target_tb;
     reg clk = 1'b0, rst_n = 1'b0, tick_1k = 1'b0;
-    reg btn_up = 1'b0, btn_down = 1'b0, run = 1'b0;
+    reg btn_up = 1'b0, btn_down = 1'b0, run = 1'b0, clear = 1'b0;
+    reg [15:0] step_up = 16'd408, step_down = 16'd408;
     wire signed [31:0] target;
     wire moving;
     integer errors = 0;
     integer k;
 
-    loc_target_gen #(.STEP_HZ(2), .REV_COUNT(408), .LIMIT(4080)) dut (
+    loc_target_gen #(.STEP_HZ(2), .LIMIT(4080)) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),
-        .btn_up (btn_up), .btn_down (btn_down), .run (run),
+        .btn_up (btn_up), .btn_down (btn_down),
+        .step_up (step_up), .step_down (step_down),
+        .clear (clear), .run (run),
         .target (target), .moving (moving)
     );
 
@@ -26,12 +31,17 @@ module loc_target_tb;
         tick_1k <= (c % 1000 == 999);
     end
 
+    // One strobe = high across exactly ONE tick edge (the contract top.v and
+    // knob_dec implement: set after a tick, cleared at a later tick).  The
+    // old fixed 1200-clock hold drifted in phase and sometimes spanned two
+    // tick edges, which double-counted the step.
     task pulse(input which);
         begin
-            @(negedge clk);
+            @(posedge tick_1k);
+            #1;
             if (which) btn_up = 1'b1; else btn_down = 1'b1;
-            repeat (1200) @(posedge clk);   // hold > 1 tick period (1000 clks):
-            #1                              // the strobe MUST span a tick edge
+            @(posedge tick_1k);            // consumer samples here
+            #1;
             btn_up = 1'b0; btn_down = 1'b0;
         end
     endtask
@@ -82,6 +92,23 @@ module loc_target_tb;
         pulse(0);
         repeat (9000) @(posedge tick_1k); #1;  // 9 s at 2 rev/s
         check("down ramp moving", target < 32'sd4080, 1, 0);
+
+        // ---- 5. knob step (20 counts) and the BAL-entry clear ----
+        run = 1'b0;
+        repeat (5) @(posedge tick_1k); #1;
+        clear = 1'b1;                          // re-entry contract
+        repeat (2) @(posedge tick_1k); #1;
+        clear = 1'b0;
+        check("clear drops target to 0", target, 0, 0);
+        check("clear drops cmd to 0", dut.cmd, 0, 0);
+
+        step_up = 16'd20; step_down = 16'd20;  // one knob detent
+        for (k = 0; k < 20; k = k + 1) pulse(1);
+        #1;
+        check("20 knob detents -> cmd +400", dut.cmd, 400, 0);
+        run = 1'b1;
+        repeat (3000) @(posedge tick_1k); #1;  // 3 s of ramping at 408/s
+        check("knob target reached", target, 400, 0);
 
         if (errors == 0) $display("PASS: loc_target_gen verified");
         else             $display("FAIL: %0d check(s) failed", errors);

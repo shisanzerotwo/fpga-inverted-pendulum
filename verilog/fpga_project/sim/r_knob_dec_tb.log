@@ -1,0 +1,9 @@
+  ok  one clean detent -> one step_up
+  ok  bounced detent -> exactly one more step_up
+  ok  reverse detent -> one step_down
+  ok  20 detents -> 22 total step_up
+  ok  bounced press -> one toggle
+  ok  press inside lock -> still one toggle
+  ok  press after lock -> second toggle
+PASS: knob_dec verified
+knob_dec_tb.v:146: $finish called at 15219990000 (1ps)

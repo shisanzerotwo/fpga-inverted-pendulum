@@ -1,0 +1,156 @@
+// =====================================================================
+// yingjiao.cst -- LCKFB LogicPi FPGA-G1 (Gowin GW2A-18C / PBGA256)
+//
+// IO allocation follows 排针映射与IO分配.md (M1):
+//   J280 driver-board interface -> IOT / bank 0 pins (3.3 V)
+//   IOL / bank 7 -> deliberately left unconstrained for stage-5 expansion
+//
+// Sources of truth for the expansion pins (three independent, all agreeing):
+//   1) schematic net list   EX_IOT13A_G15 ... (ball number is in the net name)
+//   2) vendor pinout diagram, page 2 of docs/G1_datasheet.pdf
+//   3) Gowin ball database  IDE\data\device\GW2A-18C\PBGA256.json
+//
+// BANK VOLTAGES (derived from the vendor file docs/立创逻辑派FPGA_G1_IO.cst,
+// which marks the pins listed on each bank IO_TYPE=LVCMOS33 BANK_VCCIO=3.3):
+//   bank 0 = 3.3 V   (UART F12/F13, 8 digit-tube pins, usb_dp_pull L15)
+//   bank 1 = 3.3 V   (seg L14, USB M14/M15)
+//   bank 2 = 2.5 V   (HDMI, LVDS25)        <-- never use 3.3 V here
+//   bank 3 = 3.3 V   (6 LED pins, 50 MHz clock T7)
+//   bank 7 = 3.3 V   (keys D11 / F10)
+//   bank 4/5/6 = 1.5 V (DDR3, SSTL15)      <-- not brought out
+//
+// Ball-name sanity: PBGA256 is 16 x 16, rows A B C D E F G H J K L M N P R T
+//   (no I, O, Q, S) and columns 1..16, so B17 / A17 / B18 / B20 do NOT exist
+//   (ERROR CT1113).  Verify every ball against the JSON above.
+//
+// Never reuse -- on-board peripherals:
+//   clock T7, keys D11/F10, 6 RGB LEDs (R9 C10 R7 N6 T10 P7),
+//   UART F12/F13, digit tube (G13 H16 H12 H13 H14 G12 G11 L14),
+//   USB1.1 (M14 M15 L15), HDMI (M10 N11 R12 P13 R11 T12 R13 T14),
+//   DDR3 (48 balls), and the 8 balls hard-wired to the on-board ARM:
+//   PA0..PA7 = J12 J11 K11 D14 E15 L12 L13 L16.
+// =====================================================================
+
+// ===== on-board: clock, reset, key, UART, LEDs =====
+IO_LOC  "sys_clk"  T7;                       // 50 MHz board oscillator
+IO_PORT "sys_clk"  IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+IO_LOC  "rst_n"    D11;                      // KEY0, active low
+IO_PORT "rst_n"    IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+IO_LOC  "key1"     F10;                      // KEY1, active low
+IO_PORT "key1"     IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+IO_LOC  "uart_txd" F12;                      // on-board USB-Serial, no wiring
+IO_PORT "uart_txd" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "uart_rxd" F13;
+IO_PORT "uart_rxd" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+
+// vendor RGB LED map: led[0]=R9 led[1]=C10 led[2]=R7
+//                     led[3]=N6 led[4]=T10 led[5]=P7   (common anode -> active low)
+IO_LOC  "led"  R9;                           // LED0 red : 1 Hz heartbeat
+IO_PORT "led"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "led2" N6;                           // LED1 red : PWM test mode
+IO_PORT "led2" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+
+// =====================================================================
+// J280 driver board -- all nine pins are BANK 0 = 3.3 V,
+// and none of them carries an alternate/config function in the database.
+// Header position column = what is printed on the silkscreen.
+// =====================================================================
+
+// ---- motor PWM + direction ----
+IO_LOC  "PWMA"  G15;                         // EX_IOT13A_G15  排针2 脚07
+IO_PORT "PWMA"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "AIN1"  G14;                         // EX_IOT13B_G14  排针2 脚08
+IO_PORT "AIN1"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "AIN2"  G16;                         // EX_IOT16A_G16  排针2 脚09
+IO_PORT "AIN2"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+
+// ---- encoder (ONE channel only in this revision -- see note below) ----
+IO_LOC  "EA"    J15;                         // EX_IOT24A_J15  排针1 脚02
+IO_PORT "EA"    IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC  "EB"    K16;                         // EX_IOT24B_K16  排针1 脚01
+IO_PORT "EB"    IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+// =====================================================================
+// FPGA <-> on-board GD32 link   (option B: the GD32 is our remote ADC)
+//
+// The GD32F303CBT6 is hard-wired to the FPGA by 8 nets; four of them are its
+// SPI0 and are used here.  The angle sensor goes to the GD32's PB0
+// (ADC01_IN8, header 2 pin 05); the GD32 only digitises -- decimation,
+// filtering and the whole control loop run in this FPGA.
+//   GD32 PA4 / SPI0_NSS  = ball E15   bank 1
+//   GD32 PA5 / SPI0_SCK  = ball L12   bank 1
+//   GD32 PA6 / SPI0_MISO = ball L13   bank 1
+//   GD32 PA7 / SPI0_MOSI = ball L16   bank 1
+// The other four (PA0..PA3 = J12 J11 K11 D14) stay free for a later UART link.
+// The four header pins that used to hold an external ADC (J16 J14 H15 F14)
+// are released again.
+// =====================================================================
+IO_LOC  "SPI_NSS"  E15;                      // GD32 PA4  SPI0_NSS
+IO_PORT "SPI_NSS"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "SPI_SCK"  L12;                      // GD32 PA5  SPI0_SCK
+IO_PORT "SPI_SCK"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "SPI_MOSI" L16;                      // GD32 PA7  SPI0_MOSI
+IO_PORT "SPI_MOSI" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "SPI_MISO" L13;                      // GD32 PA6  SPI0_MISO
+IO_PORT "SPI_MISO" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+
+// ---- 2026-10-16 LINK RESCUE: sample link moved off the (now open) SPI SCK
+// lane onto this spare net: GD32 PA2 / USART2_TX -> FPGA ball K11, 1 Mbaud
+// UART.  See docs/verification/2026-10-16/DIAGNOSIS.md sec.10. ----
+IO_LOC  "uart2_rxd" K11;                     // GD32 PA2  USART2_TX
+IO_PORT "uart2_rxd" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+// ---- on-board 1-digit common-anode 7-segment tube (bring-up display) ----
+// vendor map: seg[0]=A G13, [1]=B H16, [2]=C H12, [3]=D H13,
+//             [4]=E H14, [5]=F G12, [6]=G G11, [7]=DP L14
+IO_LOC  "seg[0]"  G13;
+IO_PORT "seg[0]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "seg[1]"  H16;
+IO_PORT "seg[1]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "seg[2]"  H12;
+IO_PORT "seg[2]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "seg[3]"  H13;
+IO_PORT "seg[3]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "seg[4]"  H14;
+IO_PORT "seg[4]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "seg[5]"  G12;
+IO_PORT "seg[5]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "seg[6]"  G11;
+IO_PORT "seg[6]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC  "seg[7]"  L14;
+IO_PORT "seg[7]"  IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=8 BANK_VCCIO=3.3;
+
+// =====================================================================
+// Rotary knob module (KY-040 class), added 2026-10-28
+// ---------------------------------------------------------------------
+// On 排针2 / H6, whose bank 1 is 3.3 V.  Module power comes from that
+// header's own 3V3 (H6-38) -- never H6-40 (5V), which would drive 5 V into
+// a 3.3 V bank.  PULL_MODE=UP is kept ON even though the module carries its
+// own 10 k pull-ups: until the wires are in, the three pins must read a
+// stable idle level (a floating knob_sw would toggle the mode at random).
+// An internal pull-up in parallel with the module's 10 k changes nothing
+// when the contacts close to ground.
+//   CLK (A) -> H6-27 K14 | DT (B) -> H6-28 K15 | SW -> H6-29 K13
+// =====================================================================
+IO_LOC  "knob_a"  K14;               // H6-27  module CLK (A phase)
+IO_PORT "knob_a"  IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC  "knob_b"  K15;               // H6-28  module DT  (B phase)
+IO_PORT "knob_b"  IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC  "knob_sw" K13;               // H6-29  module SW  (push, active low)
+IO_PORT "knob_sw" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+// =====================================================================
+// NOT in this revision
+// ---------------------------------------------------------------------
+// K1..K4 (optional kit buttons) were proposed on N10 / M11 / P11 / T11.
+IO_LOC  "kbtn[0]" N10;               // kit K1 (bank 2 = 2.5V!)
+IO_PORT "kbtn[0]" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
+IO_LOC  "kbtn[1]" M11;               // kit K2 (bank 2 = 2.5V!)
+IO_PORT "kbtn[1]" IO_TYPE=LVCMOS25 PULL_MODE=UP BANK_VCCIO=2.5;
+// Those four are BANK 2 -- the HDMI bank at 2.5 V, so they must be
+//   IO_TYPE=LVCMOS25 BANK_VCCIO=2.5, not LVCMOS33.
+// The IOL / bank 7 pins are intentionally left unconstrained for stage 5.
+// =====================================================================
