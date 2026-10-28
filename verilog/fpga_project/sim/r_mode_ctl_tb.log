@@ -1,0 +1,8 @@
+  ok  after reset: AUTO
+  ok  before decision: follows boot_mode=0
+  ok  decision latched: stays MANUAL
+  ok  1 ms pulse toggles to AUTO
+  ok  second pulse back to MANUAL
+  ok  boot_mode ignored after decision
+PASS: mode_ctl verified
+mode_ctl_tb.v:74: $finish called at 41510000 (1ps)

@@ -153,17 +153,21 @@ module top (
         .sw_toggle(knob_sw_s)
     );
 
-    reg mode_auto;              // 1 = AUTO demo, 0 = MANUAL
+    // One toggle per press: knob_dec's strobe is 1 ms WIDE, and a
+    // level-sensitive toggle in this 50 MHz realm flips every clock of the
+    // pulse -- 1000 flips (even) lands back where it started, which is exactly
+    // the bench symptom "pressing the knob does nothing" on build 0x9F9C.
+    // mode_ctl edge-detects it and owns the boot-default handover.
+    wire mode_auto;             // 1 = AUTO demo, 0 = MANUAL
 
-    always @(posedge sys_clk or negedge rst_n) begin
-        if (!rst_n) begin
-            mode_auto <= 1'b1;
-        end
-        else begin
-            if (!dsel_decided)        mode_auto <= demo_on;      // boot sample
-            else if (knob_sw_s)       mode_auto <= ~mode_auto;   // runtime
-        end
-    end
+    mode_ctl u_mode (
+        .clk           (sys_clk),
+        .rst_n         (rst_n),
+        .boot_mode     (demo_on),
+        .boot_decided  (dsel_decided),
+        .sw_toggle     (knob_sw_s),
+        .mode_auto     (mode_auto)
+    );
 
     // ------------------------------------------------------------------
     // Encoder: 4x quadrature decode, position + per-tick delta
