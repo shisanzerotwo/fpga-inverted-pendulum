@@ -420,7 +420,14 @@ module top (
                                      // coupling, gear backlash, stiction),
                                      // so no reason to run above factory.
         .KP_POS     (32'sd277056),   // 4.228 cdeg/cnt = 0.52   (was 40 = 9.5x)
-        .KD_POS     (32'sd2429568),  // 37.07 cdeg/cnt = 4.56   (was 400 = 10.8x)
+        .KD_POS     (32'sd3644416),  // 55.6 cdeg/cnt = 6.84   (was 37.07)
+                                     // 2026-10-30 bench (cap_214655): every demo
+                                     // move overshot its 408-count target by
+                                     // 33~93 counts (one by 269) before the
+                                     // loop pulled it back.  The rod leans only
+                                     // POS_TRIM (8 deg) to brake, so the arrival
+                                     // needs more damping: +50% KD_POS starts the
+                                     // deceleration earlier.
         // ---- 2026-10-26 jitter / levelling ----
         .KI_POS     (32'sd5328),     // 0.0813 cdeg/cnt = 0.01 factory unit:
                                      // position droop -> 0, so the rod sits
