@@ -27,8 +27,7 @@ module judge_tmo_tb;
         .adc (adc), .enc_pos (enc_pos),
         .loc_target (loc_target),
         .duty (duty), .enable (enable),
-        .alpha (alpha), .adot_dbg (adot_w), .wdog (wdog_w), .mode (mode),
-        .zero_fault ()
+        .alpha (alpha), .adot_dbg (adot_w), .wdog (wdog_w), .mode (mode)
     );
 
     always #10 clk = ~clk;
