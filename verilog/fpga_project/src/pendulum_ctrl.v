@@ -536,7 +536,13 @@ module pendulum_ctrl #(
             ad8_4 <= ad8_3; ad8_5 <= ad8_4; ad8_6 <= ad8_5; ad8_7 <= ad8_6;
         end
     end
-    localparam signed [15:0] FALL_V8     = 16'sd400; // 4 deg / 8 ms = 500 deg/s
+    localparam signed [15:0] FALL_V8     = 16'sd250; // 2.5 deg / 8 ms = 312 deg/s
+                                                     // 2026-10-30 cap_213204: one
+                                                     // death slipped through at
+                                                     // 4.7 deg / 8 ms against the
+                                                     // old 4.0 deg threshold,
+                                                     // while every entry that
+                                                     // held was <= 1.44 deg.
     localparam signed [15:0] CAPT_NEAR_W = CAPT_NEAR; // equal-width relay (trap 9)
     wire signed [15:0] ad8_7_abs   = (ad8_7 < 16'sd0) ? -ad8_7 : ad8_7;
     wire signed [15:0] a_now_abs   = (alpha_r < 16'sd0) ? -alpha_r : alpha_r;
@@ -545,6 +551,18 @@ module pendulum_ctrl #(
     wire               capt_veto   = (a_now_abs > CAPT_NEAR_W) &&   // far from vertical
                                      (a_now_abs > ad8_7_abs) &&     // moving away
                                      (a_step8_abs > FALL_V8);       // and fast
+
+    // ---- 2026-10-30 judge retry-pump gating ------------------------------
+    // A purely timed retry beats against the rod's own swing and sometimes
+    // cancels it (cap_211538: 3 of 11 starts stalled at -104 -> -88 -> -115
+    // deg).  Pump when the rod has settled (< 10 deg/s over 8 ms) at the
+    // hanging side (> 80 deg from vertical); JUDGE_FORCE_W is the fallback so
+    // a rod that never settles still gets nudged.
+    localparam signed [15:0] ROD_STILL_V = 16'sd80;    // 0.8 deg / 8 ms
+    localparam signed [15:0] ROD_DOWN_V  = 16'sd8000;  // 80 deg from vertical
+    localparam [15:0]        JUDGE_FORCE_W = JUDGE_MS * 2;
+    wire rod_still = (a_step8_abs < ROD_STILL_V);
+    wire rod_down  = (alpha_r > ROD_DOWN_V) || (alpha_r < -ROD_DOWN_V);
 
     // Peak detection v2: position in the far zone + VELOCITY SIGN FLIP.
     // The 3-point extremum test aliases at high rod speed (peak falls
@@ -658,11 +676,18 @@ module pendulum_ctrl #(
                         // past alpha_locked during slip-ring dropout bounce.
                         mode_r <= M_BAL;
                     end
-                    else if (judge_ms >= JUDGE_W) begin
-                        // retry pump: nothing peaked for JUDGE_MS while the
-                        // rod sat outside the window (a dead-still hang never
-                        // flips adot's sign).  Pump toward the side it hangs
-                        // on, exactly like a peak would.
+                    else if ((judge_ms >= JUDGE_W && rod_still && rod_down) ||
+                             (judge_ms >= JUDGE_FORCE_W)) begin
+                        // retry pump.  2026-10-30 bench (cap_211538): a
+                        // PURELY TIMED retry (every 340+300 ms) beats against
+                        // the rod's own swing and cancels its energy -- two
+                        // starts climbed -104 -> -88 -> -115 deg (no growth)
+                        // while two others climbed -107 -> -94 -> -84 and
+                        // captured.  Wait for the rod to actually SETTLE at
+                        // the hanging side before pushing again, so every pump
+                        // lands on a rod at rest; the 2x timeout is the
+                        // anti-stall fallback (a rod that never settles must
+                        // still get nudged).
                         mode_r   <= M_PUMP;
                         pump_big <= 1'b0;
                         ms_cnt   <= PULSE_MS[15:0];
