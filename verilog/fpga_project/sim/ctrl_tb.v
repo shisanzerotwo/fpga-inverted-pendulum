@@ -42,14 +42,18 @@ module ctrl_tb;
         .PUMP_DUTY  (3500),
         .PULSE_MS   (100),     // 100 ms -> 100 ticks
         .POS_TRIM   (2000),
-        .DUTY_LIM   (10000)
+        .DUTY_LIM   (10000),
+        .ZERO_GUARD (0)        // this tb starts the rod at the UP pose on
+                               // purpose, so the hang-position guard (2026-10-30)
+                               // is exercised by zero_guard_tb.v instead
     ) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),
         .key_run (key_run), .link_ok (link_ok),
         .adc (adc), .enc_pos (enc_pos),
         .loc_target (loc_target),
         .duty (duty), .enable (enable),
-        .alpha (alpha), .adot_dbg (adot_w), .wdog (wdog_w), .mode (mode)
+        .alpha (alpha), .adot_dbg (adot_w), .wdog (wdog_w), .mode (mode),
+        .zero_fault ()
     );
 
     wire wdog_w;

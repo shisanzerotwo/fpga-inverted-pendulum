@@ -134,6 +134,24 @@ module pendulum_ctrl #(
                                               // out of the fall window --
                                               // this gate stops first, so it
                                               // is kept BELOW GLITCH_HOLD_MS.
+    // ---- zero sanity guard (2026-10-30) ----
+    // The pot is coupled to the rod through a clamp that is NOT slip-free: a
+    // bench session on 10-30 moved the zero ~3270 counts (287 deg) with the
+    // rod untouched in between, and ANG_OFFSET is a compile-time constant, so
+    // from that moment every angle is wrong and the balance loop drives the
+    // rod to a pose that is ~98 deg off vertical (measured: BAL lasted 1.1~
+    // 1.8 s with alpha mean +10 deg / std 19 deg, vs -1.7 deg / 4.5 deg when
+    // the zero was right).  The rod HANGS at the pot's travel end-stop, so at
+    // rest the reading must sit at an end of the track.  Guard: refuse to
+    // start unless it does, and let the LED say why.
+    //   Caveat: this only proves the reading is at an END, not which end --
+    // a coupling that slips by a whole revolution still passes.  It catches
+    // the gross drift that produced the 10-30 failures, nothing finer.
+    parameter integer ZERO_GUARD  = 1,        // 0 = disable (ctrl_tb starts
+                                              // from the rod-UP pose on purpose)
+    parameter integer ZERO_TOL    = 300,      // counts around either end of
+                                              // the 4095-count track that still
+                                              // count as "rod hanging"
     parameter integer JUDGE_MS     = 1200,    // 2026-10-28: JUDGE used to have
                                               // exactly two exits -- a detected
                                               // peak or a capture.  A rod
@@ -249,7 +267,10 @@ module pendulum_ctrl #(
     output wire signed [15:0] adot_dbg,      // centideg/s (telemetry, debug)
     output wire        wdog,                // 1 = saturation watchdog release
                                             //     window active (telemetry)
-    output wire [2:0]  mode            // 0 STOP 1 JUDGE 2 PUMP 3 BAL (debug)
+    output wire [2:0]  mode,           // 0 STOP 1 JUDGE 2 PUMP 3 BAL (debug)
+    output wire        zero_fault      // 1 = STOP and the rod is NOT at the
+                                       // travel end-stop -> the angle zero has
+                                       // drifted; start is refused (2026-10-30)
 );
     localparam [11:0] ANG_OFF_W = ANG_OFFSET;
     localparam [15:0] PUMP_W    = PUMP_DUTY;
@@ -420,6 +441,17 @@ module pendulum_ctrl #(
 
     wire inside_win   = (alpha > -WIN_S) && (alpha < WIN_S);
     wire outside_fall = (alpha > FWIN_S) || (alpha < -FWIN_S);
+
+    // ---- zero sanity guard (see the ZERO_GUARD parameter comment) ----
+    // "Rod hanging" = the reading sits at one end of the 4095-count track.
+    // Both ends are accepted because the wiper's 27 deg dead zone straddles
+    // the seam: the same physical hang can read ~0 or ~4095 depending on
+    // which side of the gap it stopped on.
+    localparam [11:0] ZTOL_W   = ZERO_TOL;
+    localparam [11:0] ZHI_W    = 12'd4095 - ZTOL_W;
+    localparam        ZG_ON    = (ZERO_GUARD != 0);
+    wire              rod_down = (adc <= ZTOL_W) || (adc >= ZHI_W);
+    wire              zero_fault_w = ZG_ON && (mode_r == M_STOP) && !rod_down;
     // decelerating inside the window = catchable (near the top, physics
     // slows the rod there; a pass-through at pump speed is much faster)
     localparam signed [31:0] CAPT_SPEED = CAPT_SPEED_P;  // equal-width relay
@@ -467,8 +499,12 @@ module pendulum_ctrl #(
             // rod lost while balancing: power off clean (next press starts).
             // sig_dead: the angle link died mid-balance (slip ring / UART) --
             // alpha is frozen and the motor would run blind; stop instead.
-            if ((mode_r == M_BAL && outside_fall) || sig_dead)
+            if ((mode_r == M_BAL && outside_fall) || sig_dead || zero_fault_w) begin
                 run_latch <= 1'b0;
+                // zero guard: a key press must do NOTHING while the reading
+                // says the rod is not at the end-stop (the LED shows why).
+                if (zero_fault_w) start_req <= 1'b0;
+            end
             else if (key_d == 1'b1 && key_run == 1'b0 && key_lock == 10'd0) begin
                 // press edge: toggle the machine; request start if turning ON.
                 // key_lock swallows the phantom second edge the KEY1 contact
@@ -577,7 +613,12 @@ module pendulum_ctrl #(
             else case (mode_r)
                 M_STOP: begin
                     ms_cnt <= 16'd0;
-                    if (start_req) begin
+                    // zero guard: the reference's first pump relies on the rod
+                    // starting at the pot's travel end-stop (ref s21).  If the
+                    // reading says it is not there, the zero has drifted --
+                    // starting anyway just flings the rod under a wrong angle
+                    // reference, so refuse and let zero_fault raise the flag.
+                    if (start_req && !zero_fault_w) begin
                         mode_r   <= M_PUMP;        // first pump (escapes the
                         pump_ph  <= 2'd0;          // pot dead zone), ref s21
                         pump_big <= 1'b1;          // at full breakaway force
@@ -663,6 +704,7 @@ module pendulum_ctrl #(
     end
 
     assign mode = mode_r;
+    assign zero_fault = zero_fault_w;
 
     // ------------------------------------------------------- alpha_dot -----
     // pendulum angular velocity (sign+rate) -- seeds the balance D-term at

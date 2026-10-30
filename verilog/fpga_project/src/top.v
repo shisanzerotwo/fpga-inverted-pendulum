@@ -171,7 +171,16 @@ module top (
         else        demo_blink <= demo_blink + 25'd1;
     end
 
-    assign led2 = demo_on ? demo_blink[24] : (hold == 24'd0);
+    // Zero-guard indicator (2026-10-30): while STOPPED with the rod away from
+    // the pot's travel end-stop, the angle zero has drifted and KEY1 does
+    // nothing -- blink fast (bit22 ~6 Hz, clearly unlike the 1.5 Hz demo
+    // blink) so the bench can see the cause instead of a dead button.
+    // Declared here (before its use) because Icarus rejects use-before-decl.
+    wire ctrl_zero_fault;
+
+    assign led2 = ctrl_zero_fault ? demo_blink[22] :
+                  demo_on         ? demo_blink[24] :
+                                    (hold == 24'd0);
 
     // ------------------------------------------------------------------
     // Angle sensor: the GD32 on this board is our remote ADC.
@@ -443,7 +452,8 @@ module top (
         .alpha    (alpha),
         .adot_dbg (adot_dbg),
         .wdog     (ctrl_wdog),
-        .mode     (ctrl_mode)
+        .mode     (ctrl_mode),
+        .zero_fault (ctrl_zero_fault)
     );
 
     // motor front-end: signed duty -> TB6612 (brake-aware, min-drive)
