@@ -512,6 +512,40 @@ module pendulum_ctrl #(
     reg        center_in;                // 2 judge samples inside window
     reg  [1:0] sample_vld;               // judge samples collected since entry
 
+    // ---- 2026-10-30 capture veto: refuse a FAST FALLING entry -----------
+    // The `adot` estimator is a 40 ms window plus a one-pole low-pass, so a
+    // rod dropping at ~690 deg/s reaches the gate as a few tens of deg/s and
+    // `adot_abs >= CAPT_LIVE` (500 cdeg/s) is effectively always true.
+    //
+    // A 40 ms displacement (the judge samples a0/a1) is still too slow: bench
+    // cap_205210 had a capture at -22.4 deg where the samples 40 ms apart
+    // differed by only 0.72 deg, yet the rod reached -50.0 deg 20 ms later --
+    // the acceleration happened AFTER the last sample.  8 ms of real motion
+    // catches it (5.5 deg there, vs 0.44 deg for every entry that held).
+    //
+    // Veto = far from vertical AND moving AWAY from it AND displaced more
+    // than FALL_V8 in the last 8 ms (= 500 deg/s).
+    reg signed [15:0] ad8_0, ad8_1, ad8_2, ad8_3, ad8_4, ad8_5, ad8_6, ad8_7;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            ad8_0 <= 16'sd0; ad8_1 <= 16'sd0; ad8_2 <= 16'sd0; ad8_3 <= 16'sd0;
+            ad8_4 <= 16'sd0; ad8_5 <= 16'sd0; ad8_6 <= 16'sd0; ad8_7 <= 16'sd0;
+        end
+        else if (tick_1k) begin
+            ad8_0 <= alpha_r; ad8_1 <= ad8_0; ad8_2 <= ad8_1; ad8_3 <= ad8_2;
+            ad8_4 <= ad8_3; ad8_5 <= ad8_4; ad8_6 <= ad8_5; ad8_7 <= ad8_6;
+        end
+    end
+    localparam signed [15:0] FALL_V8     = 16'sd400; // 4 deg / 8 ms = 500 deg/s
+    localparam signed [15:0] CAPT_NEAR_W = CAPT_NEAR; // equal-width relay (trap 9)
+    wire signed [15:0] ad8_7_abs   = (ad8_7 < 16'sd0) ? -ad8_7 : ad8_7;
+    wire signed [15:0] a_now_abs   = (alpha_r < 16'sd0) ? -alpha_r : alpha_r;
+    wire signed [15:0] a_step8     = alpha_r - ad8_7;      // 8 ms displacement
+    wire signed [15:0] a_step8_abs = (a_step8 < 16'sd0) ? -a_step8 : a_step8;
+    wire               capt_veto   = (a_now_abs > CAPT_NEAR_W) &&   // far from vertical
+                                     (a_now_abs > ad8_7_abs) &&     // moving away
+                                     (a_step8_abs > FALL_V8);       // and fast
+
     // Peak detection v2: position in the far zone + VELOCITY SIGN FLIP.
     // The 3-point extremum test aliases at high rod speed (peak falls
     // between two 40 ms samples: rise-rise-drop -> middle not an extremum
@@ -605,7 +639,7 @@ module pendulum_ctrl #(
                         ms_cnt  <= PULSE_MS[15:0];
                     end
                     else if (inside_win && slow_in_win && alpha_locked &&
-                             (clean_ms >= CLEAN_W) && capt_ok) begin
+                             (clean_ms >= CLEAN_W) && capt_ok && !capt_veto) begin
                         // capture = in window AND slow enough to hold AND the
                         // displayed angle agrees with the live sample.  A rod
                         // passing the window at pump speed (<=20 ms)
@@ -771,8 +805,19 @@ module pendulum_ctrl #(
     // the fall window is only 15 deg past the capture window edge -- bench
     // 10-07 showed a 78 deg/s rod sliding out in 95 ms while still at half
     // torque.  100 ms keeps the anti-kick purpose without eating the margin.
+    // 2026-10-30: a capture far from vertical must NOT lose half its
+    // authority.  cap_203705: both instant deaths entered at |alpha| 32-40
+    // deg with the output already clipped to -5000 by the 100 ms soft start,
+    // while the P term wanted ~9800 (3.075 * 32 deg).  Latch the entry angle
+    // once per capture: past BIG_ENTRY the loop starts at full authority.
+    localparam signed [31:0] BIG_ENTRY = 32'sd1500;   // 15 deg
+    reg        entry_big;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)        entry_big <= 1'b0;
+        else if (bal_clr)  entry_big <= (alpha_abs > BIG_ENTRY);
+    end
     reg [8:0] bal_ms;
-    wire      bal_soft = bal_en && (bal_ms < 9'd100);
+    wire      bal_soft = bal_en && (bal_ms < 9'd100) && !entry_big;
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)                  bal_ms <= 9'd0;
         // counted while IN BALANCE (not on bal_en: a glitch freeze must not
