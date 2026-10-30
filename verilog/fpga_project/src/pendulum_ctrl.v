@@ -168,6 +168,22 @@ module pendulum_ctrl #(
                                               // rod must be moving at least
                                               // this fast (either direction)
                                               // for the capture to fire.
+    parameter integer CAPT_SPEED_P = 3000,    // cdeg/s: the rod must be slower
+                                              // than this INSIDE the window to
+                                              // be captured.  2026-10-30 bench
+                                              // (cap_151712): 185 pumps / 661
+                                              // window crossings, median
+                                              // crossing speed 13565 cdeg/s --
+                                              // the rod NEVER decelerates to
+                                              // 3000 any more (the 10-28 run
+                                              // still had a decaying crossing
+                                              // at 10619 -> -6192, and that is
+                                              // what got caught).  The 3000
+                                              // gate therefore rejected every
+                                              // single crossing.  Raised to
+                                              // 18000 so a fast pass-through
+                                              // can be caught; the balance loop
+                                              // then has to arrest it.
     parameter integer KEY_LOCK_MS  = 1000,    // after a toggle, further key
                                               // edges are IGNORED this long.
                                               // The KEY1 switch drops contact
@@ -406,11 +422,15 @@ module pendulum_ctrl #(
     wire outside_fall = (alpha > FWIN_S) || (alpha < -FWIN_S);
     // decelerating inside the window = catchable (near the top, physics
     // slows the rod there; a pass-through at pump speed is much faster)
-    localparam signed [31:0] CAPT_SPEED = 32'sd3000;   // 300 deg/s... no:
-                                                    // 3000 cdeg/s = 30 deg/s.
-                                                    // Was 8000 (80 deg/s): the
-                                                    // adot estimator's 40 ms
-                                                    // window can't see a fast
+    localparam signed [31:0] CAPT_SPEED = CAPT_SPEED_P;  // equal-width relay
+                                                    // (trap 9).  18000 = 180
+                                                    // deg/s on 10-30 (see the
+                                                    // parameter comment).
+                                                    // History: 3000 cdeg/s =
+                                                    // 30 deg/s, was 8000
+                                                    // (80 deg/s): the adot
+                                                    // estimator's 40 ms window
+                                                    // can't see a fast
                                                     // pass-through in time, and
                                                     // even a genuine 78 deg/s
                                                     // rod overswings past the
@@ -418,10 +438,12 @@ module pendulum_ctrl #(
                                                     // -46deg pulled back to
                                                     // -0.7deg at -258deg/s,
                                                     // then swung out at +83deg).
-                                                    // Reference-equivalent gate
-                                                    // is ~20 deg/s (2x40 ms
-                                                    // dwell).  30 deg/s is the
-                                                    // practical compromise.
+                                                    // That overswing risk is why
+                                                    // the gate was tightened;
+                                                    // the 10-30 data shows the
+                                                    // rod now crosses at 135
+                                                    // deg/s, i.e. the gate was
+                                                    // rejecting everything.
     wire signed [31:0] adot_abs = (adot < 0) ? -adot : adot;
     wire signed [31:0] alpha_abs = (alpha < 0) ? -alpha : alpha;
     localparam signed [31:0] CAPT_NEAR_S = CAPT_NEAR;   // equal-width relays

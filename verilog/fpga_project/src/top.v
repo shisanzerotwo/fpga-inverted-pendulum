@@ -338,6 +338,24 @@ module top (
                                 // (hanging = 0 = travel end-stop, upright span 37)
         .ANG_INVERT (1'b0),     // bench: invert=1 breaks swing-up entirely, so 0 is right
         .CENTER_WIN (4100),     // +/-40.6 deg = reference CENTER_RANGE 500 cnt
+        .CAPT_SPEED_P (18000),  // 2026-10-30 bench (cap_151712): 185 pumps
+                                // produced 661 window crossings at a median
+                                // 135 deg/s and the rod never slowed to the
+                                // old 30 deg/s gate -- zero captures.  Let a
+                                // fast crossing in; the balance loop must
+                                // arrest it.
+        .JUDGE_MS   (300),      // 2026-10-30 bench (cap_151712 ~151712_165):
+                                // 90% of pump gaps sat at 1.55-1.58 s = the
+                                // 1200 ms retry timeout + the 340 ms pump,
+                                // i.e. every pump was a timeout pump and the
+                                // peak detector never fired.  The rod returns
+                                // to the hang position 0.19-0.38 s after the
+                                // pump and its swing half-period is 0.31 s,
+                                // so the old 1.2 s wait parked the rod dead
+                                // still for ~0.8 s before every pump: each
+                                // pump restarted from rest and no energy ever
+                                // accumulated.  300 ms puts the pump-to-pump
+                                // period at ~640 ms = one rod swing.
         .CAPT_NEAR  (800),      // 2026-10-28 bench (cap_232325): the 1200 gate
                                 // let a rod falling through at -42 deg / -118
                                 // deg/s be "captured"; the loop could only
