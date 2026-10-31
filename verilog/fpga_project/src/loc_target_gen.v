@@ -14,7 +14,6 @@
 // ============================================================================
 module loc_target_gen #(
     parameter integer STEP_HZ   = 2,        // ramp: revolutions per second
-    parameter integer REV_COUNT = 408,      // counts per arm revolution
     parameter integer LIMIT     = 4080,     // +/- target clamp (10 revolutions)
     // 2026-10-26: the ramp step used to equal REV_COUNT (a full revolution per
     // DIV ms).  On this light rod a full-rev step tilts the pendulum ~12 deg
@@ -26,8 +25,13 @@ module loc_target_gen #(
     input  wire        clk,
     input  wire        rst_n,
     input  wire        tick_1k,
-    input  wire        btn_up,       // 1-clock strobe: target += 1 revolution
-    input  wire        btn_down,     // 1-clock strobe: target -= 1 revolution
+    input  wire        btn_up,       // strobe: cmd += step_up
+    input  wire        btn_down,     // strobe: cmd -= step_down
+    input  wire [15:0] step_up,      // counts per up strobe (408 demo / 20 knob)
+    input  wire [15:0] step_down,    // counts per down strobe.  2026-10-30: the
+                                     // step became a PORT so the knob dials one
+                                     // detent while the demo still moves a full
+                                     // revolution; see the SIGN TRAP below.
     input  wire        clear,        // synchronous: cmd = target = 0
                                      // 2026-10-28: fired on the BAL entry edge
                                      // (top.v) so a re-captured rod never
@@ -39,9 +43,19 @@ module loc_target_gen #(
     output reg  signed [31:0] target,
     output reg         moving               // 1 while ramping (debug)
 );
-    localparam signed [31:0] REV_S  = REV_COUNT;
+    // SIGN TRAP (not cosmetic): a bare 16-bit UNSIGNED step makes the whole
+    // `cmd + step_up` expression unsigned, so the comparison against
+    // +LIMIT / -LIMIT degrades to an unsigned compare:
+    //   cmd = +400, one detent down  -> 380 < 0xFFFFF010  -> TRUE  -> -4080
+    //   cmd = -380, one detent up    -> 0xFFFFFE84 > 4080 -> TRUE  -> +4080
+    // i.e. the target jumps to the opposite rail and the arm turns 10 revs.
+    // The 2026-10-28 knob build shipped without these casts (its acceptance
+    // step "turn 20 detents back to the origin" never actually passed).
+    wire signed [31:0] STEP_U = $signed({16'd0, step_up});
+    wire signed [31:0] STEP_D = $signed({16'd0, step_down});
     localparam signed [31:0] STEP_S = RAMP_STEP;
     localparam signed [31:0] LIM_S  = LIMIT;
+    localparam signed [31:0] LIM_NEG = -LIMIT;
     parameter integer DIV = 1000 / STEP_HZ; // ms per one-revolution step
     localparam [8:0] DIV_W = DIV;           // equal-width relay (trap 9).  9
                                             // bits: DIV=500 overflowed the old
@@ -64,8 +78,8 @@ module loc_target_gen #(
         end
         else if (tick_1k) begin
             // ---- button steps (single-shot strobes) ----
-            if (btn_up)   cmd <= (cmd + REV_S >  LIM_S) ?  LIM_S : cmd + REV_S;
-            if (btn_down) cmd <= (cmd - REV_S < -LIM_S) ? -LIM_S : cmd - REV_S;
+            if (btn_up)   cmd <= (cmd + STEP_U >  LIM_S)   ?  LIM_S   : cmd + STEP_U;
+            if (btn_down) cmd <= (cmd - STEP_D <  LIM_NEG) ?  LIM_NEG : cmd - STEP_D;
             // clear wins over a simultaneous strobe (placed last on purpose)
             if (clear) begin
                 cmd    <= 32'sd0;

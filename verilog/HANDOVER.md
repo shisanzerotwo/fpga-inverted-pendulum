@@ -19,7 +19,7 @@ whenToUse: >
 
 | 项目 | 状态 |
 |---|---|
-| 板上位流 | **`0xC521`**（SRAM = `0x36AB` + `KD_POS` 37.07→55.6 治停位过冲；**历史**：`0x36AB` = `0x8916` + 静止泵门控 + veto 2.5°/8 ms、`0x0405` = `0x8916` + 静止泵门控，`--run 0` 已核；对标 `0x395E` 是 15:55 版 `734b43b`；**断电回退 flash 旧固件 `0x7E86`，每次断电/拔线后必须 `programmer_cli --fsFile <绝对路径> --cable-index 1 --run 2` 重烧再测**。注意 `--fsFile` 用**绝对路径**，Git Bash 下相对路径报 "Not found any data File"） |
+| 板上位流 | **`0x65FA`**（SRAM，2026-10-31 旋钮版 = `0xC521` + 旋钮 AUTO/MANUAL 切换，`--run 0` 已核；**断电回退 flash 旧固件 `0x7E86`，每次断电/拔线后必须 `programmer_cli --fsFile <绝对路径> --cable-index 1 --run 2` 重烧再测**。注意 `--fsFile` 用**绝对路径**，Git Bash 下相对路径报 "Not found any data File"。上一版 `0xC521` 备份在 `_tools/fsbak/fs_0xC521.fs`） |
 | 仓库 | `master` = 本文件所在提交（`025c4e7` 零点自检守卫仍在历史中，但 RTL 已回退；`pre-rollback-20261028` 标签保留 10-28 修复线） |
 | 自摆 | **稳定**：`0xC521` **5 启动 / 5 捕获 / 秒死 0**，BAL 44.9/79.0/**263.6**/29.9/63.6 s（**263.6 s 为迄今最长**） |
 | 平衡 | **停位过冲已治**：移动过冲中位 +46→**−1** counts、最大 +559→**+29**；BAL 内 alpha std 4.2~5.5°（≈4.8 Hz 极限环，机械地板，用户裁定不调）；信号跳变 移动 5.1% / 静止 1.0%，建议复查接线 |
@@ -71,6 +71,19 @@ whenToUse: >
 - **抖动（未治，用户裁定跳过）**：alpha 零交叉周期 0.21 s（≈4.8 Hz 极限环），std 4.2~5.5°、4 s 窗峰峰 p50 27.0°/p95 37.9°。与 10-27 记录的"机械地板"同源，10-27 已试 `Kd 5.04→7.51` 无效。**幅度从 10-27 的 ±2° 涨到 ±4.3°，同期信号跳变 0.7%→5.1%，怀疑同一机械/接线退化。**
 
 **下一档可试（未做）**：① 用多轮数据统计真实成功率与"启动→捕获"耗时（否决会让起摆变慢，需确认可接受）；② `CAPT_LIVE` 500→1500~2000（收紧高速 catch 路径）；③ BAL 抖动 std 4.2~4.4°（vs 10-28 的 3.65~4.19°）可试 `KD_ANG` +10%。
+
+**✅ 2026-10-31：旋钮运行时切换 AUTO/MANUAL（位流 `0x65FA`，已烧入 SRAM）**
+
+- **需求**：运行时按旋钮 SW 在「自动移动演示（AUTO）」与「抗干扰演示（MANUAL，横臂静止可推杆）」间切换；MANUAL 下旋转旋钮调位置。**移除复位手势**，上电固定 AUTO。
+- **新增**：`src/knob_dec.v`（KY-040 解码，`DEB_MS=2`/`DET_MIN_MS=25`/`INVERT=1`）、`src/mode_ctl.v`（复位固定 AUTO，只做 SW 上升沿翻转）。
+- **删除**：`src/demo_sel.v` + `src/sim/demo_sel_tb.v`（复位手势）。
+- **`loc_target_gen.v`**：`REV_COUNT` 参数改成 `step_up/step_down` **端口**（AUTO 喂 408 / MANUAL 喂 20）。
+- **P0 修复（重要）**：10-28 那版把步长做成 `input wire [15:0]`（无符号），`cmd + step_up` 使整个比较退化为**无符号**——`cmd=+400` 左拧一格得 `380 < 0xFFFFF010` 为真 → **目标瞬跳 −4080（横臂转 10 圈）**。这正是旧版验收第 2 条从未通过的原因。现用 `$signed({16'd0, step_up})` 拓宽。
+- **cst**：K14=knob_a / K15=knob_b / K13=knob_sw（LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3，bank 1）。接线见 `docs/knob_control.md`（H6-37 GND / H6-38 3V3 / H6-29 SW / H6-28 DT / H6-27 CLK，**断电接线，绝不能接 H6-40 的 5V**）。
+- **指示**：`led2` 闪 = AUTO、不闪 = MANUAL；数码管 **DP 亮 = MANUAL**。
+- **验收（仿真）**：新增 `knob_dec_tb` 8/8、`mode_ctl_tb` 5/5、`top_mode_tb` 9/9（上电 AUTO / SW 切换 / MANUAL 旋钮进 cmd / AUTO 忽略旋钮 / AUTO demo 触发 / MANUAL 门控）；`loc_target_tb` 16/16（含 P0 三条：`+100` 按 down 得 **80**、`−20`、`±4080` 钳位）；`ctrl_tb`/`judge_tmo_tb`/`capt_veto_tb`/`motor`/`pid`/`telemetry`/`alpha_dot` 全 PASS。iverilog lint 0 错，综合 **0 warning**。
+- **上板状态**：位流 `0x65FA` 已烧入并核对；采 90 s 遥测 4286 帧、无断帧、link=1（全 STOP，用户未启动）。**旋钮尚未接线**，AUTO/MANUAL 的实机验收（9 条）待接线后执行。
+- **顺带修掉一个 tb 缺陷**：`loc_target_tb` 的 `pulse()` 原来保持 1200 clk = 1.2 个 tick 周期，相位每 5 次漂一整圈导致**静默多数一次**；用 20 步长才暴露。改成恰好 1000 clk。
 
 **⚠️ 2026-10-30 深夜：RTL 回退到 15:55 版（`734b43b`，位流 `0x395E`，用户裁定）**：
 

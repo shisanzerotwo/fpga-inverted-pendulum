@@ -7,14 +7,17 @@
 module loc_target_tb;
     reg clk = 1'b0, rst_n = 1'b0, tick_1k = 1'b0;
     reg btn_up = 1'b0, btn_down = 1'b0, run = 1'b0, clear = 1'b0;
+    reg [15:0] step_up = 16'd408, step_down = 16'd408;
     wire signed [31:0] target;
     wire moving;
     integer errors = 0;
     integer k;
 
-    loc_target_gen #(.STEP_HZ(2), .REV_COUNT(408), .LIMIT(4080)) dut (
+    loc_target_gen #(.STEP_HZ(2), .LIMIT(4080)) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),
-        .btn_up (btn_up), .btn_down (btn_down), .clear (clear), .run (run),
+        .btn_up (btn_up), .btn_down (btn_down),
+        .step_up (step_up), .step_down (step_down),
+        .clear (clear), .run (run),
         .target (target), .moving (moving)
     );
 
@@ -30,8 +33,18 @@ module loc_target_tb;
         begin
             @(negedge clk);
             if (which) btn_up = 1'b1; else btn_down = 1'b1;
-            repeat (1200) @(posedge clk);   // hold > 1 tick period (1000 clks):
-            #1                              // the strobe MUST span a tick edge
+            // Hold for EXACTLY one tick period (1000 clk), so the interval
+            // [start, start+1000) always contains exactly one tick edge and
+            // the start phase never drifts between presses.
+            //
+            // The old body held 1200 clk = 1.2 periods: the phase walked
+            // 200 clk per press and every 5th press spanned TWO ticks, so it
+            // silently counted twice.  With the original 408-count step that
+            // was invisible (all checks were on the +-4080 clamp or on ramp
+            // targets); a 20-count knob step exposes it at once (5 x 20 was
+            // reading back as 120).
+            repeat (1000) @(posedge clk);
+            #1
             btn_up = 1'b0; btn_down = 1'b0;
         end
     endtask
@@ -91,6 +104,43 @@ module loc_target_tb;
         clear = 1'b0;
         check("clear zeroes target", target, 0, 0);
         check("clear zeroes cmd", dut.cmd, 0, 0);
+
+        // ---- 6. PORT-STEP SIGN TRAP (2026-10-30) --------------------------
+        // A 16-bit UNSIGNED step pointer makes `cmd - step` unsigned, so the
+        // compare against -LIMIT degrades: cmd=+400 one detent down became
+        // 380 < 0xFFFFF010 -> TRUE -> cmd = -4080 (arm turns 10 revs).  The
+        // 2026-10-28 build shipped exactly that bug.
+        step_up   = 16'd20;
+        step_down = 16'd20;
+
+        pulse(1); pulse(1); pulse(1); pulse(1); pulse(1);   // cmd = +100
+        check("port step 5x20 -> cmd 100", dut.cmd, 100, 0);
+
+        pulse(0);                      // +100 - 20 = +80, NOT -4080
+        check("detent down from +100 (signed)", dut.cmd, 80, 0);
+
+        pulse(0); pulse(0); pulse(0); pulse(0);             // back to 0
+        check("detent down through zero to 0", dut.cmd, 0, 0);
+
+        pulse(0);                      // 0 - 20 = -20, NOT +4080
+        check("detent down below zero", dut.cmd, -20, 0);
+
+        pulse(1);                      // -20 + 20 = 0
+        check("detent up back to zero", dut.cmd, 0, 0);
+
+        // ---- 7. 20 detents = 400 counts, ramp follows ----
+        repeat (11) pulse(1);          // 11 x 20 = 220
+        repeat (9)  pulse(1);          // + 180 = 400
+        check("20 detents -> cmd 400", dut.cmd, 400, 0);
+        repeat (1200) @(posedge tick_1k); #1;
+        check("ramp reaches 400", target, 400, 0);
+
+        // ---- 8. port step still clamps at the rails ----
+        step_up = 16'd408; step_down = 16'd408;
+        repeat (11) pulse(1);          // 400 + 11*408 = 4888 -> clamp 4080
+        check("port step clamps at +4080", dut.cmd, 4080, 0);
+        repeat (21) pulse(0);          // 4080 - 21*408 = -4488 -> clamp -4080
+        check("port step clamps at -4080", dut.cmd, -4080, 0);
 
         if (errors == 0) $display("PASS: loc_target_gen verified");
         else             $display("FAIL: %0d check(s) failed", errors);
