@@ -52,9 +52,9 @@ module top_mode_tb;
         begin
             @(negedge clk);
             knob_sw = 1'b0;
-            repeat (150_000) @(negedge clk);     // 3 ms (> DEB_MS=2)
+            repeat (750_000) @(negedge clk);     // 15 ms (> SW_DEB_MS=10)
             knob_sw = 1'b1;
-            repeat (2_750_000) @(negedge clk);   // 55 ms > SW_LOCK_MS=50
+            repeat (5_500_000) @(negedge clk);   // 110 ms > SW_LOCK_MS=100
         end
     endtask
 
@@ -135,7 +135,7 @@ module top_mode_tb;
     end
 
     initial begin
-        #2_000_000_000;                          // 2 s sim-time guard
+        #4_000_000_000;                          // 4 s sim-time guard
                                                  // (3 SW presses x 120 ms +
                                                  //  4 detents x 42 ms)
         $display("FAIL: timeout (mode_auto=%b cmd=%0d)", dut.mode_auto, dut.u_ltg.cmd);

@@ -205,15 +205,18 @@ module ctrl_tb;
         check("glitch: alpha still near pre value",
               (alpha > alpc_pre - 16'sd200) && (alpha < alpc_pre + 16'sd200));
 
-        // ---- 3f. FAST true motion must NOT trip the freeze (2026-10-11
-        //          v2: the old 400 cdeg/ms budget froze the lightened rod
-        //          mid-rescue -- tlm_run2 frame 5011, alpha pinned at 3455
-        //          while adc carried REAL motion; budget now 2000).  Ramp
-        //          adc down 51 counts/tick = 415 cdeg/ms for 10 ms: alpha
-        //          must FOLLOW (the old budget froze it solid).
+        // ---- 3f. FAST true motion must NOT trip the freeze --------------
+        // The rod's physical limit is ~300 deg/s = 30 cdeg/ms; this ramp is
+        // 5 counts/tick = 40.6 cdeg/ms (406 deg/s), i.e. slightly ABOVE that
+        // limit, so a real fast rod must still be followed.
+        //
+        // 2026-10-31: this used 51 counts/tick, which is 414.6 cdeg/tick =
+        // 4146 deg/s -- 14x the physical limit.  That passed only because
+        // the old SLEW_BUDGET was 2000 (20000 deg/s); the comment claiming
+        // "415 deg/s" was off by 10x.
         alpc_pre = alpha;                  // ~ +4715 after the 3d settle
-        for (k = 0; k < 10; k = k + 1) begin
-            adc = adc - 12'd51;
+        for (k = 0; k < 80; k = k + 1) begin
+            adc = adc - 12'd5;             // 40.6 cdeg/tick, 80 ticks = -3252 cdeg
             @(posedge tick_1k);
         end
         #1;

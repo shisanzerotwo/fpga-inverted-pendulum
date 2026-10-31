@@ -66,25 +66,19 @@ module pendulum_ctrl #(
                                               // limiter gives up and follows
                                               // like before (no permanent freeze)
     parameter integer SLEW_BUDGET  = 2000,   // cdeg/ms: per-tick |d_alpha| above
-                                              // this = glitch.  Was 400 (=4000
-                                              // deg/s at 1 kHz): tlm_run2 proved
-                                              // the lightened rod, kicked at full
-                                              // duty, genuinely exceeds that and
-                                              // got frozen MID-RESCUE (BAL frame
-                                              // 5011: alpha frozen at 3455 while
-                                              // adc moved 2465->3176 real motion,
-                                              // ~0.4 s segment died blind).
-                                              // 2000 deg/s is unreachable for the
-                                              // rod (pendulum swing, not a wheel);
-                                              // the smallest bench glitch is
-                                              // ~8000 cdeg instantaneous, 4x above
-                                              // the budget -- still caught.
-    // ---- signal-trust gates (2026-10-25: slip-ring dropout immunity) ----
-    // The slip ring behind the pot drops contact when the ARM rotates fast;
-    // the adc then slams between the true value and a float cluster.  Bench
-    // 10-24 (SWINGUP_RANDOM_REPORT): 46/64 pumps fired on a still rod, 5
-    // false captures lived 0.2 s, swing-up success 1/6.  These gates make
-    // every judge/capture decision out of REAL samples only.
+                                             // this = glitch.  Physics caps the
+                                             // rod at ~300 deg/s = 30 cdeg/ms,
+                                             // so 100 still tracks every real
+                                             // motion with 3x margin.
+                                             // 2026-10-31: LOWERING this does
+                                             // NOT help.  The end-stop bounce
+                                             // is ~315 cdeg/ms, so 400 "should"
+                                             // reject it -- but 400 also caught
+                                             // genuine swings, and because the
+                                             // SAME budget caps the follow rate
+                                             // alpha then hung: 16.8% frozen
+                                             // frames at 400 and 41.4% at 100,
+                                             // versus 12.5% at 2000.  Leave it.
     parameter integer PEAK_VMIN    = 0,       // cdeg/s minimum speed on the
                                               // losing side of the adot sign
                                               // flip for a judge pump.
@@ -302,6 +296,18 @@ module pendulum_ctrl #(
     wire signed [12:0] adc_s = {1'b0, adc};
     wire signed [12:0] off_s = {1'b0, ANG_OFF_W};
     wire signed [12:0] adc_diff = ANG_INVERT ? (off_s - adc_s) : (adc_s - off_s);
+    // ---- 2026-10-31: WRAP TRIED AND SHELVED ---------------------------
+    // Folding the difference into +-2048 does unify the two end-stop
+    // readings (adc 0 and 4095 are the same physical point), and balance
+    // did get steadier with it.  But alpha_r has to SLEW to the new value
+    // at 20 deg/ms, so every end-stop bounce drags it through 332 deg of
+    // positions the rod never occupied: adc<200 showed 635 frames heading
+    // negative and 1217 positive, and swing-up fell from ~2-4 s to 4-10 s.
+    // Kept here (unused) as the reference implementation; the A/B test
+    // below decides whether to re-enable it.
+    // wire signed [13:0] diff_w = (adc_diff > 13'sd2048)  ? (adc_diff - 14'sd4096) :
+    //                             (adc_diff < -13'sd2048) ? (adc_diff + 14'sd4096) :
+    //                             adc_diff;
     wire signed [31:0] alpha_full = (adc_diff * 32'sd33300) >>> 12;
     wire signed [31:0] alpha_cl = (alpha_full > 32'sd32000)  ? 32'sd32000  :
                                   (alpha_full < -32'sd32000) ? -32'sd32000 :

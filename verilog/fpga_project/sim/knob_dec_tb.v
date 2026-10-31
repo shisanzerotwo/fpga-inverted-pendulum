@@ -22,6 +22,8 @@ module knob_dec_tb;
 
     knob_dec #(
         .DEB_MS           (2),
+        .SW_DEB_MS        (2),      // test the 2 ms path here; the
+                                   // board build uses 10 ms
         .PHASE_PER_DETENT (4),
         .SW_LOCK_MS       (50),
         .DET_MIN_MS       (20),     // one detent per 20 ms at most

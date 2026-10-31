@@ -128,7 +128,9 @@ module top (
         .DEB_MS           (2),      // each contact phase lasts 1~2 ms; 3 ms
                                     // LOSES detents (2026-10-28 bench)
         .PHASE_PER_DETENT (4),      // standard KY-040 module
-        .SW_LOCK_MS       (50),     // one mode toggle per press
+        .SW_DEB_MS        (10),     // SW line carries 2~5 ms motor
+                                    // noise bursts; 2 ms passed them
+        .SW_LOCK_MS       (100),    // one mode toggle per press
         .DET_MIN_MS       (25),     // a hand cannot exceed ~30 detents/s;
                                     // anything faster is PWM/hall coupling
         .INVERT           (1'b1)    // right turn = positive, as wired
@@ -656,7 +658,10 @@ module top (
         .clk      (sys_clk),
         .rst_n    (rst_n),
         .tick_1k  (tick),
-        .mode     (ctrl_mode),
+        // flags bit2 carries mode_auto (2026-10-31): the FSM only uses
+        // states 0..3, so ctrl_mode[2] is ALWAYS 0 and the bit is free --
+        // no frame-format change, no information lost.  bit0..1 = FSM state.
+        .mode     ({mode_auto, ctrl_mode[1:0]}),
         .link_ok  (link_ok),
         .enable   (ctrl_en),
         .braking  (braking),

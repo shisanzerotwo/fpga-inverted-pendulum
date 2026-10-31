@@ -29,7 +29,23 @@ module knob_dec #(
                                                 // 5 clicks, the counter showed
                                                 // 4), 1 ms lets motor noise in.
     parameter integer PHASE_PER_DETENT = 4,    // quadrature transitions per click
-    parameter integer SW_LOCK_MS       = 50,   // one toggle per press
+    parameter integer SW_DEB_MS        = 10,   // SW-only debounce.  The knob
+                                                // phases need the short
+                                                // DEB_MS (3 ms already loses
+                                                // detents), but the SW line on
+                                                // this bench picks up 2~5 ms
+                                                // noise bursts from the motor
+                                                // harness: with DEB_MS=2 a
+                                                // hand turning the knob alone
+                                                // toggled the mode 4 times per
+                                                // minute (cap_171850).  10 ms
+                                                // rejects those bursts and is
+                                                // still far shorter than any
+                                                // deliberate press.
+    parameter integer SW_LOCK_MS       = 200,  // one toggle per press.  Was
+                                                // 50 ms; the same noise could
+                                                // re-trigger 21 ms after a
+                                                // spurious edge.
     parameter integer DET_MIN_MS       = 25,   // minimum spacing between
                                                 // accepted detents.  2026-10-28
                                                 // bench: while the motor was
@@ -52,9 +68,12 @@ module knob_dec #(
     output reg  step_down,      // one detent, counting down
     output reg  sw_toggle       // one debounced press (1 ms wide)
 );
-    localparam [3:0] DEB_W   = DEB_MS;
+    localparam [3:0] DEB_W    = DEB_MS;
+    localparam [3:0] SWDEB_W  = SW_DEB_MS;
     localparam [3:0] PH_W    = PHASE_PER_DETENT;
-    localparam [5:0] LOCK_W  = SW_LOCK_MS;
+    localparam [7:0] LOCK_W  = SW_LOCK_MS;   // 8 bits: 200 does not
+                                             // fit the old 6 (it
+                                             // truncated to 8 ms)
     localparam [5:0] DETMIN_W = DET_MIN_MS;
 
     wire [1:0] q_now = {a, b};
@@ -64,7 +83,7 @@ module knob_dec #(
     reg [3:0] deb_cnt;          // ms the sampled phase has disagreed
     reg [3:0] sw_deb;           // ms the sampled button has disagreed
     reg       sw_stable;        // debounced button (1 = released)
-    reg [5:0] lock_cnt;         // ms of toggle lock remaining
+    reg [7:0] lock_cnt;         // ms of toggle lock remaining
     reg [5:0] det_gap;          // ms since the last accepted detent
     reg       primed;           // first tick: adopt the pins, decode nothing
 
@@ -91,7 +110,7 @@ module knob_dec #(
             deb_cnt   <= 4'd0;
             sw_deb    <= 4'd0;
             sw_stable <= 1'b1;
-            lock_cnt  <= 6'd0;
+            lock_cnt  <= 8'd0;
             det_gap   <= DETMIN_W;
             primed    <= 1'b0;
             step_up   <= 1'b0;
@@ -103,7 +122,7 @@ module knob_dec #(
             step_up   <= 1'b0;
             step_down <= 1'b0;
             sw_toggle <= 1'b0;
-            if (lock_cnt != 6'd0) lock_cnt <= lock_cnt - 6'd1;
+            if (lock_cnt != 8'd0) lock_cnt <= lock_cnt - 8'd1;
             if (det_gap  != 6'h3F) det_gap  <= det_gap + 6'd1;
 
             if (!primed) begin
@@ -152,10 +171,10 @@ module knob_dec #(
                 if (sw_n == sw_stable) begin
                     sw_deb <= 4'd0;
                 end
-                else if (sw_deb >= DEB_W - 4'd1) begin
+                else if (sw_deb >= SWDEB_W - 4'd1) begin
                     sw_deb    <= 4'd0;
                     sw_stable <= sw_n;
-                    if (sw_n == 1'b0 && lock_cnt == 6'd0) begin
+                    if (sw_n == 1'b0 && lock_cnt == 8'd0) begin
                         sw_toggle <= 1'b1;   // press edge
                         lock_cnt  <= LOCK_W;
                     end
