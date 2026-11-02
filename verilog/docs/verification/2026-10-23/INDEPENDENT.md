@@ -105,7 +105,7 @@ SWD只读日志独立核对：首轮参数错误保留在`swd_attach.log`（SHA2
 | runtime_upright.json | `0fc1959792909d14e906396bc735bf4b0a14a1807a5ed426c016d704975efb8c` |
 | runtime_hanging_return.json | `9f5ffc80fd48ef7809424b99372ab37a45f092aa0ef3d0871e1e282c72f826ce` |
 
-另独立逐一读取c85c5f2的87路径原始blob：verification的81文件（含9bin/45log）均逐字节同磁盘，只有HANDOVER的LF/CRLF不同、归一化相同；无VCD/VVP/pyocd_lib误收。此项仅审既有提交，不替代本阶段新文件的复核。
+另独立逐一读取cdedbe9的87路径原始blob：verification的81文件（含9bin/45log）均逐字节同磁盘，只有HANDOVER的LF/CRLF不同、归一化相同；无VCD/VVP/pyocd_lib误收。此项仅审既有提交，不替代本阶段新文件的复核。
 
 ## 追加R5（2026-10-24）：OUT定压配对与指定范围备份
 

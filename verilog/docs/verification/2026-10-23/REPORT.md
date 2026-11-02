@@ -12,7 +12,7 @@
 
 ## 固定输入与离线证据
 
-- 父 Git 仓库 `D:/GitHub/xiangmu/FPGA`，本轮开工 HEAD `e501be6`；活跃 `verilog/` 副本原先整体未跟踪。另一个正式仓库有用户暂存/未提交改动，本轮未操作。
+- 父 Git 仓库 `D:/GitHub/xiangmu/FPGA`，本轮开工 HEAD `8bc71ff`；活跃 `verilog/` 副本原先整体未跟踪。另一个正式仓库有用户暂存/未提交改动，本轮未操作。
 - `source_snapshot.json` 冻结 23 项源码/输入；本轮未修改控制 RTL 或 GD32 固件源码。
 - 14 个现有 testbench 首轮 **13/14**，`loc_target_tb` 在 90.091 秒超时。相同二进制用 `vvp <file> -none` 禁用波形补验，45.913 秒 PASS；历史首轮结果仍保留。
 - Gowin 构建完成，50 MHz 约束，Setup/Hold 违例端点均 0，TNS 均 0，Fmax 53.911 MHz；仍有既有警告，不能表述为零警告。
