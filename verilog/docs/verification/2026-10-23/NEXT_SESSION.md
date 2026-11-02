@@ -81,6 +81,6 @@ raise SystemExit(m.main())
 - 本次编程全范围比较仅保存结果/hash，未另存B全范围读回bin；原A完整备份存在，不称有两份B原始bin。
 - Pack SVD加载线程报XML声明不在首位，Board ID未知及CoreSight cidr0告警均保留在log；实际FLM写入/全范围比较、后续B身份与计数已通过。未修改官方Pack来消告警。
 - 用户已确认ADC修复通过并要求继续；本轮12V关闭的STOP遥测只验证FPGA身份和安全输出，不包含角度标定数据。当前标定待补的新板数据是自然下垂/竖直朝上/返回下垂三组COM9遥测。
-- 旧板A/B会话收尾时记录HEAD=`c85c5f2a933596df955bddb29f43d680551b57b8`及其工作区快照；该计数不是本轮新板状态。开始提交本轮文件前须重新核对HEAD与显式暂存路径，不触碰其他既存改动。
+- 旧板A/B会话收尾时记录HEAD=`cdedbe9c0cae9706eb4e7d726d26b1b7da948021`及其工作区快照；该计数不是本轮新板状态。开始提交本轮文件前须重新核对HEAD与显式暂存路径，不触碰其他既存改动。
 
 详细证据：[REPORT](REPORT.md)、[INDEPENDENT](INDEPENDENT.md)、[版本链](ADC_REGRESSION.md)、[任务卡](../../tasks/2026-10-24-adc-ab.md)。
