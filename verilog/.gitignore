@@ -4,3 +4,8 @@ _tools/pyocd_lib/
 **/__pycache__/
 docs/verification/2026-10-23/sim/**/*.vcd
 docs/verification/2026-10-23/sim/**/*.vvp
+
+# 仿真波形与 GD32 构建产物（2026-11-02：VCD 已从历史剥离并上传 GitHub，勿再入库）
+*.vcd
+*.vvp
+gd32_fw/build*/
