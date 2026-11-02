@@ -42,6 +42,8 @@ module ctrl_tb;
         .PUMP_DUTY  (3500),
         .PULSE_MS   (100),     // 100 ms -> 100 ticks
         .POS_TRIM   (2000),
+        .KEY_DEB_MS (1),       // tb drives 3-tick presses; the board
+                               // build uses 30 ms (see key_deb_tb)
         .DUTY_LIM   (10000)
     ) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),

@@ -20,7 +20,8 @@ module judge_tmo_tb;
 
     pendulum_ctrl #(
         .ANG_OFFSET (2057),
-        .JUDGE_MS   (300)               // short for the simulation
+        .JUDGE_MS   (300),              // short for the simulation
+        .KEY_DEB_MS (1)                 // tb presses are only a few ticks long
     ) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),
         .key_run (key_run), .link_ok (link_ok),

@@ -39,7 +39,8 @@ module capt_veto_tb;
         .PULSE_MS   (100),
         .POS_TRIM   (2000),
         .DUTY_LIM   (10000),
-        .CAPT_SPEED_P (18000)          // same as the board build
+        .CAPT_SPEED_P (18000),
+        .KEY_DEB_MS   (1)      // tb presses are only a few ticks long          // same as the board build
     ) dut (
         .clk (clk), .rst_n (rst_n), .tick_1k (tick_1k),
         .key_run (key_run), .link_ok (link_ok),

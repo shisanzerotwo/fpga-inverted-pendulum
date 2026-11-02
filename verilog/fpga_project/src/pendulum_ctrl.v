@@ -188,6 +188,19 @@ module pendulum_ctrl #(
                                               // contact family as the 10-24
                                               // "KEY1 self-trigger" events);
                                               // run/stop must not flap on it.
+    parameter integer KEY_DEB_MS   = 30,      // KEY1 must HOLD its new level
+                                              // this long before the edge
+                                              // counts.  2026-11-02: the lock
+                                              // above only covers 1 s after a
+                                              // toggle, so the 30th second of
+                                              // a balance is fair game for
+                                              // contact chatter -- bench
+                                              // base_183329 dropped out of
+                                              // BALANCE at alpha +1.4 deg
+                                              // with link=1 and wdog=0, i.e.
+                                              // a run_latch flip, not a fault.
+                                              // Chatter is a few ms; a real
+                                              // press is >100 ms.
 
     // ---- loop gains (Q16.16), CONVERTED from 江协 reference units ----
     // 2026-10-07 bench retune #2: Kp halved (3.69 -> 1.85).  With full Kp a
@@ -411,10 +424,15 @@ module pendulum_ctrl #(
 
     // ------------------------------------------------------- key toggle ----
     // (mode_r is declared up with the trust counters -- see above)
-    reg        key_d;                    // raw key delayed (edge detect)
+    reg        key_d;                    // DEBOUNCED key delayed (edge detect)
     reg        run_latch;                // 按一下=启动/再按一下=停止
     reg        start_req;                // press -> start, consumed by FSM
     reg [2:0]  mode_d;
+    // 2026-11-02 KEY1 level debounce (see KEY_DEB_MS): chatter of a few ms
+    // used to reach the edge detector directly and flip run_latch mid-balance.
+    reg [7:0]  key_deb;                  // ms key_run has disagreed
+    reg        key_stable;               // debounced level (1 = released)
+    localparam [7:0] KEY_DEB_W = KEY_DEB_MS;   // equal-width relay (trap 9)
 
     // BAL watchdog on signal death: continuous dropout for DEAD_MS kills the
     // run (clean stop; the next KEY1 press starts fresh).
@@ -461,13 +479,28 @@ module pendulum_ctrl #(
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            key_d     <= 1'b1;
-            run_latch <= 1'b0;
-            start_req <= 1'b0;
-            key_lock  <= 10'd0;
+            key_d      <= 1'b1;
+            key_stable <= 1'b1;         // KEY1 released (active low)
+            key_deb    <= 8'd0;
+            run_latch  <= 1'b0;
+            start_req  <= 1'b0;
+            key_lock   <= 10'd0;
         end
         else begin
-            key_d <= key_run;
+            // ---- 2026-11-02: debounce the LEVEL before edge detection ----
+            // Only a level that holds KEY_DEB_MS is allowed to reach key_d,
+            // so contact chatter cannot manufacture a press edge.
+            if (tick_1k) begin
+                if (key_run == key_stable)
+                    key_deb <= 8'd0;
+                else if (key_deb >= KEY_DEB_W - 8'd1) begin
+                    key_deb    <= 8'd0;
+                    key_stable <= key_run;
+                end
+                else
+                    key_deb <= key_deb + 8'd1;
+            end
+            key_d <= key_stable;
             if (tick_1k && key_lock != 10'd0)
                 key_lock <= key_lock - 10'd1;
             // rod lost while balancing: power off clean (next press starts).
@@ -475,7 +508,7 @@ module pendulum_ctrl #(
             // alpha is frozen and the motor would run blind; stop instead.
             if ((mode_r == M_BAL && outside_fall) || sig_dead)
                 run_latch <= 1'b0;
-            else if (key_d == 1'b1 && key_run == 1'b0 && key_lock == 10'd0) begin
+            else if (key_d == 1'b1 && key_stable == 1'b0 && key_lock == 10'd0) begin
                 // press edge: toggle the machine; request start if turning ON.
                 // key_lock swallows the phantom second edge the KEY1 contact
                 // drops on us ~150 ms after a real press (see KEY_LOCK_MS).
